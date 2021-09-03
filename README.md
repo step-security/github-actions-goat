@@ -17,7 +17,7 @@ Follow these steps to learn about threats and countermeasures related to the sof
 
 ## Tutorial #1 - Set minimum permissions for the `GITHUB_TOKEN`
 
-1. Create a new issue in the forked repo. Label the issue as an enhancement. Once you do this, a GitHub workflow will get triggered. You can see the code for the workflow under `./github/workflows`. 
+1. Go the forked repo's "Settings" and enable Issues. Create a new issue in the forked repo. Label the issue as an enhancement. Once you do this, a GitHub workflow will get triggered. You can see the code for the workflow under `./github/workflows`. 
 2. Go to the Actions tab, and have a look at the permissions assigned to the `GITHUB_TOKEN`. You can see the permissions in the workflow run logs. 
 3. By default, the `GITHUB_TOKEN` has a lot of permissions assigned. This includes the permission to write to the repository. 
 4. You can now manually secure the workflow by adding the `permissions` key, but it is hard to know what the permissions should be for a given workflow. Different 3rd party Actions may  use different permissions. In this tutorial, let us fix the permissions automatically. 
