@@ -18,6 +18,6 @@ You should see a pull request with security improvements. As of now, the App aut
 
 This table lists threats and countermeasures related to software supply chain security. It will be updated as more features are released. 
 
-# | Threats  | Countermeasures  | Related incident
---|---------|------------------|----------------
-1.|Exfiltration of secrets from the pipeline | Use credentials that are minimally scoped | Codecov breach, where credentials were exfiltrated from pipelines
+Number | Threats  | Countermeasures  | Related incident
+-------|--------- |------------------|----------------
+1      |Exfiltration of secrets from the pipeline | Use credentials that are minimally scoped | Codecov breach, where credentials were exfiltrated from pipelines
