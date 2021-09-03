@@ -5,8 +5,6 @@ on:
 
 jobs:
   build:
-    permissions:
-      issues: write
     runs-on: ubuntu-latest
     steps:
     - name: Close Issue
