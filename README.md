@@ -6,13 +6,21 @@ The purpose of this repository is to share information and learn about software 
 
 This repo has some GitHub workflows. Follow these steps to see how the [Step Security GitHub App](https://github.com/apps/step-security) addresses those issues. 
 
-As of now, the App automatically restricts permissions of the `GITHUB_TOKEN`. This helps counter the threat of the token being exfiltrated. 
-
 1. Create a fork of the repo.
 2. Go to the Actions tab in the fork. Click the "Enable Actions" button. 
-3. Visit [Step Security GitHub App](https://github.com/apps/step-security) and click on Install. Install it on the fork. 
 
-You should see a pull request with security improvements. As of now, the App automatically restricts permissions of the `GITHUB_TOKEN`. 
+## Tutorial #1
+
+1. Create a new issue in the forked repo. Then label the issue as a feature. Once you do this, an action will get triggered. 
+2. Go to the Actions tab, and have a look at the permissions assigned to the `GITHUB_TOKEN`. 
+3. By default, the `GITHUB_TOKEN` has a lot of permissions assigned. 
+4. You can now manually fix the workflow by adding the `permissions` key, but its hard to know what the permissions should be. In this tutorial, lets fix the permissions automatically. 
+5. Visit [Step Security GitHub App](https://github.com/apps/step-security) and click on Install. Install it on your forked repo.
+6. You should see a pull request with the minimum permissions assigned for the workflow. 
+7. Create another issue and label it as a feature. 
+8. Go to the Actions tab, and have a look at the permissions assigned to the `GITHUB_TOKEN`. 
+9. Now it has only few permissions assigned. 
+10. Congratulations on completing the first tutorial!
 
 ## Threats and Countermeasures
 
