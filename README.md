@@ -14,8 +14,17 @@ Follow these steps to learn about threats and countermeasures related to the sof
 
 1. Create a fork of the repo.
 2. Go to the Actions tab in the fork. Click the "I understand my workflows, go ahead and enable them" button. 
+   
+   <img src="https://step-security-images.s3.us-west-2.amazonaws.com/perms-enable-actions.png" alt="Enable Actions" width="800">
+
 3. Click on the "Lint" workflow and then click "Run workflow". Once you do this, a GitHub workflow will get triggered.
-4. In the Actions tab, in the workflow run logs, have a look at the permissions assigned to the `GITHUB_TOKEN`. 
+
+   <img src="https://step-security-images.s3.us-west-2.amazonaws.com/perms-run-workflow.png" alt="Run Workflow" width="800">
+
+4. Click on the Actions tab again, click on the workflow that just started, and in the job run logs, have a look at the permissions assigned to the `GITHUB_TOKEN`. 
+   
+   <img src="https://step-security-images.s3.us-west-2.amazonaws.com/perms-token.png" alt="Token permissions" width="800">
+
 5. By default, the `GITHUB_TOKEN` has a lot of permissions assigned. As a [security best practice](https://github.blog/changelog/2021-04-20-github-actions-control-permissions-for-github_token/), the `GITHUB_TOKEN` should be assigned the minimum permissions.  
 6. Review the workflow file at `./github/workflows/lint.yml`. You can now manually add the `permissions` key, but it is hard to know what the permissions should be. Different 3rd party Actions may use different permissions. In this tutorial, let us fix the permissions automatically. 
 7. Visit [Step Security GitHub App](https://github.com/apps/step-security) and click on Install. Install it on your forked repo.
