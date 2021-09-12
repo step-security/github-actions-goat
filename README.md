@@ -28,6 +28,10 @@ Follow these steps to learn about threats and countermeasures related to the sof
 5. By default, the `GITHUB_TOKEN` has a lot of permissions assigned. As a [security best practice](https://github.blog/changelog/2021-04-20-github-actions-control-permissions-for-github_token/), the `GITHUB_TOKEN` should be assigned the minimum permissions.  
 6. Review the workflow file at `./github/workflows/lint.yml`. You can now manually add the `permissions` key, but it is hard to know what the permissions should be. Different 3rd party Actions may use different permissions. In this tutorial, let us fix the permissions automatically. 
 7. Visit [Step Security GitHub App](https://github.com/apps/step-security) and click on Install. Install it on your forked repo.
+   Choose the account where you forked the repo and then choose the "select repository" option, select the forked repo, then click Install. 
+   
+   <img src="https://step-security-images.s3.us-west-2.amazonaws.com/perms-select-repo.png" alt="Select repo" width="800">
+
 8. You should see a pull request with the minimum permissions assigned for the workflow. Observe the `permissions` key that has been added. 
 9. In the Actions tab, a new workflow run should have been triggered due to the pull request. Have a look at the permissions assigned to the `GITHUB_TOKEN`. Now it has the minimum permissions assigned. Even if the token is compromised, the damage potential is reduced. 
 10. You can now set minimum permissions for your own workflows using the [Step Security App](https://github.com/apps/step-security).
