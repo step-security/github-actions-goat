@@ -1,5 +1,5 @@
 <p align="left">
-  <img src="https://step-security-images.s3.us-west-2.amazonaws.com/Final-Logo-06.png" alt="Step Security Logo" width="340">
+  <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/Logo.png" alt="Step Security Logo" width="340">
 </p>
 
 # Tutorial: Restrict outbound traffic from build server
@@ -18,7 +18,7 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions worklow.
 
 2. Go to the `Actions` tab in the fork. Click the `I understand my workflows, go ahead and enable them` button. 
    
-   <img src="https://step-security-images.s3.us-west-2.amazonaws.com/perms-enable-actions.png" alt="Enable Actions" width="800">
+   <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/EnableActions.png" alt="Enable Actions" width="800">
 
 3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the `ci.yml` file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. Commit the changes either to `main` branch or any other branch.  
 
