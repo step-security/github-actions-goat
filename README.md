@@ -6,9 +6,9 @@
 
 ## Introduction
 
-The purpose of this repository is to share information and learn about software supply chain security issues. 
+The purpose of this repository is to earn about software supply chain security issues and how to prevent them. 
 
-Follow these steps to learn about threats and countermeasures related to the software supply chain. If you would like to see a different threat being addressed, or have other feedback, please create an issue. 
+Follow these tutorials to learn about threats and countermeasures related to the software supply chain. If you would like to see a different threat being addressed, or have other feedback, please create an issue. 
 
 ## Threats and Countermeasures
 
