@@ -32,7 +32,8 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions worklow.
 
 5. You should see a link to security insights and recommendations for the workflow run. 
 
-[TODO: Add image]
+    <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/feature-9/images/InsightsLink.png" alt="Link to security insights" width="800">
+
 
 6. Click on the link. You should see outbound traffic correlated with each step of the workflow. An outbound network policy would be recommended. 
 
@@ -60,4 +61,4 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions worklow.
 
 10. Observe that the workflow fails because the call is blocked. Click the link to security insights. You can see that blocked calls are shown in Red color in the insights page. 
 
-[TODO: Add image]
+    <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/feature-9/images/OutboundCallBlocked.png" alt="Blocked calls are shown in Red" width="800">
