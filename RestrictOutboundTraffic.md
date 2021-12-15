@@ -47,6 +47,13 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions worklow.
 
 8. Simulate an exfiltration attack similar to Codecov. Update the workflow and add the following statement. The bash uploader is no longer vulnerable, but when it was, it would have made an additional outbound call, which is being simulated here. 
 
+    ```
+    - name: Upload coverage to Codecov
+      run: |
+        bash <(curl -s https://codecov.io/bash)
+        curl https://www.stepsecurity.io   
+    ```
+
 9. This change should cause the workflow to run, as it is set to run on push.
 
-10. Click the link to security insights. Observe that the call was blocked. 
+10. Observe that the workflow fails because the call is blocked. Click the link to security insights. You can see that blocked calls are shown in Red color in the insights page. 
