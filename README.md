@@ -10,36 +10,15 @@ The purpose of this repository is to share information and learn about software 
 
 Follow these steps to learn about threats and countermeasures related to the software supply chain. If you would like to see a different threat being addressed, or have other feedback, please create an issue. 
 
-## Tutorial #1 - Set minimum permissions for the `GITHUB_TOKEN`
-
-1. Create a fork of the repo.
-2. Go to the Actions tab in the fork. Click the "I understand my workflows, go ahead and enable them" button. 
-   
-   <img src="https://step-security-images.s3.us-west-2.amazonaws.com/perms-enable-actions.png" alt="Enable Actions" width="800">
-
-3. Click on the "Lint" workflow and then click "Run workflow". Once you do this, a GitHub workflow will get triggered.
-
-   <img src="https://step-security-images.s3.us-west-2.amazonaws.com/perms-run-workflow.png" alt="Run Workflow" width="800">
-
-4. Click on the Actions tab again, click on the workflow that just started, and in the job run logs, have a look at the permissions assigned to the `GITHUB_TOKEN`. 
-   
-   <img src="https://step-security-images.s3.us-west-2.amazonaws.com/perms-token.png" alt="Token permissions" width="800">
-
-5. By default, the `GITHUB_TOKEN` has a lot of permissions assigned. As a [security best practice](https://github.blog/changelog/2021-04-20-github-actions-control-permissions-for-github_token/), the `GITHUB_TOKEN` should be assigned the minimum permissions.  
-6. Review the workflow file at `./github/workflows/lint.yml`. You can now manually add the `permissions` key, but it is hard to know what the permissions should be. Different 3rd party Actions may use different permissions. In this tutorial, let us fix the permissions automatically. 
-7. Visit [Step Security GitHub App](https://github.com/apps/step-security) and click on Install. Install it on your forked repo.
-   Choose the account where you forked the repo and then choose the "select repository" option, select the forked repo, then click Install. 
-   
-   <img src="https://step-security-images.s3.us-west-2.amazonaws.com/perms-select-repo.png" alt="Select repo" width="800">
-
-8. You should see a pull request with the minimum permissions assigned for the workflow. Observe the `permissions` key that has been added. 
-9. In the Actions tab, a new workflow run should have been triggered due to the pull request. Have a look at the permissions assigned to the `GITHUB_TOKEN`. Now it has the minimum permissions assigned. Even if the token is compromised, the damage potential is reduced. 
-10. You can now set minimum permissions for your own workflows using the [Step Security App](https://github.com/apps/step-security).
-
 ## Threats and Countermeasures
 
-This table lists threats and countermeasures related to software supply chain security. More will be added soon. 
+This table lists threats and countermeasures related to software supply chain security. More will be added over time. 
 
 Number | Threats  | Countermeasures  | Related incident
 -------|--------- |------------------|----------------
-1      |Exfiltration of secrets from the pipeline | Use credentials that are minimally scoped | [Codecov breach](https://about.codecov.io/security-update/), where credentials were exfiltrated from pipelines
+1      |DNS exfiltration for reconnaissance from build server | Tutorial: Restrict outbound traffic from build server (coming soon) | [Dependency confusion](https://medium.com/@alex.birsan/dependency-confusion-4a5d60fec610)
+2      |Exfiltration of secrets from the build server | Tutorial: Restrict outbound traffic from build server | [Codecov breach](https://about.codecov.io/security-update/), [VS Code GitHub Bug Bounty Exploit](https://www.bleepingcomputer.com/news/security/heres-how-a-researcher-broke-into-microsoft-vs-codes-github/)
+3      |Exfiltration of secrets from the build server | Tutorial: Set minimum permissions for `GITHUB_TOKEN`| [VS Code GitHub Bug Bounty Exploit](https://www.bleepingcomputer.com/news/security/heres-how-a-researcher-broke-into-microsoft-vs-codes-github/)
+4      |Masquerading of tools on build server | Tutorial: Cryptographically verify tools run as part of the CI/ CD pipeline (coming soon)  | [Solar Winds (SUNSPOT) breach](http://crowdstrike.com/blog/sunspot-malware-technica…), [Codecov breach](https://about.codecov.io/security-update/)
+5      |Modification of source code on build server | Tutorial: Monitor source code on build server (coming soon)  | [Solar Winds (SUNSPOT) breach](http://crowdstrike.com/blog/sunspot-malware-technica…)
+
