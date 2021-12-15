@@ -12,26 +12,38 @@ In early 2021, [secrets were exfiltrated](https://about.codecov.io/security-upda
 In December 2020, [ryotkak](https://twitter.com/ryotkak) reported as part of the Bug Bounty program how he exfiltrated the `GITHUB_TOKEN` from a GitHub Actions workflow. You can read the details [here](https://www.bleepingcomputer.com/news/security/heres-how-a-researcher-broke-into-microsoft-vs-codes-github/?&web_view=true) and [here](https://blog.ryotak.me/post/vscode-write-access/). 
 
 ## Tutorial
-Goal: In this tutorial, you will learn how to prevent exfiltration of credentials from a GitHub Actions worklow. 
+Learn how to prevent exfiltration of credentials from a GitHub Actions worklow. 
 
 1. Create a fork of the repo.
 
-2. Go to the Actions tab in the fork. Click the "I understand my workflows, go ahead and enable them" button. 
+2. Go to the `Actions` tab in the fork. Click the `I understand my workflows, go ahead and enable them` button. 
    
    <img src="https://step-security-images.s3.us-west-2.amazonaws.com/perms-enable-actions.png" alt="Enable Actions" width="800">
 
-3. Add the `step-security/harden-runner` GitHub Action as the first step in the workflow
+3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the `ci.yml` file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. Commit the changes either to `main` branch or any other branch.  
 
-4. Run the workflow.
+    ```
+    - uses: step-security/harden-runner@v1
+      with:
+        egress-policy: audit
+    ```
 
-5. You should see an annotation with a link to security insights and recommendations for the workflow run. 
+4. This change should cause the workflow to run, as it is set to run on push. Click on the `Actions` tab to view the workflow run. 
+
+5. You should see a link to security insights and recommendations for the workflow run. 
 
 6. Click on the link. You should see outbound traffic correlated with each step of the workflow. An outbound network policy would be recommended. 
 
-7. Update the workflow with the policy. The first step should now look like this. From now on, outbound traffic will be restricted to only these domains for this workflow. 
+7. Update the `ci.yml` workflow with the policy. The first step should now look like this. From now on, outbound traffic will be restricted to only these domains for this workflow. 
 
-8. Simulate an exfiltration attack similar to Codecov. Update the workflow and add the following statement. 
+    ```
+    - uses: step-security/harden-runner@v1
+      with:
+        egress-policy: audit
+    ```
 
-9. Run the workflow again. 
+8. Simulate an exfiltration attack similar to Codecov. Update the workflow and add the following statement. The bash uploader is no longer vulnerable, but when it was, it would have made an additional outbound call, which is being simulated here. 
 
-10. Observe that the call to was blocked. This shows up as an annotation as well as in the insights link. 
+9. This change should cause the workflow to run, as it is set to run on push.
+
+10. Click the link to security insights. Observe that the call was blocked. 
