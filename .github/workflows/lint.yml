@@ -7,6 +7,10 @@ on:
     
 jobs:
   lint:
+    permissions:
+      actions: write
+      contents: read
+      statuses: write
     runs-on: ubuntu-latest  
     steps:
       - uses: technote-space/auto-cancel-redundant-workflow@v1
