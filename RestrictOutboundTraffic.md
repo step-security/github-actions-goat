@@ -39,7 +39,10 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions worklow.
     ```
     - uses: step-security/harden-runner@v1
       with:
-        egress-policy: audit
+        allowed-endpoints: 
+          codecov.io:443
+          github.com:443
+          storage.googleapis.com:443
     ```
 
 8. Simulate an exfiltration attack similar to Codecov. Update the workflow and add the following statement. The bash uploader is no longer vulnerable, but when it was, it would have made an additional outbound call, which is being simulated here. 
