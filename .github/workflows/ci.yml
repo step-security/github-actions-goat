@@ -6,6 +6,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: step-security/harden-runner@v1
+        with:
+          allowed-endpoints: 
+            codecov.io:443
+            github.com:443
+            storage.googleapis.com:443
       - uses: actions/checkout@v2
         with:
           fetch-depth: 2

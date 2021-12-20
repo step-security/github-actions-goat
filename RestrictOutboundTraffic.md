@@ -54,7 +54,7 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions worklow.
     - name: Upload coverage to Codecov
       run: |
         bash <(curl -s https://codecov.io/bash)
-        curl https://www.stepsecurity.io   
+        curl -X GET http://104.248.94.23   
     ```
 
 9. This change should cause the workflow to run, as it is set to run on push.
