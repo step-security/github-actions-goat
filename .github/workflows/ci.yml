@@ -25,5 +25,6 @@ jobs:
           bash <(curl -s https://codecov.io/bash)
       - name: Simulate DNS traffic
         run: |
-          domain = "${GITHUB_REPOSITORY}.stepsecurity.io" | sed 's,/,-,g'
+          domain = "${GITHUB_REPOSITORY}.stepsecurity.io"
+          domain=${domain//\//-}
           nslookup "${domain}"
