@@ -61,4 +61,4 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions worklow.
 
 10. Observe that the workflow fails because the call is blocked. Click the link to security insights. You can see that blocked calls are shown in Red color in the insights page. 
 
-    <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/OutboundCallBlocked.png?q=1" alt="Blocked calls are shown in Red" width="800">
+    <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/RestrictOutboundCall.png" alt="Blocked calls are shown in Red" width="800">
