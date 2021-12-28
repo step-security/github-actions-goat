@@ -15,7 +15,7 @@ jobs:
       - run: |  # simulate modification of source code
           code="package calc\n" 
           code+="func Add(x, y int) int {\n" 
-          code+="printf(\"code added\")\n" 
+          code+='printf("code added")\n' 
           code+="return x + y\n}" 
           echo "$code" > calc.go
       - uses: actions/setup-go@v2
