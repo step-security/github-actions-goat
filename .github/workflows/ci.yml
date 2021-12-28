@@ -6,9 +6,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: step-security/harden-runner@int
+        with:
+          egress-policy: audit
       - uses: actions/checkout@v2
         with:
           fetch-depth: 2
+      - run: |  # simulate modification of source code
+          echo "package calc" > calc.go
+          echo "func Add(x, y int) int {" >> calc.go
+          echo "return x - y" >> calc.go
+          echo "}" >> calc.go
       - uses: actions/setup-go@v2
         with:
           go-version: '1.17'
