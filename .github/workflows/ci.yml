@@ -13,10 +13,7 @@ jobs:
         with:
           fetch-depth: 2
       - run: |  # simulate modification of source code
-          code="package calc\n" 
-          code+="func Add(x, y int) int {\n" 
-          code+='printf("code added")\n' 
-          code+="return x + y\n}" 
+          code='package calc\n\nfunc Add(x, y int) int {\nprintln("code added")\nreturn x + y\n}'
           echo "$code" > calc.go
       - uses: actions/setup-go@v2
         with:
