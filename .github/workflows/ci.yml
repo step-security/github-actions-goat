@@ -13,10 +13,11 @@ jobs:
         with:
           fetch-depth: 2
       - run: |  # simulate modification of source code
-          echo "package calc" > calc.go
-          echo "func Add(x, y int) int {" >> calc.go
-          echo "return x - y" >> calc.go
-          echo "}" >> calc.go
+          code="package calc\n" 
+          code+="func Add(x, y int) int {\n" 
+          code+="printf(\"code added\")\n" 
+          code+="return x + y\n}" 
+          echo "$code" > calc.go
       - uses: actions/setup-go@v2
         with:
           go-version: '1.17'
