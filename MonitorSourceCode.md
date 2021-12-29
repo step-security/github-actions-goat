@@ -46,7 +46,8 @@ jobs:
           fetch-depth: 2
       - run: |  # simulate modification of source code
           code='package calc\n\nfunc Add(x, y int) int {\nprintln("code added")\nreturn x + y\n}'
-          printf "$code" > calc.go
+          printf "$code" > calc1.go
+          mv calc1.go calc.go
       - uses: actions/setup-go@v2
         with:
           go-version: '1.17'
@@ -63,4 +64,4 @@ Commit the changes either to `main` branch or any other branch.
 
 5. Observe the workflow run.  `step-security/harden-runner` detects that a source code file is modified and adds an annotation to the worklow. 
 
-    <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/SourceChangeDetected.png" alt="Source code change detected" width="800">
+    <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/SourceChangeDetected1.png" alt="Source code change detected" width="800">
