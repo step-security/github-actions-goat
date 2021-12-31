@@ -6,7 +6,7 @@
 
 ## Introduction
 
-The purpose of this repository is to learn about software supply chain security issues and how to prevent them. 
+The purpose of this repository is to learn about software supply chain security issues and how to prevent them. StepSecurity defines a supply chain attack as an attack that tries to hijack software that you produce or consume.
 
 Follow these tutorials to learn about threats and countermeasures related to the software supply chain. If you would like to see a different threat being addressed, or have other feedback, please create an issue. 
 
