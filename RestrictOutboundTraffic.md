@@ -8,6 +8,9 @@
 ### Codecov breach
 In early 2021, [secrets were exfiltrated](https://about.codecov.io/security-update/) from thousands of build servers, when a popular component used in build pipelines by enterprises, startups, and open source projects - Codecov bash uploader - was modified by adversaries. None of the victims detected that secrets were being exfiltrated to two IP addresses from their build servers for 2 months.
 
+### event-stream incident
+A malicious package `flatmap-stream` was added as a direct dependency of the `event-stream` package by a new maintainer in September 2018. While the `event-stream` package was widely used, the malicious code targeted a specific software - [BitPay](https://github.com/bitpay/wallet/issues/9346). In the hijacked versions of BitPay Copay app, the malicious code steals wallet keys and exfiltrates them to the attacker's endpoint. As discussed in the [BitPay GitHub thread](https://github.com/bitpay/wallet/issues/9346) one way to find such targeted attacks is to monitor network traffic while running unit and integration tests. 
+
 ### VS Code GitHub Actions Exploit
 In December 2020, [ryotkak](https://twitter.com/ryotkak) reported as part of the Bug Bounty program how he exfiltrated the `GITHUB_TOKEN` from a GitHub Actions workflow. You can read the details [here](https://www.bleepingcomputer.com/news/security/heres-how-a-researcher-broke-into-microsoft-vs-codes-github/?&web_view=true) and [here](https://blog.ryotak.me/post/vscode-write-access/). 
 
