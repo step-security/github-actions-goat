@@ -6,6 +6,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: step-security/harden-runner@v1
+        with:
+          egress-policy: audit
       - uses: actions/checkout@v2
         with:
           fetch-depth: 2
