@@ -15,7 +15,7 @@ This is a common theme where an attacker gets specific information about where t
   <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/DNSExfiltration.png" alt="DNS exfiltration" width="800">
 
 ## Tutorial
-Learn how to prevent DNS exfiltration from a GitHub Actions worklow. 
+Learn how to prevent DNS exfiltration from a GitHub Actions workflow. 
 
 1. Create a fork of the repo.
 
@@ -63,6 +63,6 @@ Learn how to prevent DNS exfiltration from a GitHub Actions worklow.
 
 9. This change should cause the workflow to run, as it is set to run on push.
 
-10. Observe that the workflow shows an annotation that the DNS resolution for the call is blocked. If you look at the build logs, you will notice that the bash script did not recive a valid response from the DNS server, and the exfiltration attempt was blocked. 
+10. Observe that the workflow shows an annotation that the DNS resolution for the call is blocked. If you look at the build logs, you will notice that the bash script did not receive a valid response from the DNS server, and the exfiltration attempt was blocked. 
 
     <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/DNSExfilBlocked.png" alt="Blocked calls are shown in Red" width="800">

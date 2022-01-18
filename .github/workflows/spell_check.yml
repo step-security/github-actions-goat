@@ -1,0 +1,17 @@
+name: Spellcheck Action
+on: 
+  push:
+    paths:
+      - '*.md'
+
+jobs:
+  build:
+    name: Spellcheck
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: rojopolis/spellcheck-github-actions@0.17.0
+      name: Spellcheck
+      with:
+        source_files: '*.md'
+        task_name: Markdown

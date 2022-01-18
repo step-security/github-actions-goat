@@ -15,7 +15,7 @@ A malicious package `flatmap-stream` was added as a direct dependency of the `ev
 In December 2020, [ryotkak](https://twitter.com/ryotkak) reported as part of the Bug Bounty program how he exfiltrated the `GITHUB_TOKEN` from a GitHub Actions workflow. You can read the details [here](https://www.bleepingcomputer.com/news/security/heres-how-a-researcher-broke-into-microsoft-vs-codes-github/?&web_view=true) and [here](https://blog.ryotak.me/post/vscode-write-access/). 
 
 ## Tutorial
-Learn how to prevent exfiltration of credentials from a GitHub Actions worklow. 
+Learn how to prevent exfiltration of credentials from a GitHub Actions workflow. 
 
 1. Create a fork of the repo.
 

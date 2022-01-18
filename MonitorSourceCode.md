@@ -19,7 +19,7 @@ Quoting from the article:
 The attack method is such that without active monitoring on the build server, it would not be possible to detect that the source code file is being modified during the build. If one looks at the source file before and after the build, it would be as expected. 
 
 ## Tutorial
-Learn how to detect source code modification on the build server in a GitHub Actions worklow. 
+Learn how to detect source code modification on the build server in a GitHub Actions workflow. 
 
 1. Create a fork of the repo.
 
@@ -62,6 +62,6 @@ Commit the changes either to `main` branch or any other branch.
 
 4. The `step-security/harden-runner` GitHub Action installs an agent into the Ubuntu VM that monitors changes to source code. In a typical workflow, source code is checked out from the repository and does not need to be altered. In this case, since it is altered, the change will be detected. 
 
-5. Observe the workflow run.  `step-security/harden-runner` detects that a source code file is modified and adds an annotation to the worklow. 
+5. Observe the workflow run.  `step-security/harden-runner` detects that a source code file is modified and adds an annotation to the workflow. 
 
     <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/SourceChangeDetected1.png" alt="Source code change detected" width="800">
