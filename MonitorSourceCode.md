@@ -19,7 +19,7 @@ Quoting from the article:
 The attack method is such that without active monitoring on the build server, it would not be possible to detect that the source code file is being modified during the build. If one looks at the source file before and after the build, it would be as expected. 
 
 ## Tutorial
-Learn how to detect source code modification on the build server in a GitHub Actions worklow. 
+Learn how to detect source code modification on the build server in a GitHub Actions workflow. 
 
 1. Create a fork of the repo.
 
