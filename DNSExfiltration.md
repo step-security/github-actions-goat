@@ -15,7 +15,7 @@ This is a common theme where an attacker gets specific information about where t
   <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/DNSExfiltration.png" alt="DNS exfiltration" width="800">
 
 ## Tutorial
-Learn how to prevent DNS exfiltration from a GitHub Actions worklow. 
+Learn how to prevent DNS exfiltration from a GitHub Actions workflow. 
 
 1. Create a fork of the repo.
 
