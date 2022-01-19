@@ -23,7 +23,7 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
    
    <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/EnableActions.png" alt="Enable Actions" width="800">
 
-3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the `ci.yml` file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. Commit the changes either to `main` branch or any other branch.  
+3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the `ci.yml` file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step from line 9 onwards in the `ci.yml` file. Commit the changes either to `main` branch or any other branch.  
 
     ```
     - uses: step-security/harden-runner@v1
