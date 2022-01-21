@@ -6,6 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      #Add StepSecurity Harden Runner from here onwards
       - uses: actions/checkout@v2
         with:
           fetch-depth: 2

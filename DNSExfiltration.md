@@ -23,7 +23,7 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
    
    <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/EnableActions.png" alt="Enable Actions" width="800">
 
-3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the `ci.yml` file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. Commit the changes either to `main` branch or any other branch.  
+3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the `ci.yml` file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step from `line 9` onwards in the `ci.yml` file. Commit the changes either to `main` branch or any other branch.  
 
     ```
     - uses: step-security/harden-runner@v1
@@ -31,16 +31,16 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
         egress-policy: audit
     ```
 
-4. This change should cause the workflow to run, as it is set to run on push. Click on the `Actions` tab to view the workflow run. 
+4. This change should cause the workflow to run, as it is set to run on push. Click on the `Actions` tab and then click on the `build` tab under the `ci.yml` section to view the workflow run. 
 
-5. You should see a link to security insights and recommendations for the workflow run. 
+5. You should see a link to security insights and recommendations for the workflow run under the `Run step-security/harden-runner` tab. 
 
     <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/InsightsLink.png" alt="Link to security insights" width="800">
 
 
 6. Click on the link. You should see outbound traffic correlated with each step of the workflow. An outbound network policy would be recommended. 
 
-7. Update the `ci.yml` workflow with the policy. The first step should now look like this. From now on, outbound traffic will be restricted to only these domains for this workflow. 
+7. Update the `ci.yml` workflow with the recommended policy from the link. The first step should now look like this. From now on, outbound traffic will be restricted to only these domains for this workflow. 
 
     ```
     - uses: step-security/harden-runner@v1
@@ -48,7 +48,6 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
         allowed-endpoints: 
           codecov.io:443
           github.com:443
-          storage.googleapis.com:443
     ```
 
 8. Simulate a DNS exfiltration attack similar to the one used in the dependency confusion attack. Update the workflow and add the following statement. In the actual attack, the outbound call was made by a malicious package as part of `preinstall` step. In this case, just add this step to the workflow to simulate sending the repo name as a sub-domain to stepsecurity.io. 
