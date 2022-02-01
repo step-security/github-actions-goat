@@ -63,7 +63,7 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
         bash <(curl -s https://codecov.io/bash)
         curl -X GET http://104.248.94.23   
     ```
-    For a seamless experience, StepSecurity recommends copying the full code from [here](https://github.com/step-security/supply-chain-goat/blob/main/sourcecodes/tut1/p7.md) and replacing the previous text entirely.
+    For a seamless experience, StepSecurity recommends copying the full code from [here](https://github.com/step-security/supply-chain-goat/blob/main/sourcecodes/tut2/p8.md) and replacing the previous text entirely.
 
 9. This change should cause the workflow to run, as it is set to run on push.
 
