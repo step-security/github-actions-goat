@@ -33,7 +33,7 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
       with:
         egress-policy: audit
     ```
-    For a seamless experience, StepSecurity recommends copying the full code from [here](https://github.com/arjundashrath/supply-chain-goat/blob/main/sourcecodes/tut1/p3.md) and replacing the previous text entirely.
+    For a seamless experience, StepSecurity recommends copying the full code from [here](https://github.com/step-security/supply-chain-goat/blob/main/sourcecodes/tut1/p3.md) and replacing the previous text entirely.
 
 4. This change should cause the workflow to run, as it is set to run on push. Click on the `Actions` tab and then click on the `build` tab under the `ci.yml` section to view the workflow run. 
 
