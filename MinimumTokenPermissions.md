@@ -20,7 +20,7 @@ Learn how to set minimum permissions for the `GITHUB_TOKEN`.
 
 3. Click on the `Lint` workflow and then click `Run workflow`. Once you do this, a GitHub workflow will get triggered.
 
-   <img src="https://raw.githubusercontent.com/arjundashrath/supply-chain-goat/main/images/RunCIWorkflows.png" alt="Run Workflow" width="810">
+   <img src="https://raw.githubusercontent.com/arjundashrath/supply-chain-goat/main/images/RunCIWorkflows.png" alt="Run Workflow" width="815">
 
 4. Click on the Actions tab again, click on the workflow that just started, and in the job run logs, have a look at the permissions assigned to the `GITHUB_TOKEN`. 
    
