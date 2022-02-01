@@ -14,9 +14,12 @@ A software supply chain is anything that affects, modifies or goes into your cod
 
 StepSecurity defines a supply chain attack as an attack that tries to hijack software that you produce or consume. [OSSF Scorecards](https://github.com/ossf/scorecard) recommends using the StepSecurity tool to secure workflows and fix GitHub token permissions.
 
-To learn more about software supply chain security, refer this [GitHub blog post](https://github.blog/2020-09-02-secure-your-software-supply-chain-and-protect-against-supply-chain-threats-github-blog/). 
+To learn more about software supply chain security, click [here](https://github.blog/2020-09-02-secure-your-software-supply-chain-and-protect-against-supply-chain-threats-github-blog/). 
 
-Follow these tutorials to learn about threats and countermeasures related to the software supply chain. If you would like to see a different threat being addressed, or have other feedback, please create an issue.
+To learn more about StepSecurity's various tools and how they work, click [here](github.com/step-security).
+
+Follow these tutorials to learn about threats and countermeasures related to the software supply chain. If you would like to see a different threat being addressed, or have other feedback, please create an issue. 
+
 
 ## Prerequisites
 
