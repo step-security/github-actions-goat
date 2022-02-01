@@ -28,13 +28,13 @@ Learn how to set minimum permissions for the `GITHUB_TOKEN`.
 
 5. By default, the `GITHUB_TOKEN` has a lot of permissions assigned. As a [security best practice](https://github.blog/changelog/2021-04-20-github-actions-control-permissions-for-github_token/), the `GITHUB_TOKEN` should be assigned the minimum permissions.
 
-6. Review the workflow file at `./github/workflows/lint.yml`. You can now manually add the `permissions` key, but it is hard to know what the permissions should be. Different 3rd party Actions may use different permissions. In this tutorial, let us fix the permissions automatically. 
+6. Review the workflow file at `./github/workflows/ci.yml`. You can now manually add the `permissions` key, but it is hard to know what the permissions should be. Different 3rd party Actions may use different permissions. In this tutorial, let us fix the permissions automatically. 
 
 7. Visit https://app.stepsecurity.io. Copy the workflow file and paste it in the editor. For this tutorial, only check the `Restrict permissions for GITHUB_TOKEN` check box and click on `Secure workflow` button. 
 
     <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/SetTokenPermissions.png" alt="Set token permissions" width="800">
 
-8. Observe that the workflow now has updated permissions. Copy the updated workflow and edit the workflow file at `./github/workflows/lint.yml`. 
+8. Observe that the workflow now has updated permissions. Copy the updated workflow and edit the workflow file at `./github/workflows/ci.yml`. 
 
 9. Run the workflow again. 
 
