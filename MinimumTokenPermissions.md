@@ -32,7 +32,7 @@ Learn how to set minimum permissions for the `GITHUB_TOKEN`.
 
 7. Visit https://app.stepsecurity.io. Copy the workflow file and paste it in the editor. For this tutorial, only check the `Restrict permissions for GITHUB_TOKEN` check box and click on `Secure workflow` button. 
 
-    <img src="https://raw.githubusercontent.com/arjundashrath/supply-chain-goat/main/images/SetTokenPermissions.png" alt="Set token permissions" width="800">
+    <img src="https://raw.githubusercontent.com/arjundashrath/supply-chain-goat/main/images/SetTokenPermission.png" alt="Set token permissions" width="800">
 
 8. Observe that the workflow now has updated permissions. Copy the updated workflow and edit the workflow file at `./github/workflows/ci.yml`. 
 
