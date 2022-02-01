@@ -10,7 +10,13 @@
 
 Supply Chain Goat follows the tradition of existing *Goat projects (e.g. OWASP Web Goat). It provides a training ground to practice implementing countermeasures specific to the software supply chain. StepSecurity defines a supply chain attack as an attack that tries to hijack software that you produce or consume.
 
-Follow these tutorials to learn about threats and countermeasures related to the software supply chain. If you would like to see a different threat being addressed, or have other feedback, please create an issue. 
+Follow these tutorials to learn about threats and countermeasures related to the software supply chain. If you would like to see a different threat being addressed, or have other feedback, please create an issue.
+
+## Prerequisites
+
+StepSecurity recommends the following prerequisites to be met to get the best out of these tutorials.
+* GitHub account
+* Basic knowledge of CI/CD pipelines and GitHub Actions
 
 ## Threats and Countermeasures
 
