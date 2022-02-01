@@ -33,6 +33,7 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
       with:
         egress-policy: audit
     ```
+    For a seamless experience, StepSecurity recommends copying the full code from [here](https://github.com/step-security/supply-chain-goat/blob/main/sourcecodes/tut1/p3.md) and replacing the previous text entirely.
 
 4. This change should cause the workflow to run, as it is set to run on push. Click on the `Actions` tab to view the workflow run. 
 
@@ -51,8 +52,8 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
         allowed-endpoints: 
           codecov.io:443
           github.com:443
-          storage.googleapis.com:443
     ```
+    For a seamless experience, StepSecurity recommends copying the full code from [here](https://github.com/step-security/supply-chain-goat/blob/main/sourcecodes/tut1/p7.md) and replacing the previous text entirely.
 
 8. Simulate an exfiltration attack similar to Codecov. Update the workflow and add the following statement. The bash uploader is no longer vulnerable, but when it was, it would have made an additional outbound call, which is being simulated here. 
 
@@ -62,6 +63,7 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
         bash <(curl -s https://codecov.io/bash)
         curl -X GET http://104.248.94.23   
     ```
+    For a seamless experience, StepSecurity recommends copying the full code from [here](https://github.com/step-security/supply-chain-goat/blob/main/sourcecodes/tut1/p7.md) and replacing the previous text entirely.
 
 9. This change should cause the workflow to run, as it is set to run on push.
 
