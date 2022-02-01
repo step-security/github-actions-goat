@@ -18,6 +18,9 @@ Quoting from the article:
 
 The attack method is such that without active monitoring on the build server, it would not be possible to detect that the source code file is being modified during the build. If one looks at the source file before and after the build, it would be as expected. 
 
+## How StepSecurity mitigates threat?
+StepSecurity's Harden Runner keeps track of the files before and after an action has been run. If it detects ambiguity in the source code between the before and after versions of the run, the tool detects it and notifies it to the user.
+
 ## Tutorial
 Learn how to detect source code modification on the build server in a GitHub Actions workflow. 
 
