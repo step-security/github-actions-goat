@@ -8,7 +8,13 @@
 
 ## Introduction
 
-Supply Chain Goat follows the tradition of existing *Goat projects (e.g. OWASP Web Goat). It provides a training ground to practice implementing countermeasures specific to the software supply chain. StepSecurity defines a supply chain attack as an attack that tries to hijack software that you produce or consume. [OSSF Scorecards](https://github.com/ossf/scorecard) recommend using the StepSecurity tool to secure workflows and fix GitHub token permissions.
+Supply Chain Goat follows the tradition of existing *Goat projects (e.g. OWASP Web Goat). It provides a training ground to practice implementing countermeasures specific to the software supply chain. 
+
+A software supply chain is anything that affects, modifies or goes into your code from development to production deployment through a CI/CD pipeline. A software supply chain includes: who wrote it, when it was contributed, how it’s been reviewed for security issues, known vulnerabilities, supported versions, license information, etc. A software supply chain also encompasses other parts of the stack beyond a single application, including the build and packaging scripts or the software running the infrastructure the application runs on. A software supply chain also includes any information you want to know about the software you’re running to help you determine any risks in running it.
+
+StepSecurity defines a supply chain attack as an attack that tries to hijack software that you produce or consume. [OSSF Scorecards](https://github.com/ossf/scorecard) recommends using the StepSecurity tool to secure workflows and fix GitHub token permissions.
+
+To learn more about software supply chain security, refer this [GitHub blog post](https://github.blog/2020-09-02-secure-your-software-supply-chain-and-protect-against-supply-chain-threats-github-blog/). 
 
 Follow these tutorials to learn about threats and countermeasures related to the software supply chain. If you would like to see a different threat being addressed, or have other feedback, please create an issue.
 
