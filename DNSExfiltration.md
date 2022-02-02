@@ -14,7 +14,7 @@ This is a common theme where an attacker gets specific information about where t
 
   <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/DNSExfiltration.png" alt="DNS exfiltration" width="800">
 
-## How StepSecurity mitigates threat?
+## How does StepSecurity mitigate this threat?
 StepSecurity's tool analyzes the outbound calls made by the workflow and recommends the appropriate policy containing the allowed outbound endpoints. Every other outbound call that is not included in the allowed endpoints is blocked to prevent a potential DNS Exfiltration attack.
 
 ## Tutorial
