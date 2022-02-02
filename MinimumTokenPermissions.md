@@ -9,7 +9,7 @@
 ### VS Code GitHub Actions Exploit
 In December 2020, [ryotkak](https://twitter.com/ryotkak) reported as part of the Bug Bounty program how he exfiltrated the `GITHUB_TOKEN` from a GitHub Actions workflow. The token was used to push code to a release branch. You can read the details [here](https://www.bleepingcomputer.com/news/security/heres-how-a-researcher-broke-into-microsoft-vs-codes-github/?&web_view=true) and [here](https://blog.ryotak.me/post/vscode-write-access/). 
 
-## How StepSecurity mitigates threat?
+## How does StepSecurity mitigate this threat?
 StepSecurity's tool uses its extensive knowledge base to identify the GitHub Actions and set the appropriate minimum github token permissions. Setting these minimum token permissions secure the workflow by revoking the redundant access that the github token provides by default. 
 
 ## Tutorial
