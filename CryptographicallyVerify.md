@@ -71,6 +71,6 @@ Learn how to prevent masquerade attacks from a GitHub Actions workflow.
 6. Click on the link. You should see outbound traffic correlated with each step of the workflow. 
     <img src="https://github.com/step-security/supply-chain-goat/blob/main/images/harden-runner/OnlineTool.png" alt="Security insights" width="800">
     
-7. Hover above a greened out process name and you would see a popup saying `verified by checksum`. Click on this greened out tile and you should see the verified checksum is details. This indicates that the process is not a masqueraded process and the checksum is verified from the source.
+7. Hover above a greened out process name and you would see a popup saying `verified by checksum`. Click on this greened out tile and you should see the verified checksum details. This indicates that the process is not a masqueraded process and the checksum is verified from the source.
     
     <img src="/images/VerifiedChecksum.png" alt="Security insights" width="800">
