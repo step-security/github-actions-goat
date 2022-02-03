@@ -16,7 +16,7 @@ In early 2021, secrets were exfiltrated from thousands of build servers, when a 
 This attack was carried out by gaining unauthorized access to the bash uploaders and modifying them regularly to exfiltrate secrets. Codecov later informed that if the users had conducted a checksum comparison before using the Bash Uploaders as part of their CI processes, this issue may not have impacted them.
 
 ## How does StepSecurity mitigate this threat?
-StepSecurity verifies the checksums of the tools that are run as a part of the CI/CD pipelines.
+StepSecurity verifies the checksums of the tools that are run as a part of the CI/CD pipelines. If the checksum is not verified, StepSecurity informs the user about the failed verification.
 
 ## Tutorial
 Learn how to prevent masquerade attacks from a GitHub Actions workflow. 
@@ -73,4 +73,4 @@ Learn how to prevent masquerade attacks from a GitHub Actions workflow.
     
 7. Hover above a greened out process name and you would see a popup saying `verified by checksum`. Click on this greened out tile and you should see the verified checksum is details. This indicates that the process is not a masqueraded process and the checksum is verified from the source.
     
-    <img src="https://github.com/step-security/supply-chain-goat/blob/main/images/harden-runner/OnlineTool.png" alt="Security insights" width="800">
+    <img src="/images/VerifiedChecksum.png" alt="Security insights" width="800">
