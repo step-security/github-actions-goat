@@ -16,7 +16,7 @@ In this case SUNSPOT masquerades as a legitimate Windows Binary and replaces a s
 ### Codecov breach
 In early 2021, secrets were exfiltrated from thousands of build servers, when a popular component used in build pipelines by enterprises, startups, and open source projects - Codecov bash uploader - was modified by adversaries. None of the victims detected that secrets were being exfiltrated to two IP addresses from their build servers for 2 months.
 
-This attack was carried out by gaining unauthorized access to the bash uploaders and modifying them regularly to exfiltrate secrets. Codecov later informed that if the users had conducted a checksum comparison before using the Bash Uploaders as part of their CI processes, this issue may not have impacted them.
+This attack was carried out by gaining unauthorized access to the bash uploaders and modifying them to exfiltrate secrets. Codecov later informed that if the users had conducted a checksum comparison before using the Bash Uploaders as part of their CI processes, this issue may not have impacted them.
 
 ## How does StepSecurity mitigate this threat?
 StepSecurity verifies the checksums of the tools that are run as a part of the CI/CD pipelines. If the checksum is not verified, StepSecurity informs the user about the failed verification.
