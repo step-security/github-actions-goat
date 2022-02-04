@@ -8,7 +8,7 @@
 ### SUNSPOT: An Implant in the Build Process
 In December 2020, the industry was rocked by the disclosure of a [supply chain attack](https://www.crowdstrike.com/blog/sunspot-malware-technical-analysis/) against SolarWinds, Inc. The supply chain attack was the result of inclusion of unauthorized malicious code during the build process. SUNSPOT is the name of the malware used to insert a backdoor into software builds of the SolarWinds Orion IT management product.
 
-SUNSPOT was identified on disk with a filename of `taskhostsvc.exe` (SHA256 Hash: c45c9bda8db1d470f1fd0dcc346dc449839eb5ce9a948c70369230af0b3ef168), and internally named `taskhostw.exe` by its developers. In this case SUNSPOT masquerades as a legitimate Windows Binary and replaces a source code file in the solution directory, with a malicious variant
+SUNSPOT was identified on disk with a filename of `taskhostsvc.exe` (SHA256 Hash:c45c9bda8db1d470f1fd0dcc346dc449839eb5ce9a948c70369230af0b3ef168), and internally named `taskhostw.exe` by its developers. In this case SUNSPOT masquerades as a legitimate Windows Binary and replaces a source code file in the solution directory, with a malicious variant
 
 ### Codecov breach
 In early 2021, secrets were exfiltrated from thousands of build servers, when a popular component used in build pipelines by enterprises, startups, and open source projects - Codecov bash uploader - was modified by adversaries. None of the victims detected that secrets were being exfiltrated to two IP addresses from their build servers for 2 months.
