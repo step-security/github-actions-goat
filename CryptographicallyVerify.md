@@ -6,7 +6,7 @@
 
 ## Summary of past incidents
 ### SUNSPOT: An Implant in the Build Process
-In December 2020, the industry was rocked by the disclosure of a supply chain attack against SolarWinds, Inc. The supply chain attack was the result of inclusion of unauthorized malicious code during the build process. SUNSPOT is the name of the malware used to insert a backdoor into software builds of the SolarWinds Orion IT management product.
+In December 2020, the industry was rocked by the disclosure of a [supply chain attack](https://www.crowdstrike.com/blog/sunspot-malware-technical-analysis/) against SolarWinds, Inc. The supply chain attack was the result of inclusion of unauthorized malicious code during the build process. SUNSPOT is the name of the malware used to insert a backdoor into software builds of the SolarWinds Orion IT management product.
 
 One of the steps in this attack was carried out by SUNSPOT masquerading as a legitimate Windows Binary, and writing its logs in a fake VMWare log file. One of these files went by the name of `taskhostsvc.exe` which pretended to be a Windows Service Task Host Process.
 
