@@ -15,7 +15,7 @@ A malicious package `flatmap-stream` was added as a direct dependency of the `ev
 In December 2020, [ryotkak](https://twitter.com/ryotkak) reported as part of the Bug Bounty program how he exfiltrated the `GITHUB_TOKEN` from a GitHub Actions workflow. You can read the details [here](https://www.bleepingcomputer.com/news/security/heres-how-a-researcher-broke-into-microsoft-vs-codes-github/?&web_view=true) and [here](https://blog.ryotak.me/post/vscode-write-access/). 
 
 ## How does StepSecurity mitigate this threat?
-StepSecurity analyzes the outbound calls made by the workflow and recommends the appropriate policy containing the allowed outbound endpoints. You should use it in end-to-end testing workflows to detect compromised dependencies that make outbound calls. You should also use it in release workflows to prevent exfiltration of credentials, as was the case in the Codecov breach.
+StepSecurity [`harden-runner`](https://github.com/step-security/harden-runner) analyzes the outbound calls made by the workflow and recommends the appropriate policy containing the allowed outbound endpoints. You should use it in end-to-end testing workflows to detect compromised dependencies that make outbound calls. You should also use it in release workflows to prevent exfiltration of credentials, as was the case in the Codecov breach.
 
 ## Tutorial
 Learn how to prevent exfiltration of credentials from a GitHub Actions workflow. 
