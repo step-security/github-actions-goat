@@ -8,7 +8,7 @@
 
 ## Introduction
 
-Supply Chain Goat follows the tradition of existing *Goat projects (e.g. OWASP Web Goat). It provides a training ground to practice implementing countermeasures specific to the software supply chain. 
+Supply Chain Goat follows the tradition of existing *Goat projects. It provides a training ground to practice implementing countermeasures specific to the software supply chain. 
 
 StepSecurity defines a supply chain attack as an attack that tries to hijack software that you produce or consume. 
 
