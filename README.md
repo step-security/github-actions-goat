@@ -12,7 +12,7 @@ Supply Chain Goat follows the tradition of existing *Goat projects (e.g. OWASP W
 
 StepSecurity defines a supply chain attack as an attack that tries to hijack software that you produce or consume. [OSSF Scorecards](https://github.com/ossf/scorecard) recommends using the StepSecurity tool to remediate some of the checks.
 
-Follow these tutorials to learn about threats and countermeasures related to the software supply chain. If you would like to see a different threat being addressed, or have other feedback, please create an issue. 
+Follow these tutorials to learn about threats and countermeasures related to the software supply chain. If you would like to see a different threat being addressed, or have other feedback, please create an [issue](https://github.com/step-security/supply-chain-goat/issues) or participate in [discussions](https://github.com/step-security/supply-chain-goat/discussions). 
 
 
 ## Prerequisites
