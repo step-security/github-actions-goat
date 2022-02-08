@@ -4,7 +4,7 @@
 
 # Supply Chain Goat
 
-[![Slack](https://img.shields.io/badge/Join%20the%20Community-Slack-blue)](https://join.slack.com/t/stepsecuritygroup/shared_invite/zt-11q5o2icy-9xuW51dJWQffFVl3DX98BQ)
+![Twitter Follow](https://img.shields.io/twitter/follow/step_security?style=social)
 
 ## Introduction
 
