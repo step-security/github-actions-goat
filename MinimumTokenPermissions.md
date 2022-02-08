@@ -9,8 +9,12 @@
 ### VS Code GitHub Actions Exploit
 In December 2020, [ryotkak](https://twitter.com/ryotkak) reported as part of the Bug Bounty program how he exfiltrated the `GITHUB_TOKEN` from a GitHub Actions workflow. The token was used to push code to a release branch. You can read the details [here](https://www.bleepingcomputer.com/news/security/heres-how-a-researcher-broke-into-microsoft-vs-codes-github/?&web_view=true) and [here](https://blog.ryotak.me/post/vscode-write-access/). 
 
+### Open SSF Scorecards check for Token permissions
+
+[Scorecards](https://github.com/ossf/scorecard) is an automated security tool that flags risky supply chain practices. You can use the [Scorecards action](https://github.com/marketplace/actions/ossf-scorecard-action) to follow best security practices. Once configured, the Scorecards action runs automatically on repository changes, and alerts developers about risky supply chain practices using the built-in code scanning experience. The Scorecards project runs a number of checks, including for token permissions. 
+
 ## How does StepSecurity mitigate this threat?
-StepSecurity's tool uses its extensive knowledge base to identify the GitHub Actions and set the appropriate minimum github token permissions. Setting these minimum token permissions secure the workflow by revoking the redundant access that the github token provides by default. 
+[StepSecurity's Online tool](https://app.stepsecurity.io) uses https://github.com/step-security/secure-workflows which has a growing knowledge base of token permissions needed by different GitHub Actions to set the appropriate minimum GitHub token permissions. Setting these minimum token permissions secure the workflow by revoking the redundant access that the github token provides by default. [OSSF Scorecards](https://github.com/ossf/scorecard) recommends using the StepSecurity tool to set minimum token permissions.
 
 ## Tutorial
 Learn how to set minimum permissions for the `GITHUB_TOKEN`. 
