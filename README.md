@@ -4,8 +4,7 @@
 
 # Supply Chain Goat
 
-![Twitter Follow](https://img.shields.io/twitter/follow/step_security?style=social) 
-[![Twitter](https://img.shields.io/twitter/url?url=https://github.com/step-security/supply-chain-goat)](https://twitter.com/intent/tweet/?text=Supply Chain Goat: Hands-on tutorials to learn about software supply chain security&url=https://github.com/step-security/supply-chain-goat)
+[![Twitter](https://img.shields.io/twitter/url?url=https://github.com/step-security/supply-chain-goat)](https://twitter.com/intent/tweet/?text=Supply%20Chain%20Goat:%20Hands-on%20tutorials%20to%20learn%20about%20software%20supply%20chain%20security&url=https://github.com/step-security/supply-chain-goat)
 
 ## Introduction
 
