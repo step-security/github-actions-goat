@@ -4,6 +4,8 @@
 
 # Tutorial: Restrict outbound traffic from build server
 
+_Estimated completion time: 4 minutes_
+
 ## Summary of past incidents
 ### Dependency confusion attacks
 In Feb 2021, Alex Birsan wrote about dependency confusion attacks, and how DNS exfiltration was used to collect information about different build servers, before launching a more specific attack. 
