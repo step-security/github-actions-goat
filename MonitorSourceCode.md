@@ -3,6 +3,7 @@
 </p>
 
 # Tutorial: Monitor source code on build server
+_Estimated completion time: 3 minutes_
 
 ## Summary of past incidents
 
