@@ -56,3 +56,11 @@ nslookup
 CryptographicallyVerify
 md
 http
+SHA
+af
+bda
+ce
+dcc
+eb
+ef
+fd

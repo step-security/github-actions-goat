@@ -19,7 +19,7 @@ Quoting from the article:
 The attack method is such that without active monitoring on the build server, it would not be possible to detect that the source code file is being modified during the build. If one looks at the source file before and after the build, it would be as expected. 
 
 ## How does StepSecurity mitigate this threat?
-StepSecurity monitors the file system during the workflow and detects each file write event. If a source code file is overwritten, it detects that, and notifies the developer about it.
+StepSecurity [`harden-runner`](https://github.com/step-security/harden-runner) monitors the file system during the workflow and detects each file write event. If a source code file is overwritten, it detects that, and notifies the developer about it.
 
 ## Tutorial
 Learn how to detect source code modification on the build server in a GitHub Actions workflow. 
