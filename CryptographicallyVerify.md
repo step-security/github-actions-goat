@@ -3,6 +3,7 @@
 </p>
 
 # Tutorial: Cryptographically verify tools run as part of the CI/ CD pipeline
+_Estimated completion time: 2 minutes_
 
 ## Summary of past incidents
 ### SUNSPOT: An Implant in the Build Process
