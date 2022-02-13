@@ -3,6 +3,7 @@
 </p>
 
 # Tutorial: Restrict outbound traffic from build server
+_Estemated completion time: 5 minutes_
 
 ## Summary of past incidents
 ### Codecov breach
