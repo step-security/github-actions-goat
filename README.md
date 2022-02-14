@@ -12,7 +12,7 @@ Supply Chain Goat follows the tradition of existing *Goat projects. It provides 
 
 StepSecurity defines a supply chain attack as an attack that tries to hijack software that you produce or consume. 
 
-Follow these `hands-on tutorials` to learn about threats and countermeasures related to the software supply chain. If you would like to see a different threat being addressed, or have other feedback, please create an [issue](https://github.com/step-security/supply-chain-goat/issues) or participate in [discussions](https://github.com/step-security/supply-chain-goat/discussions). 
+Follow these `hands-on tutorials` (each only takes 2-5 minutes) to learn about threats and countermeasures related to the software supply chain. If you would like to see a different threat being addressed, or have other feedback, please create an [issue](https://github.com/step-security/supply-chain-goat/issues) or participate in [discussions](https://github.com/step-security/supply-chain-goat/discussions). 
 
 ## Weekly instructor-led session
 While you can follow the hands-on tutorials on your own, if you want, you can also attend the free weekly instructor-led session. Each session is limited to 10 attendees. You can register [here](https://calendly.com/varunsh-step/supply-chain-goat).
