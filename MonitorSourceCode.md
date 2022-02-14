@@ -3,6 +3,7 @@
 </p>
 
 # Tutorial: Monitor source code on build server
+_Estimated completion time: 3 minutes_
 
 ## Summary of past incidents
 
@@ -32,7 +33,7 @@ Learn how to detect source code modification on the build server in a GitHub Act
 
 3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the `ci.yml` file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. After the checkout step, add another step to simulate modification of a source code file. The updated file should look like this:
 
-```
+```yaml
 name: Test and coverage
 
 on: [push, pull_request, workflow_dispatch]

@@ -3,6 +3,7 @@
 </p>
 
 # Tutorial: Set minimum permissions for the `GITHUB_TOKEN`
+_Estimated completion time: 3 minutes_
 
 ## Summary of past incidents
 

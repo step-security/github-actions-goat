@@ -3,6 +3,7 @@
 </p>
 
 # Tutorial: Cryptographically verify tools run as part of the CI/ CD pipeline
+_Estimated completion time: 2 minutes_
 
 ## Summary of past incidents
 ### SUNSPOT: An Implant in the Build Process
@@ -32,13 +33,13 @@ Learn how to prevent masquerade attacks from a GitHub Actions workflow.
 
 3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the `ci.yml` file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step from `line 9` onwards in the `ci.yml` file. Commit the changes either to `main` branch or any other branch.  
 
-    ```
+    ```yaml
     - uses: step-security/harden-runner@v1
       with:
         egress-policy: audit
     ```
     The updated file should look like this:
-    ```
+    ```yaml
     name: Test and coverage
 
     on: [push, pull_request, workflow_dispatch]
