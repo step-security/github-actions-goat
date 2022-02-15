@@ -76,7 +76,8 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
     ```yaml
     - uses: step-security/harden-runner@v1
       with:
-        allowed-endpoints: 
+        egress-policy: block
+        allowed-endpoints: >
           codecov.io:443
           github.com:443
     ```
@@ -93,7 +94,8 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
           #Add StepSecurity Harden Runner from here onwards
           - uses: step-security/harden-runner@v1
             with:
-              allowed-endpoints: 
+              egress-policy: block
+              allowed-endpoints: >
                 codecov.io:443
                 github.com:443
           - uses: actions/checkout@v2
