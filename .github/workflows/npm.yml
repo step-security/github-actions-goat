@@ -10,6 +10,10 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: "16"
+      
+      - uses: step-security/harden-runner@v1
+        with:
+          egress-policy: audit
           
       # Get local dependencies
       - run: npm install
