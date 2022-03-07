@@ -4,7 +4,7 @@
 
 # Tutorial: Behavioral analysis of dependencies
 
-_Estimated completion time: 4 minutes_
+_Estimated completion time: 10 minutes_
 
 ## Summary of past incidents
 Over the past years, there have been multiple attacks that can be attributed to compromised npm dependencies. The general theme that the attacks follow is that a widely used npm dependency is hijacked and malicious code is pushed into the dependency that makes malicious outbound calls. This attack affects every system that uses or has been using that particular dependency. Below is a list of such attacks that have taken place.
