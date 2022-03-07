@@ -1,0 +1,19 @@
+
+name: npm_ci
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "16"
+          
+      # Get local dependencies
+      - run: npm install
+
+      # Run tests
+      - run: npm run test-all
