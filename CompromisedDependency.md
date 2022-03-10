@@ -21,10 +21,10 @@ Number | Incident  | Details
 
 
 ## How does StepSecurity mitigate this threat?
-StepSecurity [`harden-runner`](https://github.com/step-security/harden-runner) analyzes the outbound calls made by the npm dependency and recommends the appropriate policy containing the allowed outbound endpoints. Any outbound call not in the list of allowed endpoints is blocked to prevent a potential malicious attack by the compromised dependency.
+StepSecurity [`harden-runner`](https://github.com/step-security/harden-runner) GitHub Action analyzes the outbound calls made as part of a workflow. When added to a workflow that does `npm install` , an outbound call should only be expected to the registry endpoint. If there is a compromised dependency and it makes outbound calls, you can become aware of it, and identify the compromised dependency before publishing your package or application. 
 
 ## Tutorial
-Learn how to prevent Dependency Confusion Attacks from a GitHub Actions workflow. 
+Learn how to identify malicious dependencies by analyzing their behaviour in a GitHub Actions workflow. 
 
 1. Create a fork of the repo.
 
@@ -49,16 +49,13 @@ Learn how to prevent Dependency Confusion Attacks from a GitHub Actions workflow
         runs-on: ubuntu-latest
 
         steps:
+          - uses: step-security/harden-runner@v1
+            with:
+              egress-policy: audit
           - uses: actions/checkout@v2
           - uses: actions/setup-node@v1
             with:
               node-version: "16"
-
-          - uses: step-security/harden-runner@v1
-            with:
-              egress-policy: audit
-
-          # Get local dependencies
           - run: npm install
     ```
 
@@ -69,9 +66,9 @@ Learn how to prevent Dependency Confusion Attacks from a GitHub Actions workflow
     <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/InsightsLink.png" alt="Link to security insights" width="800">
 
 
-6. Click on the link. You should see outbound traffic correlated with the npm dependencies. StepSecurity contains a test dependency `stepsecuritynodetest` that makes an outbound call as a preinstall step to simulate a malicious outbound call. Users can then update the recommended policy as per as their need to block other outbound calls.
+6. Click on the link. You should see outbound traffic correlated with the npm dependencies. StepSecurity contains a test dependency `stepsecuritynodetest` that makes an outbound call as a preinstall step to simulate a malicious outbound call. You can update the workflow using the recommended policy to block other outbound calls.
 
-7. Update the `npm.yml` workflow with the recommended policy from the link. The first step should now look like this. From now on, outbound traffic will be restricted to only these domains for this workflow. 
+7. Update the `npm.yml` workflow with the recommended policy from the link. The first step should now look like this. From now on, outbound traffic will be restricted to only these endpoints for this workflow. 
 
     ```yaml
     - uses: step-security/harden-runner@v1
@@ -92,20 +89,17 @@ Learn how to prevent Dependency Confusion Attacks from a GitHub Actions workflow
         runs-on: ubuntu-latest
 
         steps:
-          - uses: actions/checkout@v2
-          - uses: actions/setup-node@v1
-            with:
-              node-version: "16"
-
           - uses: step-security/harden-runner@v1
             with:
               egress-policy: block
               allowed-endpoints: >
                 github.com:443
                 registry.npmjs.org:443
-
-          # Get local dependencies
+          - uses: actions/checkout@v2
+          - uses: actions/setup-node@v1
+            with:
+              node-version: "16"         
           - run: npm install
      ````
 
-8. The workflow will run again. Click on the insights link again to see the blocked outbound calls.
+8. The workflow will run again. Click on the insights link again to see the blocked outbound calls. You also see the blocked call as an annotation. When you observe such a blocked call, investigate what is making the call, as it could be a compromised dependency. 
