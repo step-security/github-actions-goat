@@ -10,6 +10,4 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: "16"
-          
-      # Get local dependencies
       - run: npm install
