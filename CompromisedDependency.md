@@ -28,7 +28,7 @@ StepSecurity [`Harden-Runner`](https://github.com/step-security/harden-runner) G
 
 Learn how to identify malicious dependencies by analyzing their behaviour in a GitHub Actions workflow.
 
-The [package.json](/package.json) file has a dependency called @step-security/malware-simulator. This package is NOT actual malware; the package just makes an outbound call to www.stepsecurity.io in a `preinstall` step. It simulates the behavior of the past incidents. In this tutorial, you will identify the simulated behavior.
+The [package.json](/package.json) file has a dependency called [@step-security/malware-simulator](https://www.npmjs.com/package/@step-security/malware-simulator). This package is NOT actual malware; the package just makes an outbound call to www.stepsecurity.io in a `preinstall` step. It simulates the behavior of the past incidents. In this tutorial, you will identify the simulated behavior.
 
 1. Create a fork of the repo.
 
