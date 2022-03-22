@@ -4,7 +4,7 @@
   "description": "",
   "main": "test.js",
   "dependencies": {
-    "stepsecuritynodetest": "^1.0.4"
+    "@step-security/malware-simulator": "^0.0.1"
   },
   "devDependencies": {},
   "scripts": {
