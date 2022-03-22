@@ -74,3 +74,5 @@ The [package.json](/package.json) file has a dependency called @step-security/ma
 4. This change should cause the workflow to run, as it is set to run on push. Click on the `Actions` tab and then click on the `test` tab under the `npm.yml` section to view the workflow run.
 
 5. You should see the blocked call as an annotation. When you observe such a blocked call, investigate what is making the call, as it could be a compromised dependency.
+
+<img src="/images/OutboundCallBlockedNode.png" alt="Outbound call blocked from package" width="800">
