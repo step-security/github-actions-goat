@@ -28,7 +28,7 @@ StepSecurity [`Harden-Runner`](https://github.com/step-security/harden-runner) G
 
 Learn how to identify malicious dependencies by analyzing their behaviour in a GitHub Actions workflow.
 
-The [package.json](/package.json) file has a dependency called [@step-security/malware-simulator](https://www.npmjs.com/package/@step-security/malware-simulator). This package is NOT actual malware; the package just makes an outbound call to www.stepsecurity.io in a `preinstall` step. It simulates the behavior of the past incidents. In this tutorial, you will identify the simulated behavior.
+The [package.json](/package.json) file has a dependency called [@step-security/malware-simulator](https://www.npmjs.com/package/@step-security/malware-simulator). This package (code is [here](/malware-simulator)) is NOT actual malware; the package just makes an outbound call to www.stepsecurity.io in a `preinstall` step. It simulates the behavior of the past incidents. In this tutorial, you will identify the simulated behavior.
 
 1. Create a fork of the repo.
 
@@ -71,8 +71,8 @@ The [package.json](/package.json) file has a dependency called [@step-security/m
          - run: npm install
    ```
 
-4. This change should cause the workflow to run, as it is set to run on push. Click on the `Actions` tab and then click on the `test` tab under the `npm.yml` section to view the workflow run.
+4. This change should cause the workflow to run, as it is set to run on push. Click on the `Actions` tab and then click on the workflow run.
 
-5. You should see the blocked call as an annotation. When you observe such a blocked call, investigate what is making the call, as it could be a compromised dependency.
+5. You should see the blocked call as an annotation. This call was made by the [@step-security/malware-simulator](https://www.npmjs.com/package/@step-security/malware-simulator) package. When you observe such a blocked call, investigate what is making the call, as it could be a compromised dependency.
 
 <img src="/images/OutboundCallBlockedNode.png" alt="Outbound call blocked from package" width="800">
