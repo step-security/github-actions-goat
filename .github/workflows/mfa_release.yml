@@ -1,0 +1,23 @@
+name: Publish Package to npmjs
+on:
+  workflow_dispatch
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
+      - uses: step-security/get-mfa-secrets@main
+        id: get-otp
+        with:
+          secrets: |
+            otp
+      - run: | 
+          cd malware-simulator
+          npm ci
+          npm publish --otp ${{ steps.get-otp.outputs.otp }}
+        
