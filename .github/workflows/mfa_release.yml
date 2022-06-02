@@ -17,5 +17,6 @@ jobs:
           secrets: |
             otp
       - run: | 
-          npm publish malware-simulator --otp ${{ steps.get-otp.outputs.otp }}
+          cd malware-simulator
+          npm publish --otp ${{ steps.get-otp.outputs.otp }}
         
