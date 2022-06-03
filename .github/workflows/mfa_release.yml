@@ -16,7 +16,10 @@ jobs:
         with:
           secrets: |
             otp
+            npm_token
       - run: | 
           cd malware-simulator
+          echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" > .npmrc
           npm publish --otp ${{ steps.get-otp.outputs.otp }}
-        
+        env:
+          NODE_AUTH_TOKEN: ${{ steps.get-otp.outputs.npm_token }}      
