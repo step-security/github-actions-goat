@@ -1,4 +1,3 @@
-# Supply Chain Goat
 [![supply-chain-goat](images/banner.png)](#)
 
 Supply Chain Goat follows the tradition of existing *Goat projects. It provides a training ground to practice implementing countermeasures specific to the software supply chain. 
