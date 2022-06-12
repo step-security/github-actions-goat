@@ -1,12 +1,4 @@
-<p align="left">
-  <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/Logo.png" alt="Step Security Logo" width="340">
-</p>
-
-# Supply Chain Goat
-
-[![Twitter](https://img.shields.io/twitter/url?url=https://github.com/step-security/supply-chain-goat)](https://twitter.com/intent/tweet/?text=Supply%20Chain%20Goat:%20Hands-on%20tutorials%20to%20learn%20about%20software%20supply%20chain%20security&url=https://github.com/step-security/supply-chain-goat)
-
-## Introduction
+[![supply-chain-goat](images/banner.png)](#)
 
 Supply Chain Goat follows the tradition of existing *Goat projects. It provides a training ground to practice implementing countermeasures specific to the software supply chain. 
 
