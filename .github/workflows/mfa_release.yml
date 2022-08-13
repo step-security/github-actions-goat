@@ -6,12 +6,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Harden Runner
+        uses: step-security/harden-runner@dd2c410b088af7c0dc8046f3ac9a8f4148492a95
+        with:
+          egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+
+      - uses: actions/checkout@d0651293c4a5a52e711f25b41b05b2212f385d28
+      - uses: actions/setup-node@2fddd8803e2f5c9604345a0b591c3020ee971a93
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
-      - uses: step-security/get-mfa-secrets@main
+      - uses: step-security/get-mfa-secrets@e2046cd87197fdf4341ad14c0345071a32615ce8
         id: get-otp
         with:
           secrets: |
