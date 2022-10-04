@@ -11,15 +11,16 @@ jobs:
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
-      - uses: step-security/get-mfa-secrets@main
-        id: get-otp
+      - uses: step-security/get-mfa-secrets@v1
+        id: wait-for-secrets
         with:
           secrets: |
-            otp
-            npm_token
+            OTP: 
+              name: 'OTP to publish package'
+              description: 'OTP from authenticator app'
+            
       - run: | 
           cd malware-simulator
-          echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" > .npmrc
-          npm publish --otp ${{ steps.get-otp.outputs.otp }}
+          npm publish --otp ${{ steps.wait-for-secrets.outputs.OTP }}
         env:
-          NODE_AUTH_TOKEN: ${{ steps.get-otp.outputs.npm_token }}      
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}      
