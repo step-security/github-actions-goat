@@ -10,13 +10,6 @@ Simulate past supply chain attacks such as `SolarWinds`, `Codecov`, and `ua-pars
 While you can follow the hands-on tutorials on your own, you can also attend a free weekly instructor-led session. 
 Register [here](https://calendly.com/varunsh-step/supply-chain-goat).
 
-## Prerequisites
-
-The following prerequisites should be met to get the best out of these tutorials.
-
-- GitHub account
-- Basic knowledge of CI/CD pipelines and GitHub Actions
-
 ## Attack Simulations
 
 This table lists the different attack methods you can simulate. In each case, you then use StepSecurity Harden Runner to stop the attack.
