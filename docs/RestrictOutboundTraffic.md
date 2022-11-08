@@ -34,7 +34,7 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
 
    <img src="../images/EnableActions.png" alt="Enable Actions" width="800">
 
-3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the `ci.yml` file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. Commit the changes either to `main` branch or any other branch.
+3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the [ci.yml](../.github/workflows/ci.yml) file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. Commit the changes to `main` branch.
 
    ```yaml
    - uses: step-security/harden-runner@v1
@@ -78,12 +78,14 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
 
 6. Click on the link. You should see outbound traffic correlated with each step of the workflow. An outbound network policy would be recommended.
 
-7. Update the `ci.yml` workflow with the policy. The first step should now look like this. From now on, outbound traffic will be restricted to only these domains for this workflow.
+7. Update the [ci.yml](../.github/workflows/ci.yml) workflow with the policy. The first step should now look like this. From now on, outbound traffic will be restricted to only these domains for this workflow.
 
    ```yaml
    - uses: step-security/harden-runner@v1
      with:
-       allowed-endpoints: codecov.io:443
+       egress-policy: block
+       allowed-endpoints: >
+         codecov.io:443
          github.com:443
    ```
 
@@ -101,7 +103,9 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
          #Add StepSecurity Harden Runner from here onwards
          - uses: step-security/harden-runner@v1
            with:
-             allowed-endpoints: codecov.io:443
+             egress-policy: block
+             allowed-endpoints: >
+               codecov.io:443
                github.com:443
          - uses: actions/checkout@v2
            with:
@@ -139,7 +143,9 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
          #Add StepSecurity Harden Runner from here onwards
          - uses: step-security/harden-runner@v1
            with:
-             allowed-endpoints: codecov.io:443
+             egress-policy: block
+             allowed-endpoints: >
+               codecov.io:443
                github.com:443
          - uses: actions/checkout@v2
            with:
@@ -155,8 +161,8 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
              curl -X GET http://104.248.94.23
    ```
 
-9. This change should cause the workflow to run, as it is set to run on push.
+9. This change should cause the workflow to run, as it is set to run on push. Observe that the workflow fails because the call is blocked. Click the link to security insights. You can see that blocked calls are shown in Red color in the insights page.
 
-10. Observe that the workflow fails because the call is blocked. Click the link to security insights. You can see that blocked calls are shown in Red color in the insights page.
+   <img src="../images/RestrictOutboundTraffic.png" alt="Blocked calls are shown in Red" width="800">
 
-    <img src="../images/RestrictOutboundCall.png" alt="Blocked calls are shown in Red" width="800">
+10. Install the [Harden Runner App](https://github.com/marketplace/harden-runner-app) to get notified via email or Slack when outbound traffic is blocked.

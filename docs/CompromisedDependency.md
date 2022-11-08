@@ -36,7 +36,7 @@ The [package.json](/package.json) file has a dependency called [@step-security/m
 
    <img src="../images/EnableActions.png" alt="Enable Actions" width="800">
 
-3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the `npm.yml` file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step in the `npm.yml` file. Commit the changes either to `main` branch or any other branch.
+3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the [npm.yml](../.github/workflows/npm.yml) file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. Commit the changes to `main` branch.
 
    ```yaml
    - uses: step-security/harden-runner@v1
@@ -76,3 +76,5 @@ The [package.json](/package.json) file has a dependency called [@step-security/m
 5. You should see the blocked call as an annotation. This call was made by the [@step-security/malware-simulator](https://www.npmjs.com/package/@step-security/malware-simulator) package. When you observe such a blocked call, investigate what is making the call, as it could be a compromised dependency.
 
 <img src="../images/OutboundCallBlockedNode.png" alt="Outbound call blocked from package" width="800">
+
+6. Install the [Harden Runner App](https://github.com/marketplace/harden-runner-app) to get notified via email or Slack when outbound traffic is blocked.
