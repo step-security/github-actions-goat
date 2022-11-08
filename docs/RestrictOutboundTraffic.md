@@ -34,7 +34,7 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
 
    <img src="../images/EnableActions.png" alt="Enable Actions" width="800">
 
-3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the [ci.yml](../.github/workflows/ci.yml)  file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. Commit the changes to `main` branch.
+3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the [ci.yml](../.github/workflows/ci.yml) file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. Commit the changes to `main` branch.
 
    ```yaml
    - uses: step-security/harden-runner@v1
@@ -163,6 +163,6 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
 
 9. This change should cause the workflow to run, as it is set to run on push. Observe that the workflow fails because the call is blocked. Click the link to security insights. You can see that blocked calls are shown in Red color in the insights page.
 
-   <img src="../images/RestrictOutboundCall.png" alt="Blocked calls are shown in Red" width="800">
+   <img src="../images/RestrictOutboundTraffic.png" alt="Blocked calls are shown in Red" width="800">
 
 10. Install the [Harden Runner App](https://github.com/marketplace/harden-runner-app) to get notified via email or Slack when outbound traffic is blocked.
