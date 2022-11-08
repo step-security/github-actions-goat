@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/Logo.png" alt="Step Security Logo" width="340">
 </p>
 
-# Tutorial: Behavioral analysis of dependencies
+# Attack Simulation: Use of compromised dependencies
 
 _Estimated completion time: 10 minutes_
 

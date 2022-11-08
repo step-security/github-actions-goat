@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/Logo.png" alt="Step Security Logo" width="340">
 </p>
 
-# Tutorial: Restrict outbound traffic from build server
+# Attack Simulation: DNS exfiltration typically used in dependency confusion attacks
 
 _Estimated completion time: 4 minutes_
 

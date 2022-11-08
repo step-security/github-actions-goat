@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/Logo.png" alt="Step Security Logo" width="340">
 </p>
 
-# Tutorial: Monitor source code on build server
+# Attack Simulation: Tampering of source code during build
 _Estimated completion time: 3 minutes_
 
 ## Summary of past incidents
