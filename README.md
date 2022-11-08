@@ -1,10 +1,14 @@
 # Attack Simulator
 
-Simulate attack methods used in past supply chain attacks such as `SolarWinds`, `Codecov`, and `ua-parser-js`, and see how StepSecurity stops them.
+[![Maintained by stepsecurity.io](https://img.shields.io/badge/maintained%20by-stepsecurity.io-blueviolet)](https://stepsecurity.io/?utm_source=github&utm_medium=organic_oss&utm_campaign=harden-runner)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://raw.githubusercontent.com/step-security/harden-runner/main/LICENSE)
+
+Simulate past supply chain attacks such as `SolarWinds`, `Codecov`, and `ua-parser-js` and see how StepSecurity stops them.
 
 ## Weekly instructor-led session
 
-While you can follow the hands-on tutorials on your own, if you want, you can also attend the free weekly instructor-led session. Each session is limited to 10 attendees. You can register [here](https://calendly.com/varunsh-step/supply-chain-goat).
+While you can follow the hands-on tutorials on your own, you can also attend a free weekly instructor-led session. 
+Register [here](https://calendly.com/varunsh-step/supply-chain-goat).
 
 ## Prerequisites
 
