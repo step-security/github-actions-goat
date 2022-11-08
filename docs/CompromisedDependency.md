@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/Logo.png" alt="Step Security Logo" width="340">
 </p>
 
-# Tutorial: Behavioral analysis of dependencies
+# Attack Simulation: Use of compromised dependencies
 
 _Estimated completion time: 10 minutes_
 
@@ -34,7 +34,7 @@ The [package.json](/package.json) file has a dependency called [@step-security/m
 
 2. Go to the `Actions` tab in the fork. Click the `I understand my workflows, go ahead and enable them` button.
 
-   <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/EnableActions.png" alt="Enable Actions" width="800">
+   <img src="../images/EnableActions.png" alt="Enable Actions" width="800">
 
 3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the `npm.yml` file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step in the `npm.yml` file. Commit the changes either to `main` branch or any other branch.
 
@@ -75,4 +75,4 @@ The [package.json](/package.json) file has a dependency called [@step-security/m
 
 5. You should see the blocked call as an annotation. This call was made by the [@step-security/malware-simulator](https://www.npmjs.com/package/@step-security/malware-simulator) package. When you observe such a blocked call, investigate what is making the call, as it could be a compromised dependency.
 
-<img src="/images/OutboundCallBlockedNode.png" alt="Outbound call blocked from package" width="800">
+<img src="../images/OutboundCallBlockedNode.png" alt="Outbound call blocked from package" width="800">
