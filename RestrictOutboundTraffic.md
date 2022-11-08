@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/Logo.png" alt="Step Security Logo" width="340">
 </p>
 
-# Attack Simulation: Exfiltrating secrets from CI/ CD pipeline
+# Attack Simulation: Exfiltration of secrets from the CI/ CD pipeline
 _Estimated completion time: 5 minutes_
 
 ## Summary of past incidents
