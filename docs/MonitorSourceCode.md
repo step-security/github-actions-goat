@@ -36,7 +36,7 @@ Learn how to detect source code modification on the build server in a GitHub Act
 
    <img src="../images/EnableActions.png" alt="Enable Actions" width="800">
 
-3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the `ci.yml` file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. After the checkout step, add another step to simulate modification of a source code file. The updated file should look like this:
+3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the [ci.yml](../.github/workflows/ci.yml) file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. After the checkout step, add another step to simulate modification of a source code file. The updated file should look like this:
 
 ```yaml
 name: Test and coverage
@@ -67,10 +67,18 @@ jobs:
           bash <(curl -s https://codecov.io/bash)
 ```
 
-Commit the changes either to `main` branch or any other branch.
+Commit the changes to `main` branch.
 
 4. The `step-security/harden-runner` GitHub Action installs an agent into the Ubuntu VM that monitors changes to source code. In a typical workflow, source code is checked out from the repository and does not need to be altered. In this case, since it is altered, the change will be detected.
 
-5. Observe the workflow run. `step-security/harden-runner` detects that a source code file is modified and adds an annotation to the workflow.
+5. This change should cause the workflow to run, as it is set to run on push. Click on the `Actions` tab and then click on the `Test and coverage` workflow run.
 
-<img src="../images/SourceChangeDetected1.png" alt="Source code change detected" width="800">
+6. You should see a link to security insights and recommendations for the workflow run under the `Run step-security/harden-runner` tab.
+
+<img src="../images/InsightsLink.png" alt="Link to security insights" width="800">
+
+7. Click on the link. You should see that the file overwrite has been detected.
+
+<img src="../images/SourceCodeOverwriteDetected.png" alt="Source code overwrite detected" width="800">
+
+8. Install the [Harden Runner App](https://github.com/marketplace/harden-runner-app) to get notified via email or Slack when a source code file is overwritten in your workflow.

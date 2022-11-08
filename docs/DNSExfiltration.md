@@ -164,8 +164,8 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
              nslookup "${domain}"
    ```
 
-9. This change should cause the workflow to run, as it is set to run on push.
+9. This change should cause the workflow to run, as it is set to run on push. Observe that the workflow shows an annotation that the DNS resolution for the call is blocked. If you look at the build logs, you will notice that the bash script did not receive a valid response from the DNS server, and the exfiltration attempt was blocked.
 
-10. Observe that the workflow shows an annotation that the DNS resolution for the call is blocked. If you look at the build logs, you will notice that the bash script did not receive a valid response from the DNS server, and the exfiltration attempt was blocked.
+<img src="../images/DNSExfilBlocked.png" alt="Blocked calls are shown in Red" width="800">
 
-    <img src="../images/DNSExfilBlocked.png" alt="Blocked calls are shown in Red" width="800">
+10. Install the [Harden Runner App](https://github.com/marketplace/harden-runner-app) to get notified via email or Slack when outbound traffic is blocked.
