@@ -28,9 +28,9 @@ In addition, the malware was running with admin privileges on the build server, 
 
 ## How does Harden Runner mitigate this threat?
 
-[`harden-runner`](https://github.com/step-security/harden-runner) monitors the file system during the workflow and detects each file write event. If a source code file is overwritten, it detects that, and notifies the developer about it.
+[`Harden-Runner`](https://github.com/step-security/harden-runner) monitors the file system during the workflow and detects each file write event. If a source code file is overwritten, it detects that, and notifies the developer about it.
 
-[`harden-runner`](https://github.com/step-security/harden-runner) also enables you to run your GitHub Actions workflows without `sudo` access, preventing malicious components from installing attack tools or using debug privileges.
+[`Harden-Runner`](https://github.com/step-security/harden-runner) also enables you to run your GitHub Actions workflows without `sudo` access, preventing malicious components from installing attack tools or using debug privileges.
 
 ## Tutorial
 
@@ -92,6 +92,6 @@ Commit the changes to `main` branch.
 
 8. In the Action steps, notice that the `sudo` step failed, since `disable-sudo: true` was set using harden-runner.
 
-9. This shows how [`harden-runner`](https://github.com/step-security/harden-runner) prevents malicious steps from calling `sudo` and detects file overwrites during build.
+9. This shows how [`Harden-Runner`](https://github.com/step-security/harden-runner) prevents malicious steps from calling `sudo` and detects file overwrites during build.
 
-10. Install the [Harden Runner App](https://github.com/marketplace/harden-runner-app) to get notified via email or Slack when a source code file is overwritten in your workflow.
+10. You can install the [Harden Runner App](https://github.com/marketplace/harden-runner-app) to get notified via email or Slack when a source code file is overwritten in your workflow.
