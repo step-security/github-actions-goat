@@ -18,9 +18,9 @@ This is a common theme where an attacker gets specific information about where t
 
   <img src="../images/DNSExfiltration.png" alt="DNS exfiltration" width="800">
 
-## How does StepSecurity mitigate this threat?
+## How does Harden-Runner mitigate this threat?
 
-StepSecurity [`harden-runner`](https://github.com/step-security/harden-runner) analyzes the outbound calls made by the workflow and recommends the appropriate policy containing the allowed outbound endpoints. Any outbound call not in the list of allowed endpoints is blocked to prevent a potential DNS Exfiltration attack.
+StepSecurity [`Harden-Runner`](https://github.com/step-security/harden-runner) analyzes the outbound calls made by the workflow and recommends the appropriate policy containing the allowed outbound endpoints. Any outbound call not in the list of allowed endpoints is blocked to prevent a potential DNS Exfiltration attack.
 
 ## Tutorial
 
@@ -35,7 +35,7 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
 3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the [ci.yml](../.github/workflows/ci.yml) file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step from `line 9` onwards. Commit the changes to the `main` branch.
 
    ```yaml
-   - uses: step-security/harden-runner@v1
+   - uses: step-security/harden-runner@v2
      with:
        egress-policy: audit
    ```
@@ -52,7 +52,7 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
        runs-on: ubuntu-latest
        steps:
          #Add StepSecurity Harden Runner from here onwards
-         - uses: step-security/harden-runner@v1
+         - uses: step-security/harden-runner@v2
            with:
              egress-policy: audit
          - uses: actions/checkout@v2
@@ -72,14 +72,14 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
 
 5. You should see a link to security insights and recommendations for the workflow run under the `Run step-security/harden-runner` tab.
 
-<img src="../images/InsightsLink.png" alt="Link to security insights" width="800">
+    <img src="../images/InsightsLink.png" alt="Link to security insights" width="800">
 
 6. Click on the link. You should see outbound traffic correlated with each step of the workflow. An outbound network policy would be recommended.
 
 7. Update the [ci.yml](../.github/workflows/ci.yml) workflow with the recommended policy from the link. The first step should now look like this. From now on, outbound traffic will be restricted to only these domains for this workflow.
 
    ```yaml
-   - uses: step-security/harden-runner@v1
+   - uses: step-security/harden-runner@v2
      with:
        egress-policy: block
        allowed-endpoints: >
@@ -99,7 +99,7 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
        runs-on: ubuntu-latest
        steps:
          #Add StepSecurity Harden Runner from here onwards
-         - uses: step-security/harden-runner@v1
+         - uses: step-security/harden-runner@v2
            with:
              egress-policy: block
              allowed-endpoints: >
@@ -140,7 +140,7 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
        runs-on: ubuntu-latest
        steps:
          #Add StepSecurity Harden Runner from here onwards
-         - uses: step-security/harden-runner@v1
+         - uses: step-security/harden-runner@v2
            with:
              egress-policy: block
              allowed-endpoints: >
@@ -166,6 +166,6 @@ Learn how to prevent DNS exfiltration from a GitHub Actions workflow.
 
 9. This change should cause the workflow to run, as it is set to run on push. Observe that the workflow shows an annotation that the DNS resolution for the call is blocked. If you look at the build logs, you will notice that the bash script did not receive a valid response from the DNS server, and the exfiltration attempt was blocked.
 
-<img src="../images/DNSExfilBlocked.png" alt="Blocked calls are shown in Red" width="800">
+    <img src="../images/DNSExfilBlocked.png" alt="Blocked calls are shown in Red" width="800">
 
 10. Install the [Harden Runner App](https://github.com/marketplace/harden-runner-app) to get notified via email or Slack when outbound traffic is blocked.

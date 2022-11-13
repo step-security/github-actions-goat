@@ -3,7 +3,11 @@
 [![Maintained by stepsecurity.io](https://img.shields.io/badge/maintained%20by-stepsecurity.io-blueviolet)](https://stepsecurity.io/?utm_source=github&utm_medium=organic_oss&utm_campaign=harden-runner)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://raw.githubusercontent.com/step-security/harden-runner/main/LICENSE)
 
-Simulate past supply chain attacks such as `SolarWinds`, `Codecov`, and `ua-parser-js` and see how StepSecurity stops them.
+Simulate past supply chain attacks such as `SolarWinds`, `Codecov`, and `ua-parser-js` and see how [`Harden-Runner`](https://github.com/step-security/harden-runner) stops them. [Harden-Runner GitHub Action](https://github.com/step-security/harden-runner) installs a security agent on the GitHub-hosted runner (Ubuntu VM) to
+
+- Prevent exfiltration of credentials
+- Detect tampering of source code during build
+- Enable running jobs without sudo access
 
 ## Weekly instructor-led session
 
@@ -12,7 +16,7 @@ Register [here](https://calendly.com/varunsh-step/supply-chain-goat).
 
 ## Attack Simulations
 
-This table lists the different attack methods you can simulate. In each case, you then use StepSecurity Harden Runner to stop the attack.
+This table lists the different attack methods you can simulate. In each case, you then use [`Harden-Runner`](https://github.com/step-security/harden-runner) to stop the attack.
 
 | Number | Attack Simulation                                                                          | Related incidents                                                                                                                                                                                                                                                                                                             |
 | ------ | ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

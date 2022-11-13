@@ -20,7 +20,7 @@ There have been multiple attacks that can be attributed to compromised dependenc
 | 6      | [hardhat-waffle](https://medium.com/metamask/how-metamasks-latest-security-tool-could-protect-smart-contract-developers-from-theft-e12da346aa53)                              | The attacker used typo squatting method to attack the targets. Attacker registered a package name similar to a legitimate package. Legitimate Package: `@nomiclabs/hardhat-waffle` and Malicious Package: `hardhat-waffle`. So, if a target developer by mistake used wrong name while installing that package, vulnerable code would get imported. Upon installation, the package would run a `postinstall` script that uploaded the contents of package.json, /etc/hosts, /etc/passwd and Kubernetes credential files (~/.kube/config) to a remote server. Checkout: https://medium.com/metamask/how-metamasks-latest-security-tool-could-protect-smart-contract-developers-from-theft-e12da346aa53 |
 | 7      | [electron-native-notify](https://github.com/cncf/tag-security/blob/2013a607229175ff02ef862fa4e53334652bf122/supply-chain-security/compromises/2019/electron-native-notify.md) | `Electron-native-notify` package was used to do a useful package attack. Attacker pushed a commit with this Package as dependency to `EasyDEX-GUI application`, which is used by `Agama wallet`. Then the attacker updated the package with malicious code. This code downloads payload from the server on wallet app launch, which then sends the wallet seed to that remote server. Checkout: https://blog.npmjs.org/post/185397814280/plot-to-steal-cryptocurrency-foiled-by-the-npm.html                                                                                                                                                                                                          |
 
-## How does StepSecurity mitigate this threat?
+## How does Harden-Runner mitigate this threat?
 
 StepSecurity [`Harden-Runner`](https://github.com/step-security/harden-runner) GitHub Action analyzes outbound calls made as part of a workflow. When added to a workflow that does `npm install` or `npm ci` , an outbound call should only be expected to the registry endpoint. If there is a compromised dependency and it makes outbound calls, you can become aware of it, and identify the compromised dependency before publishing your package or application.
 
@@ -39,7 +39,7 @@ The [package.json](/package.json) file has a dependency called [@step-security/m
 3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the [npm.yml](../.github/workflows/npm.yml) file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. Commit the changes to `main` branch.
 
    ```yaml
-   - uses: step-security/harden-runner@v1
+   - uses: step-security/harden-runner@v2
      with:
        egress-policy: block
        allowed-endpoints: >
@@ -58,7 +58,7 @@ The [package.json](/package.json) file has a dependency called [@step-security/m
        runs-on: ubuntu-latest
 
        steps:
-         - uses: step-security/harden-runner@v1
+         - uses: step-security/harden-runner@v2
            with:
              egress-policy: block
              allowed-endpoints: >
@@ -75,6 +75,6 @@ The [package.json](/package.json) file has a dependency called [@step-security/m
 
 5. You should see the blocked call as an annotation. This call was made by the [@step-security/malware-simulator](https://www.npmjs.com/package/@step-security/malware-simulator) package. When you observe such a blocked call, investigate what is making the call, as it could be a compromised dependency.
 
-<img src="../images/OutboundCallBlockedNode.png" alt="Outbound call blocked from package" width="800">
+    <img src="../images/OutboundCallBlockedNode.png" alt="Outbound call blocked from package" width="800">
 
 6. Install the [Harden Runner App](https://github.com/marketplace/harden-runner-app) to get notified via email or Slack when outbound traffic is blocked.

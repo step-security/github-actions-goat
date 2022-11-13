@@ -20,9 +20,9 @@ A malicious package `flatmap-stream` was added as a direct dependency of the `ev
 
 In December 2020, [ryotkak](https://twitter.com/ryotkak) reported as part of the Bug Bounty program how he exfiltrated the `GITHUB_TOKEN` from a GitHub Actions workflow. You can read the details [here](https://www.bleepingcomputer.com/news/security/heres-how-a-researcher-broke-into-microsoft-vs-codes-github/?&web_view=true) and [here](https://blog.ryotak.me/post/vscode-write-access/).
 
-## How does StepSecurity mitigate this threat?
+## How does Harden-Runner mitigate this threat?
 
-StepSecurity [`harden-runner`](https://github.com/step-security/harden-runner) analyzes the outbound calls made by the workflow and recommends the appropriate policy containing the allowed outbound endpoints. You should use it in end-to-end testing workflows to detect compromised dependencies that make outbound calls. You should also use it in release workflows to prevent exfiltration of credentials, as was the case in the Codecov breach.
+StepSecurity [`Harden-Runner`](https://github.com/step-security/harden-runner) analyzes the outbound calls made by the workflow and recommends the appropriate policy containing the allowed outbound endpoints. You should use it in end-to-end testing workflows to detect compromised dependencies that make outbound calls. You should also use it in release workflows to prevent exfiltration of credentials, as was the case in the Codecov breach.
 
 ## Tutorial
 
@@ -37,7 +37,7 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
 3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the [ci.yml](../.github/workflows/ci.yml) file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. Commit the changes to `main` branch.
 
    ```yaml
-   - uses: step-security/harden-runner@v1
+   - uses: step-security/harden-runner@v2
      with:
        egress-policy: audit
    ```
@@ -54,7 +54,7 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
        runs-on: ubuntu-latest
        steps:
          #Add StepSecurity Harden Runner from here onwards
-         - uses: step-security/harden-runner@v1
+         - uses: step-security/harden-runner@v2
            with:
              egress-policy: audit
          - uses: actions/checkout@v2
@@ -74,14 +74,14 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
 
 5. You should see a link to security insights and recommendations for the workflow run.
 
-<img src="../images/InsightsLink.png" alt="Link to security insights" width="800">
+    <img src="../images/InsightsLink.png" alt="Link to security insights" width="800">
 
 6. Click on the link. You should see outbound traffic correlated with each step of the workflow. An outbound network policy would be recommended.
 
 7. Update the [ci.yml](../.github/workflows/ci.yml) workflow with the policy. The first step should now look like this. From now on, outbound traffic will be restricted to only these domains for this workflow.
 
    ```yaml
-   - uses: step-security/harden-runner@v1
+   - uses: step-security/harden-runner@v2
      with:
        egress-policy: block
        allowed-endpoints: >
@@ -101,7 +101,7 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
        runs-on: ubuntu-latest
        steps:
          #Add StepSecurity Harden Runner from here onwards
-         - uses: step-security/harden-runner@v1
+         - uses: step-security/harden-runner@v2
            with:
              egress-policy: block
              allowed-endpoints: >
@@ -141,7 +141,7 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
        runs-on: ubuntu-latest
        steps:
          #Add StepSecurity Harden Runner from here onwards
-         - uses: step-security/harden-runner@v1
+         - uses: step-security/harden-runner@v2
            with:
              egress-policy: block
              allowed-endpoints: >

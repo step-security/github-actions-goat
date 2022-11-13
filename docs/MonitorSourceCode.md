@@ -22,9 +22,15 @@ Quoting from the article:
 
 The attack method is such that without active monitoring on the build server, it would not be possible to detect that the source code file is being modified during the build. If one looks at the source file before and after the build, it would be as expected.
 
-## How does StepSecurity mitigate this threat?
+In addition, the malware was running with admin privileges on the build server, which allowed it to using debugging privileges to read another process's memeory.
 
-StepSecurity [`harden-runner`](https://github.com/step-security/harden-runner) monitors the file system during the workflow and detects each file write event. If a source code file is overwritten, it detects that, and notifies the developer about it.
+> The malware then grants itself debugging privileges by modifying its security token to add SeDebugPrivilege. This step is a prerequisite for the remainder of SUNSPOT’s execution, which involves reading other processes’ memory.
+
+## How does Harden Runner mitigate this threat?
+
+[`Harden-Runner`](https://github.com/step-security/harden-runner) monitors the file system during the workflow and detects each file write event. If a source code file is overwritten, it detects that, and notifies the developer about it.
+
+[`Harden-Runner`](https://github.com/step-security/harden-runner) also enables you to run your GitHub Actions workflows without `sudo` access, preventing malicious components from installing attack tools or using debug privileges.
 
 ## Tutorial
 
@@ -36,36 +42,39 @@ Learn how to detect source code modification on the build server in a GitHub Act
 
    <img src="../images/EnableActions.png" alt="Enable Actions" width="800">
 
-3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the [ci.yml](../.github/workflows/ci.yml) file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. After the checkout step, add another step to simulate modification of a source code file. The updated file should look like this:
+3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the [ci.yml](../.github/workflows/ci.yml) file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. After the checkout step, add another step to simulate modification of a source code file, and another to simulate `sudo` call. The updated file should look like this:
 
-```yaml
-name: Test and coverage
+    ```yaml
+    name: Test and coverage
 
-on: [push, pull_request, workflow_dispatch]
+    on: [push, pull_request, workflow_dispatch]
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: step-security/harden-runner@v1
-        with:
-          egress-policy: audit
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 2
-      - run: | # simulate modification of source code
-          code='package calc\n\nfunc Add(x, y int) int {\nprintln("code added")\nreturn x + y\n}'
-          printf "$code" > calc1.go
-          mv calc1.go calc.go
-      - uses: actions/setup-go@v2
-        with:
-          go-version: "1.17"
-      - name: Run coverage
-        run: go test -race -coverprofile=coverage.txt -covermode=atomic
-      - name: Upload coverage to Codecov
-        run: |
-          bash <(curl -s https://codecov.io/bash)
-```
+    jobs:
+      build:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: step-security/harden-runner@v2
+            with:
+              egress-policy: audit
+              disable-sudo: true
+          - uses: actions/checkout@v2
+            with:
+              fetch-depth: 2
+          - run: | # simulate modification of source code
+              code='package calc\n\nfunc Add(x, y int) int {\nprintln("code added")\nreturn x + y\n}'
+              printf "$code" > calc1.go
+              mv calc1.go calc.go
+          - uses: actions/setup-go@v2
+            with:
+              go-version: "1.17"
+          - name: Run coverage
+            run: go test -race -coverprofile=coverage.txt -covermode=atomic
+          - name: Simulate sudo access
+            run: sudo ls
+          - name: Upload coverage to Codecov
+            run: |
+              bash <(curl -s https://codecov.io/bash)
+    ```
 
 Commit the changes to `main` branch.
 
@@ -75,10 +84,14 @@ Commit the changes to `main` branch.
 
 6. You should see a link to security insights and recommendations for the workflow run under the `Run step-security/harden-runner` tab.
 
-<img src="../images/InsightsLink.png" alt="Link to security insights" width="800">
+    <img src="../images/InsightsLink.png" alt="Link to security insights" width="800">
 
 7. Click on the link. You should see that the file overwrite has been detected.
 
-<img src="../images/SourceCodeOverwriteDetected.png" alt="Source code overwrite detected" width="800">
+    <img src="../images/SourceCodeOverwriteDetected.png" alt="Source code overwrite detected" width="800">
 
-8. Install the [Harden Runner App](https://github.com/marketplace/harden-runner-app) to get notified via email or Slack when a source code file is overwritten in your workflow.
+8. In the Action steps, notice that the `sudo` step failed, since `disable-sudo: true` was set using harden-runner.
+
+9. This shows how [`Harden-Runner`](https://github.com/step-security/harden-runner) prevents malicious steps from calling `sudo` and detects file overwrites during build.
+
+10. You can install the [Harden Runner App](https://github.com/marketplace/harden-runner-app) to get notified via email or Slack when a source code file is overwritten in your workflow.
