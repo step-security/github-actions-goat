@@ -44,37 +44,37 @@ Learn how to detect source code modification on the build server in a GitHub Act
 
 3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the [ci.yml](../.github/workflows/ci.yml) file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. After the checkout step, add another step to simulate modification of a source code file, and another to simulate `sudo` call. The updated file should look like this:
 
-```yaml
-name: Test and coverage
+    ```yaml
+    name: Test and coverage
 
-on: [push, pull_request, workflow_dispatch]
+    on: [push, pull_request, workflow_dispatch]
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: step-security/harden-runner@v2
-        with:
-          egress-policy: audit
-          disable-sudo: true
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 2
-      - run: | # simulate modification of source code
-          code='package calc\n\nfunc Add(x, y int) int {\nprintln("code added")\nreturn x + y\n}'
-          printf "$code" > calc1.go
-          mv calc1.go calc.go
-      - uses: actions/setup-go@v2
-        with:
-          go-version: "1.17"
-      - name: Run coverage
-        run: go test -race -coverprofile=coverage.txt -covermode=atomic
-      - name: Simulate sudo access
-        run: sudo ls
-      - name: Upload coverage to Codecov
-        run: |
-          bash <(curl -s https://codecov.io/bash)
-```
+    jobs:
+      build:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: step-security/harden-runner@v2
+            with:
+              egress-policy: audit
+              disable-sudo: true
+          - uses: actions/checkout@v2
+            with:
+              fetch-depth: 2
+          - run: | # simulate modification of source code
+              code='package calc\n\nfunc Add(x, y int) int {\nprintln("code added")\nreturn x + y\n}'
+              printf "$code" > calc1.go
+              mv calc1.go calc.go
+          - uses: actions/setup-go@v2
+            with:
+              go-version: "1.17"
+          - name: Run coverage
+            run: go test -race -coverprofile=coverage.txt -covermode=atomic
+          - name: Simulate sudo access
+            run: sudo ls
+          - name: Upload coverage to Codecov
+            run: |
+              bash <(curl -s https://codecov.io/bash)
+    ```
 
 Commit the changes to `main` branch.
 
@@ -84,14 +84,14 @@ Commit the changes to `main` branch.
 
 6. You should see a link to security insights and recommendations for the workflow run under the `Run step-security/harden-runner` tab.
 
-<img src="../images/InsightsLink.png" alt="Link to security insights" width="800">
+    <img src="../images/InsightsLink.png" alt="Link to security insights" width="800">
 
 7. Click on the link. You should see that the file overwrite has been detected.
 
-<img src="../images/SourceCodeOverwriteDetected.png" alt="Source code overwrite detected" width="800">
+    <img src="../images/SourceCodeOverwriteDetected.png" alt="Source code overwrite detected" width="800">
 
-8. Install the [Harden Runner App](https://github.com/marketplace/harden-runner-app) to get notified via email or Slack when a source code file is overwritten in your workflow.
+8. In the Action steps, notice that the `sudo` step failed, since `disable-sudo: true` was set using harden-runner.
 
-9. In the Action steps, notice that the `sudo` step failed, since `disable-sudo: true` was set using harden-runner.
+9. This shows how [`harden-runner`](https://github.com/step-security/harden-runner) prevents malicious steps from calling `sudo` and detects file overwrites during build.
 
-10. This shows how [`harden-runner`](https://github.com/step-security/harden-runner) prevents malicious steps from calling `sudo` and detect file overwrites during build.
+10. Install the [Harden Runner App](https://github.com/marketplace/harden-runner-app) to get notified via email or Slack when a source code file is overwritten in your workflow.
