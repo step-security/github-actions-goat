@@ -53,7 +53,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: step-security/harden-runner@v1
+      - uses: step-security/harden-runner@v2
         with:
           egress-policy: audit
           disable-sudo: true
