@@ -4,13 +4,21 @@ on:
     paths:
       - '*.md'
 
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Spellcheck
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - uses: rojopolis/spellcheck-github-actions@0.27.0
+    - name: Harden Runner
+      uses: step-security/harden-runner@03bee3930647ebbf994244c21ddbc0d4933aab4f # v2.3.0
+      with:
+        egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+
+    - uses: actions/checkout@61b9e3751b92087fd0b06925ba6dd6314e06f089 # master
+    - uses: rojopolis/spellcheck-github-actions@3b1fb41a7fa47bf0a17a49c347382abec41743df # 0.27.0
       name: Spellcheck
       with:
         source_files: '*.md'
