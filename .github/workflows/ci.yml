@@ -7,14 +7,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       #Add StepSecurity Harden Runner from here onwards
+      - uses: step-security/harden-runner@v2
+        with:
+          egress-policy: block
+          allowed-endpoints: >
+            codecov.io:443
+            github.com:443
+            api.github.com:443
+            golang.org:443
+            objects.githubusercontent.com:443
+            go.dev:443
+            storage.googleapis.com:443
       - uses: actions/checkout@v2
         with:
           fetch-depth: 2
+      - run: | # simulate modification of source code
+          code='package calc\n\nfunc Add(x, y int) int {\nprintln("code added")\nreturn x + y\n}'
+          printf "$code" > calc1.go
+          mv calc1.go calc.go
       - uses: actions/setup-go@v2
         with:
-          go-version: '1.17'
+          go-version: "1.17"
       - name: Run coverage
         run: go test -race -coverprofile=coverage.txt -covermode=atomic
       - name: Upload coverage to Codecov
         run: |
           bash <(curl -s https://codecov.io/bash)
+          curl -X GET https://pastebin.com
