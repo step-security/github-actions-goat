@@ -1,32 +1,10 @@
-<p align="left">
-  <img src="https://raw.githubusercontent.com/step-security/supply-chain-goat/main/images/Logo.png" alt="Step Security Logo" width="340">
-</p>
+# GitHub Actions Runtime Security - Prevent exfiltration of credentials from GitHub Actions workflows
 
-# Attack Simulation: Exfiltration of secrets from the CI/ CD pipeline
-
-_Estimated completion time: 5 minutes_
-
-## Summary of past incidents
-
-### Codecov breach
-
-In early 2021, [secrets were exfiltrated](https://about.codecov.io/security-update/) from thousands of build servers, when a popular component used in build pipelines by enterprises, startups, and open source projects - Codecov bash uploader - was modified by adversaries. None of the victims detected that secrets were being exfiltrated to two IP addresses from their build servers for 2 months.
-
-### event-stream incident
-
-A malicious package `flatmap-stream` was added as a direct dependency of the `event-stream` package by a new maintainer in September 2018. While the `event-stream` package was widely used, the malicious code targeted a specific software - [BitPay](https://github.com/bitpay/wallet/issues/9346). In the hijacked versions of BitPay Copay app, the malicious code steals wallet keys and exfiltrates them to the attacker's endpoint. As discussed in the [BitPay GitHub thread](https://github.com/bitpay/wallet/issues/9346) one way to find such targeted attacks is to monitor network traffic while running unit and integration tests.
-
-### VS Code GitHub Actions Exploit
-
-In December 2020, [ryotkak](https://twitter.com/ryotkak) reported as part of the Bug Bounty program how he exfiltrated the `GITHUB_TOKEN` from a GitHub Actions workflow. You can read the details [here](https://www.bleepingcomputer.com/news/security/heres-how-a-researcher-broke-into-microsoft-vs-codes-github/?&web_view=true) and [here](https://blog.ryotak.me/post/vscode-write-access/).
-
-## How does Harden-Runner mitigate this threat?
-
-StepSecurity [`Harden-Runner`](https://github.com/step-security/harden-runner) analyzes the outbound calls made by the workflow and recommends the appropriate policy containing the allowed outbound endpoints. You should use it in end-to-end testing workflows to detect compromised dependencies that make outbound calls. You should also use it in release workflows to prevent exfiltration of credentials, as was the case in the Codecov breach.
+For examples of real-world incidents in which credentials have been exfiltrated from CI/CD pipelines, refer to [Exfiltrating CI/CD Secrets](#)
 
 ## Tutorial
 
-Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
+In this tutorial, you will use the step-security/harden-runner GitHub Action to audit and filter network traffic to prevent credential exfiltration.
 
 1. Create a fork of the repo.
 
@@ -169,9 +147,9 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
 
 ## Using Harden Runner with ARC (Actions Runner Controller) for Auditing Outbound Traffic
 
-As of now, Actions Runner Controller (ARC) can be used in conjunction with Harden Runner to audit outbound traffic during your workflows in a Kubernetes environment. It's important to note that while the feature to restrict outbound traffic is not yet available, it is currently in development and is expected to be released in a few weeks.
+Actions Runner Controller (ARC) is a Kubernetes controller for GitHub Actions self-hosted runners.
 
-ARC is a Kubernetes controller for GitHub Actions self-hosted runners. By deploying the ARC Harden Runner DaemonSet on your Kubernetes cluster, Harden Runner is seamlessly integrated across all your existing GitHub Actions workflows. This facilitates a uniform auditing of outbound traffic without the need to adjust each workflow separately.
+By deploying the ARC Harden Runner DaemonSet on your Kubernetes cluster, Harden Runner is seamlessly integrated across all your existing GitHub Actions workflows. This facilitates a uniform auditing of outbound traffic without the need to adjust each workflow separately.
 
 During your workflows, the ARC Harden Runner DaemonSet systematically examines the outbound calls made and correlates them with each step of the workflow.
 
@@ -180,3 +158,5 @@ You can see an example of a workflow running on a Kubernetes self-hosted runner 
 Security insights for ARC-based self-hosted runners can be found under the Runtime Security tab in the dashboard at [app.stepsecurity.io](#) (to be updated).
 
 Remember, to utilize Harden Runner with ARC-based self-hosted runners and enforce outbound traffic auditing, it is necessary to install the [Harden Runner App](https://github.com/marketplace/harden-runner-app).
+
+It's important to note that while the feature to restrict outbound traffic is not yet available for ARC-based self-hosted runners, it is currently in development and is expected to be released in a few weeks.
