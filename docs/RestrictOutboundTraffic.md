@@ -74,7 +74,7 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
 
 5. You should see a link to security insights and recommendations for the workflow run.
 
-    <img src="../images/InsightsLink.png" alt="Link to security insights" width="800">
+<img src="../images/InsightsLink.png" alt="Link to security insights" width="800">
 
 6. Click on the link. You should see outbound traffic correlated with each step of the workflow. An outbound network policy would be recommended.
 
@@ -166,3 +166,17 @@ Learn how to prevent exfiltration of credentials from a GitHub Actions workflow.
    <img src="../images/RestrictOutboundTraffic.png" alt="Blocked calls are shown in Red" width="800">
 
 10. Install the [Harden Runner App](https://github.com/marketplace/harden-runner-app) to get notified via email or Slack when outbound traffic is blocked.
+
+## Using Harden Runner with ARC (Actions Runner Controller) for Auditing Outbound Traffic
+
+As of now, Actions Runner Controller (ARC) can be used in conjunction with Harden Runner to audit outbound traffic during your workflows in a Kubernetes environment. It's important to note that while the feature to restrict outbound traffic is not yet available, it is currently in development and is expected to be released in a few weeks.
+
+ARC is a Kubernetes controller for GitHub Actions self-hosted runners. By deploying the ARC Harden Runner DaemonSet on your Kubernetes cluster, Harden Runner is seamlessly integrated across all your existing GitHub Actions workflows. This facilitates a uniform auditing of outbound traffic without the need to adjust each workflow separately.
+
+During your workflows, the ARC Harden Runner DaemonSet systematically examines the outbound calls made and correlates them with each step of the workflow.
+
+You can see an example of a workflow running on a Kubernetes self-hosted runner with Harden Runner integrated and outbound traffic auditing in place at this [link](#) (to be updated).
+
+Security insights for ARC-based self-hosted runners can be found under the Runtime Security tab in the dashboard at [app.stepsecurity.io](#) (to be updated).
+
+Remember, to utilize Harden Runner with ARC-based self-hosted runners and enforce outbound traffic auditing, it is necessary to install the [Harden Runner App](https://github.com/marketplace/harden-runner-app).
