@@ -1,4 +1,4 @@
-# GitHub Actions Runtime Security - Detect tampering of files during a GitHub Actions workflow run
+# GitHub Actions Runtime Security - Detect File Tampering
 
 For examples of real-world incidents in which files have been tampered during CI/CD pipelines, refer to [TamperingDuringBuild](#)
 

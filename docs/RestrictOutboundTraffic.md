@@ -1,4 +1,4 @@
-# GitHub Actions Runtime Security - Prevent exfiltration of credentials from GitHub Actions workflows
+# GitHub Actions Runtime Security - Filter Network Traffic
 
 For examples of real-world incidents in which credentials have been exfiltrated from CI/CD pipelines, refer to [Exfiltrating CI/CD Secrets](#)
 
