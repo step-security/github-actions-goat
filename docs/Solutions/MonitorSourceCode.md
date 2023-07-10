@@ -1,12 +1,12 @@
 # GitHub Actions Runtime Security - Detect File Tampering
 
-For examples of real-world incidents in which files have been tampered during CI/CD pipelines, refer to [Tampering of source code or artifacts during build](TamperingDuringBuild.md)
+For examples of real-world incidents in which files have been tampered during CI/CD pipelines, refer to [Tampering of source code or artifacts during build](../Vulnerabilities/TamperingDuringBuild.md)
 
 ## Tutorial
 
 Learn how to detect file modification on the build server in a GitHub Actions workflow.
 
-1. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the [ci.yml](../.github/workflows/ci.yml) file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. After the checkout step, add another step to simulate modification of a source code file, and another to simulate `sudo` call. The updated file should look like this:
+1. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the [ci.yml](../../.github/workflows/ci.yml) file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. After the checkout step, add another step to simulate modification of a source code file, and another to simulate `sudo` call. The updated file should look like this:
 
    ```yaml
    name: Test and coverage

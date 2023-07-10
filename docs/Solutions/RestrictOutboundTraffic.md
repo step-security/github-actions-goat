@@ -1,12 +1,12 @@
 # GitHub Actions Runtime Security - Filter Network Traffic
 
-For examples of real-world incidents in which credentials have been exfiltrated from CI/CD pipelines, refer to [Exfiltration of secrets from the CI/ CD pipeline](ExfiltratingCICDSecrets.md)
+For examples of real-world incidents in which credentials have been exfiltrated from CI/CD pipelines, refer to [Exfiltration of secrets from the CI/ CD pipeline](../Vulnerabilities/ExfiltratingCICDSecrets.md)
 
 ## Tutorial
 
 In this tutorial, you will use the step-security/harden-runner GitHub Action to audit and filter network traffic to prevent credential exfiltration.
 
-1. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the [ci.yml](../.github/workflows/ci.yml) file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. Commit the changes to `main` branch.
+1. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the [ci.yml](../../.github/workflows/ci.yml) file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. Commit the changes to `main` branch.
 
    ```yaml
    - uses: step-security/harden-runner@v2
@@ -50,7 +50,7 @@ In this tutorial, you will use the step-security/harden-runner GitHub Action to 
 
 4. Click on the link. You should see outbound traffic correlated with each step of the workflow. An outbound network policy would be recommended.
 
-5. Update the [ci.yml](../.github/workflows/ci.yml) workflow with the policy. The first step should now look like this. From now on, outbound traffic will be restricted to only these domains for this workflow.
+5. Update the [ci.yml](../../.github/workflows/ci.yml) workflow with the policy. The first step should now look like this. From now on, outbound traffic will be restricted to only these domains for this workflow.
 
    ```yaml
    - uses: step-security/harden-runner@v2
