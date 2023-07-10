@@ -6,13 +6,7 @@ For examples of real-world incidents in which files have been tampered during CI
 
 Learn how to detect file modification on the build server in a GitHub Actions workflow.
 
-1. Create a fork of the repo.
-
-2. Go to the `Actions` tab in the fork. Click the `I understand my workflows, go ahead and enable them` button.
-
-   <img src="../images/EnableActions.png" alt="Enable Actions" width="800">
-
-3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the [ci.yml](../.github/workflows/ci.yml) file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. After the checkout step, add another step to simulate modification of a source code file, and another to simulate `sudo` call. The updated file should look like this:
+1. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the [ci.yml](../.github/workflows/ci.yml) file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. After the checkout step, add another step to simulate modification of a source code file, and another to simulate `sudo` call. The updated file should look like this:
 
    ```yaml
    name: Test and coverage
@@ -48,23 +42,23 @@ Learn how to detect file modification on the build server in a GitHub Actions wo
 
 Commit the changes to `main` branch.
 
-4. The `step-security/harden-runner` GitHub Action installs an agent into the Ubuntu VM that monitors changes to source code. In a typical workflow, source code is checked out from the repository and does not need to be altered. In this case, since it is altered, the change will be detected.
+2. The `step-security/harden-runner` GitHub Action installs an agent into the Ubuntu VM that monitors changes to source code. In a typical workflow, source code is checked out from the repository and does not need to be altered. In this case, since it is altered, the change will be detected.
 
-5. This change should cause the workflow to run, as it is set to run on push. Click on the `Actions` tab and then click on the `Test and coverage` workflow run.
+3. This change should cause the workflow to run, as it is set to run on push. Click on the `Actions` tab and then click on the `Test and coverage` workflow run.
 
-6. You should see a link to security insights and recommendations for the workflow run under the `Run step-security/harden-runner` tab.
+4. You should see a link to security insights and recommendations for the workflow run under the `Run step-security/harden-runner` tab.
 
 <img src="../images/InsightsLink.png" alt="Link to security insights" width="800">
 
-7. Click on the link. You should see that the file overwrite has been detected.
+5. Click on the link. You should see that the file overwrite has been detected.
 
 <img src="../images/SourceCodeOverwriteDetected.png" alt="Source code overwrite detected" width="800">
 
-8. In the Action steps, notice that the `sudo` step failed, since `disable-sudo: true` was set using harden-runner.
+6. In the Action steps, notice that the `sudo` step failed, since `disable-sudo: true` was set using harden-runner.
 
-9. This shows how [`Harden-Runner`](https://github.com/step-security/harden-runner) prevents malicious steps from calling `sudo` and detects file overwrites during build.
+7. This shows how [`Harden-Runner`](https://github.com/step-security/harden-runner) prevents malicious steps from calling `sudo` and detects file overwrites during build.
 
-10. You can install the [Harden Runner App](https://github.com/marketplace/harden-runner-app) to get notified via email or Slack when a source code file is overwritten in your workflow.
+8. You can install the [StepSecurity Actions Security GitHub App](https://github.com/apps/stepsecurity-actions-security) to get notified via email or Slack when a source code file is overwritten in your workflow.
 
 ## Using Harden Runner with ARC (Actions Runner Controller) for Self-Hosted Kubernetes Runners
 
@@ -78,4 +72,4 @@ For a demo of a workflow running on a Kubernetes self-hosted runner with Harden 
 
 For ARC-based self-hosted runners, the location to find security insights and recommendations is different from GitHub-hosted runners. These insights can be accessed under the Runtime Security tab in the dashboard at [app.stepsecurity.io](#) (to be updated).
 
-Lastly, remember that to leverage Harden Runner with ARC-based self-hosted runners, installation of the [Harden Runner App](https://github.com/marketplace/harden-runner-app) is necessary. With the app installed, you'll receive notifications via email or Slack whenever a file is overwritten in your workflow.
+Lastly, remember that to leverage Harden Runner with ARC-based self-hosted runners, installation of the [StepSecurity Actions Security GitHub App](https://github.com/apps/stepsecurity-actions-security) is necessary. With the app installed, you'll receive notifications via email or Slack whenever a file is overwritten in your workflow.

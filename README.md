@@ -13,6 +13,18 @@ The increasing number of supply chain attacks on CI/CD environments, such as the
 
 GitHub Actions Goat incorporates best practices from [GitHub's Security Hardening for GitHub Actions guide](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions) and the [CISA/ NSA guidance on CI/CD Security](https://media.defense.gov/2023/Jun/28/2003249466/-1/-1/0/CSI_DEFENDING_CI_CD_ENVIRONMENTS.PDF) to showcase how these vulnerabilities can be avoided in real-world GitHub Actions workflows.
 
+## Getting Started
+
+To get started:
+
+1. Create a fork of the repo.
+
+2. Go to the `Actions` tab in the fork. Click the `I understand my workflows, go ahead and enable them` button.
+
+   <img src="./images/EnableActions.png" alt="Enable Actions" width="800">
+
+3. Click on a link in the `Solutions` column below and follow the tutorials.
+
 ## Understanding Vulnerabilities and Solutions with GitHub Actions Goat
 
 This project not only demonstrates vulnerabilities but also presents solutions and references to best practices for each issue. In each scenario, we demonstrate how a particular threat can be mitigated.

