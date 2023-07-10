@@ -10,6 +10,8 @@ GitHub Action tags and Docker tags are mutatble. This poses a security risk. Git
 
 3. Keep the `Pin Actions to a full length commit SHA` checked and un-check the rest of the recommendations for now. We will check them in future tutorials.
 
-4. Click on `Create Pull Request` button. You will see a pull request with the Actions pinned in each of the workflow files.
+4. Click on `Create Pull Request` button. You will see a pull request with the Actions pinned in each of the workflow files. A comment has been added next to the commit SHA to show the tag.
 
 5. Merge the pull request to apply the fix.
+
+> https://app.stepsecurity.io/securerepo has been used by over 500 public repositories to apply GitHub Actions Security best practices. You can browse pull requests for the Top 50 repositories at https://app.stepsecurity.io/securerepo/trending
