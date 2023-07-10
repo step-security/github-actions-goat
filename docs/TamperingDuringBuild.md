@@ -19,3 +19,7 @@ The attack method is such that without active monitoring on the build server, it
 In addition, the malware was running with admin privileges on the build server, which allowed it to using debugging privileges to read another process's memeory.
 
 > The malware then grants itself debugging privileges by modifying its security token to add SeDebugPrivilege. This step is a prerequisite for the remainder of SUNSPOT’s execution, which involves reading other processes’ memory.
+
+### event-stream incident
+
+A malicious package `flatmap-stream` was added as a direct dependency of the `event-stream` package by a new maintainer in September 2018. While the `event-stream` package was widely used, the malicious code targeted a specific software - [BitPay](https://github.com/bitpay/wallet/issues/9346). In the hijacked versions of BitPay Copay app, the malicious code steals wallet keys and exfiltrates them to the attacker's endpoint. As discussed in the [BitPay GitHub thread](https://github.com/bitpay/wallet/issues/9346) one way to find such targeted attacks is to monitor network traffic while running unit and integration tests.

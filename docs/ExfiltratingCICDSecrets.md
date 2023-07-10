@@ -1,14 +1,19 @@
 # Exfiltration of secrets from the CI/ CD pipeline
 
+The security of GitHub Actions workflows can be compromised, potentially leading to the leakage of CI/CD secrets. This can occur in various ways, such as:
+
+1. **Direct Workflow Alteration:** An attacker can directly modify the workflow, introducing code that uses HTTP requests to send secrets or other repository data to an external server.
+2. **Utilizing Malicious or Vulnerable Dependencies:** An attacker might exploit a GitHub Action or any other dependency incorporated in the workflow that has been tampered with or is inherently vulnerable. This could subsequently expose your secrets.
+3. **Code Execution During Workflow Run:** A scenario can occur where code with harmful intent gets executed during a workflow run. This could be instigated through a seemingly innocuous component such as a test case. Such code can be designed to extract and expose confidential data.
+4. **Build Server Compromise:** An attacker might attempt to breach the security of the build server on which the GitHub Actions workflow operates.
+
 ## Summary of past incidents
+
+Here are some examples of past incidents where CI/CD pipelines were poisoned to exfiltrate CI/CD Secrets.
 
 ### Codecov breach
 
 In early 2021, [secrets were exfiltrated](https://about.codecov.io/security-update/) from thousands of build servers, when a popular component used in build pipelines by enterprises, startups, and open source projects - Codecov bash uploader - was modified by adversaries. None of the victims detected that secrets were being exfiltrated to two IP addresses from their build servers for 2 months.
-
-### event-stream incident
-
-A malicious package `flatmap-stream` was added as a direct dependency of the `event-stream` package by a new maintainer in September 2018. While the `event-stream` package was widely used, the malicious code targeted a specific software - [BitPay](https://github.com/bitpay/wallet/issues/9346). In the hijacked versions of BitPay Copay app, the malicious code steals wallet keys and exfiltrates them to the attacker's endpoint. As discussed in the [BitPay GitHub thread](https://github.com/bitpay/wallet/issues/9346) one way to find such targeted attacks is to monitor network traffic while running unit and integration tests.
 
 ### VS Code GitHub Actions Exploit
 

@@ -5,7 +5,9 @@
 
 GitHub Actions Goat by [StepSecurity](stepsecurity.io) is an educational project that simulates common security mistakes that can occur in GitHub Actions workflows.
 
-The importance of Continuous Integration/Continuous Deployment (CI/CD) security has recently been underlined by guidance from the Cybersecurity & Infrastructure Security Agency (CISA) and the National Security Agency (NSA). As per their document [Defending Continuous Integration/Continuous Delivery (CI/CD) Environments](https://media.defense.gov/2023/Jun/28/2003249466/-1/-1/0/CSI_DEFENDING_CI_CD_ENVIRONMENTS.PDF), CI/CD environments have become attractive targets for malicious cyber actors (MCAs) aiming to introduce malicious code, steal intellectual property, or cause denial of service attacks against applications.
+The importance of Continuous Integration/Continuous Deployment (CI/CD) security has recently been underlined by guidance from the Cybersecurity & Infrastructure Security Agency (CISA) and the National Security Agency (NSA). As per their document [Defending Continuous Integration/Continuous Delivery (CI/CD) Environments](https://media.defense.gov/2023/Jun/28/2003249466/-1/-1/0/CSI_DEFENDING_CI_CD_ENVIRONMENTS.PDF):
+
+> CI/CD environments have become attractive targets for malicious cyber actors (MCAs) aiming to introduce malicious code, steal intellectual property, or cause denial of service attacks against applications.
 
 The increasing number of supply chain attacks on CI/CD environments, such as the infamous SolarWinds, Codecov, and ua-parser-js attacks, paints a vivid picture of this growing threat.
 
