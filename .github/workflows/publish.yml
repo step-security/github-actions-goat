@@ -1,11 +1,15 @@
 name: Publish Docker
 on:
   workflow_dispatch:
+  push:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
+      - uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
       - uses: actions/checkout@v3
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@v5
