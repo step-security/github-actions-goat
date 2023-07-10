@@ -1,11 +1,11 @@
 # Exfiltration of secrets from the CI/ CD pipeline
 
-The security of GitHub Actions workflows can be compromised, potentially leading to the leakage of CI/CD secrets. This can occur in various ways, such as:
+GitHub Actions workflows can be poisoned, potentially leading to the exfiltration of CI/CD secrets. This can occur in various ways, such as:
 
 1. **Direct Workflow Alteration:** An attacker can directly modify the workflow, introducing code that uses HTTP requests to send secrets or other repository data to an external server.
 2. **Utilizing Malicious or Vulnerable Dependencies:** An attacker might exploit a GitHub Action or any other dependency incorporated in the workflow that has been tampered with or is inherently vulnerable. This could subsequently expose your secrets.
 3. **Code Execution During Workflow Run:** A scenario can occur where code with harmful intent gets executed during a workflow run. This could be instigated through a seemingly innocuous component such as a test case. Such code can be designed to extract and expose confidential data.
-4. **Build Server Compromise:** An attacker might attempt to breach the security of the build server on which the GitHub Actions workflow operates.
+4. **Build Server Compromise:** An attacker might attempt to breach the security of the build server on which the GitHub Actions workflow runs.
 
 ## Summary of past incidents
 

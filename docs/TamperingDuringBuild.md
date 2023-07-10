@@ -1,6 +1,15 @@
 # Tampering of source code or artifacts during build
 
+GitHub Actions workflows can be poisoned, potentially leading to the tampering of source code or artifacts during build. This can occur in various ways, such as:
+
+1. **Direct Workflow Alteration:** An attacker can directly modify the workflow, introducing code that tampers source code or artifacts on disk during build.
+2. **Utilizing Malicious or Vulnerable Dependencies:** An attacker might exploit a GitHub Action or any other dependency incorporated in the workflow that has been tampered with or is inherently vulnerable.
+3. **Code Execution During Workflow Run:** A scenario can occur where code with harmful intent gets executed during a workflow run. This could be instigated through a seemingly innocuous component such as a test case.
+4. **Build Server Compromise:** An attacker might attempt to breach the security of the build server on which the GitHub Actions workflow runs.
+
 ## Summary of past incidents
+
+Here are some examples of past incidents where CI/CD pipelines were poisoned to tamper with source code or artifacts on disk during the build process.
 
 ### SUNSPOT: An Implant in the Build Process
 
@@ -22,4 +31,4 @@ In addition, the malware was running with admin privileges on the build server, 
 
 ### event-stream incident
 
-A malicious package `flatmap-stream` was added as a direct dependency of the `event-stream` package by a new maintainer in September 2018. While the `event-stream` package was widely used, the malicious code targeted a specific software - [BitPay](https://github.com/bitpay/wallet/issues/9346). In the hijacked versions of BitPay Copay app, the malicious code steals wallet keys and exfiltrates them to the attacker's endpoint. As discussed in the [BitPay GitHub thread](https://github.com/bitpay/wallet/issues/9346) one way to find such targeted attacks is to monitor network traffic while running unit and integration tests.
+A malicious package `flatmap-stream` was added as a direct dependency of the `event-stream` package by a new maintainer in September 2018. While the `event-stream` package was widely used, the malicious code targeted a specific software - [BitPay](https://github.com/bitpay/wallet/issues/9346). During the build process, the malicious package injects code into the ReedSolomonDecoder.js file [by modifying the file on disk](https://dl.acm.org/doi/pdf/10.1145/3517208.3523753). In the hijacked versions of BitPay Copay app, the malicious code steals wallet keys and exfiltrates them to the attacker's endpoint.

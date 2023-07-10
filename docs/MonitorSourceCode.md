@@ -1,6 +1,6 @@
 # GitHub Actions Runtime Security - Detect File Tampering
 
-For examples of real-world incidents in which files have been tampered during CI/CD pipelines, refer to [TamperingDuringBuild](#)
+For examples of real-world incidents in which files have been tampered during CI/CD pipelines, refer to [Tampering of source code or artifacts during build](TamperingDuringBuild.md)
 
 ## Tutorial
 
@@ -72,10 +72,10 @@ For those utilizing Actions Runner Controller (ARC) in a Kubernetes environment 
 
 ARC is a Kubernetes controller for GitHub Actions self-hosted runners and its use allows Harden Runner to automatically integrate across all your existing GitHub Actions workflows without the need to individually modify each one.
 
-To see an example of a workflow running on a Kubernetes self-hosted runner with Harden Runner integrated, please refer to this [link](#) (to be updated).
+Upon deployment, the ARC Harden Runner DaemonSet constantly monitors for any modifications to files during your workflows, detecting any unauthorized changes promptly.
 
-Upon deployment, the ARC Harden Runner DaemonSet constantly monitors for any modifications to the source code files during your workflows, detecting any unauthorized changes promptly.
+For a demo of a workflow running on a Kubernetes self-hosted runner with Harden Runner integrated, please refer to this [link](#). Here is an [example of a workflow run]() and the associated [workflow run insights](). As demonstrated, detections occur automatically, without the need to directly add the Harden Runner Action to the workflow.
 
 For ARC-based self-hosted runners, the location to find security insights and recommendations is different from GitHub-hosted runners. These insights can be accessed under the Runtime Security tab in the dashboard at [app.stepsecurity.io](#) (to be updated).
 
-Lastly, remember that to leverage Harden Runner with ARC-based self-hosted runners, installation of the [Harden Runner App](https://github.com/marketplace/harden-runner-app) is necessary. With the app installed, you'll receive notifications via email or Slack whenever a source code file is overwritten in your workflow.
+Lastly, remember that to leverage Harden Runner with ARC-based self-hosted runners, installation of the [Harden Runner App](https://github.com/marketplace/harden-runner-app) is necessary. With the app installed, you'll receive notifications via email or Slack whenever a file is overwritten in your workflow.
