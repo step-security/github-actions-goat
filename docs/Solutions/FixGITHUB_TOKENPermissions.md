@@ -2,7 +2,7 @@
 
 ## Tutorial
 
-In this tutorial you will update the token permissions for workflows in this repository so they have the minimum permissions needed
+In this tutorial you will update the token permissions for workflows in this repository so they have the minimum permissions needed.
 
 1. You can see the permissions that GITHUB_TOKEN has for a specific job in the "Set up job" section of the workflow run log. Check the permissions for different jobs that you have run so far. You will notice that the permissions are set to `write` for several scopes.
 
