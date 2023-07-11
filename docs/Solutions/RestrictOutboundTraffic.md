@@ -4,8 +4,8 @@ For examples of real-world incidents in which credentials have been exfiltrated 
 
 ## Tutorials
 
-1. [Filter Network Traffic (GitHub-hosted Runner)](#tutorial-github-hosted-runner)
-2. [Filter Network Traffic (Actions Runner Controller)](#tutorial-actions-runner-controller)
+1. [Filter Network Traffic (GitHub-hosted Runner)](#filter-network-traffic-github-hosted-runner)
+2. [Filter Network Traffic (Actions Runner Controller)](#filter-network-traffic-actions-runner-controller)
 
 ## Filter Network Traffic (GitHub-hosted Runner)
 

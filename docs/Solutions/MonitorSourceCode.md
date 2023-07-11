@@ -4,8 +4,8 @@ For examples of real-world incidents in which files have been tampered during CI
 
 ## Tutorials
 
-1. [Detect File Tampering (GitHub-Hosted Runner)]()
-2. [Detect File Tampering (Actions Runner Controller)]()
+1. [Detect File Tampering (GitHub-Hosted Runner)](#detect-file-tampering-github-hosted-runner)
+2. [Detect File Tampering (Actions Runner Controller)](#detect-file-tampering-actions-runner-controller)
 
 ## Detect File Tampering (GitHub-Hosted Runner)
 
