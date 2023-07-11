@@ -2,11 +2,11 @@
 
 For examples of real-world incidents in which credentials have been exfiltrated from CI/CD pipelines, refer to [Exfiltration of secrets from the CI/ CD pipeline](../Vulnerabilities/ExfiltratingCICDSecrets.md)
 
-## Tutorial
+## Tutorial (GitHub-hosted Runner)
 
-In this tutorial, you will use the step-security/harden-runner GitHub Action to audit and filter network traffic to prevent credential exfiltration.
+In this tutorial, you will use the `step-security/harden-runner` GitHub Action to audit and filter network traffic to prevent credential exfiltration.
 
-1. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the [ci.yml](../../.github/workflows/ci.yml) file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. Commit the changes to `main` branch.
+1. Browse to the [ci.yml](../../.github/workflows/ci.yml) file. Add the `step-security/harden-runner` GitHub Action as the first step. Commit the changes to `main` branch.
 
    ```yaml
    - uses: step-security/harden-runner@v2
@@ -139,18 +139,26 @@ In this tutorial, you will use the step-security/harden-runner GitHub Action to 
 
 8. Install the [StepSecurity Actions Security GitHub App](https://github.com/apps/stepsecurity-actions-security) to get notified via email or Slack when outbound traffic is blocked.
 
-## Using Harden Runner with ARC (Actions Runner Controller) for Auditing Outbound Traffic
+## Tutorial (Actions Runner Controller)
 
-For those utilizing Actions Runner Controller (ARC) in a Kubernetes environment for self-hosted runners, the procedure to integrate Harden Runner varies slightly. Rather than incorporating the Harden Runner step into each individual workflow, you'll need to install the ARC Harden Runner DaemonSet on your Kubernetes cluster.
+Actions Runner Controller (ARC) is a Kubernetes operator that orchestrates and scales self-hosted runners for GitHub Actions.
 
-ARC is a Kubernetes controller for GitHub Actions self-hosted runners and its use allows Harden Runner to automatically integrate across all your existing GitHub Actions workflows without the need to individually modify each one.
+1. Rather than incorporating the HardenRunner GitHub Action into each individual workflow, you'll need to install the ARC-Harden-Runner daemonset on your Kubernetes cluster.
 
-During your workflows, the ARC Harden Runner DaemonSet systematically examines the outbound calls made and correlates them with each step of the workflow.
+2. Upon deployment, the ARC-Harden-Runner daemonset constantly monitors the outbound calls and correlates them with each step of the workflow.
 
-For a demo of a workflow running on a Kubernetes self-hosted runner with Harden Runner integrated, please refer to this [link](#). Here is an [example of a workflow run]() and the associated [workflow run insights](). As demonstrated, auditing of egress traffic occurs automatically, without the need to directly add the Harden Runner Action to the workflow.
+3. Install the [StepSecurity Actions Security GitHub App](https://github.com/apps/stepsecurity-actions-security)
 
-Security insights for ARC-based self-hosted runners can be found under the Runtime Security tab in the dashboard at [app.stepsecurity.io](#) (to be updated).
+4. With the app installed, you can access security insights and runtime detections under the `Runtime Security` tab in your dashboard
 
-Remember, to utilize Harden Runner with ARC-based self-hosted runners and enforce outbound traffic auditing, it is necessary to install the [StepSecurity Actions Security GitHub App](https://github.com/apps/stepsecurity-actions-security).
+For a demo of a workflow running on ARC with Harden Runner integrated, please refer to following links:
 
-It's important to note that while the feature to restrict outbound traffic is not yet available for ARC-based self-hosted runners, it is currently in development and is expected to be released in a few weeks.
+- Workflow file:
+- Example workflow run:
+- Workflow Insights:
+
+As demonstrated, auditing of outbound traffic occurs automatically, without the need to add the Harden Runner Action to each workflow.
+
+Even though you do not need to add Harden-Runner Action, the insights are exactly the same as with GitHub-hosted runner.
+
+> It's important to note that while the feature to restrict outbound traffic is not yet available for ARC, it is currently in development and is expected to be released in a few weeks.
