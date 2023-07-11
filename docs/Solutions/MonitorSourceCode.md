@@ -2,11 +2,11 @@
 
 For examples of real-world incidents in which files have been tampered during CI/CD pipelines, refer to [Tampering of source code or artifacts during build](../Vulnerabilities/TamperingDuringBuild.md)
 
-## Tutorial
+## Tutorial (GitHub-Hosted Runner)
 
 Learn how to detect file modification on the build server in a GitHub Actions workflow.
 
-1. GitHub Action workflow files are in the `.github/workflows` folder of the repo. Browse to the [ci.yml](../../.github/workflows/ci.yml) file. Edit it using the GitHub website, and add the `step-security/harden-runner` GitHub Action as the first step. After the checkout step, add another step to simulate modification of a source code file, and another to simulate `sudo` call. The updated file should look like this:
+1. Browse to the [ci.yml](../../.github/workflows/ci.yml) workflow. Add the `step-security/harden-runner` GitHub Action as the first step. After the checkout step, add another step to simulate modification of a source code file, and another to simulate `sudo` call. The updated file should look like this:
 
    ```yaml
    name: Test and coverage
@@ -60,16 +60,27 @@ Commit the changes to `main` branch.
 
 8. You can install the [StepSecurity Actions Security GitHub App](https://github.com/apps/stepsecurity-actions-security) to get notified via email or Slack when a source code file is overwritten in your workflow.
 
-## Using Harden Runner with ARC (Actions Runner Controller) for Self-Hosted Kubernetes Runners
+## Tutorial (Actions Runner Controller)
 
-For those utilizing Actions Runner Controller (ARC) in a Kubernetes environment for self-hosted runners, the procedure to integrate Harden Runner varies slightly. Rather than incorporating the Harden Runner step into each individual workflow, you'll need to install the ARC Harden Runner DaemonSet on your Kubernetes cluster.
+Actions Runner Controller (ARC) is a Kubernetes operator that orchestrates and scales self-hosted runners for GitHub Actions.
 
-ARC is a Kubernetes controller for GitHub Actions self-hosted runners and its use allows Harden Runner to automatically integrate across all your existing GitHub Actions workflows without the need to individually modify each one.
+1. Rather than incorporating the HardenRunner GitHub Action into each individual workflow, you'll need to install the ARC-Harden-Runner daemonset on your Kubernetes cluster.
 
-Upon deployment, the ARC Harden Runner DaemonSet constantly monitors for any modifications to files during your workflows, detecting any unauthorized changes promptly.
+2. Upon deployment, the ARC-Harden-Runner daemonset constantly monitors for any modifications to files during your workflows, detecting any unauthorized changes promptly.
 
-For a demo of a workflow running on a Kubernetes self-hosted runner with Harden Runner integrated, please refer to this [link](#). Here is an [example of a workflow run]() and the associated [workflow run insights](). As demonstrated, detections occur automatically, without the need to directly add the Harden Runner Action to the workflow.
+3. Install the [StepSecurity Actions Security GitHub App](https://github.com/apps/stepsecurity-actions-security)
 
-For ARC-based self-hosted runners, the location to find security insights and recommendations is different from GitHub-hosted runners. These insights can be accessed under the Runtime Security tab in the dashboard at [app.stepsecurity.io](#) (to be updated).
+4. With the app installed:
 
-Lastly, remember that to leverage Harden Runner with ARC-based self-hosted runners, installation of the [StepSecurity Actions Security GitHub App](https://github.com/apps/stepsecurity-actions-security) is necessary. With the app installed, you'll receive notifications via email or Slack whenever a file is overwritten in your workflow.
+- You can access security insights and runtime detections under the `Runtime Security` tab in your dashboard
+- You'll receive notifications via email or Slack whenever a file is overwritten in your workflow.
+
+For a demo of a workflow running on ARC with Harden Runner integrated, please refer to following links:
+
+- Workflow file:
+- Example workflow run:
+- Workflow Insights:
+
+As demonstrated, detections occur automatically, without the need to add the Harden Runner Action to each workflow.
+
+Even though you do not need to add Harden-Runner Action to detect file modifications in ARC, the insights are exactly the same as with GitHub-hosted runner.
