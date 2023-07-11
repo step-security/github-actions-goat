@@ -2,7 +2,12 @@
 
 For examples of real-world incidents in which credentials have been exfiltrated from CI/CD pipelines, refer to [Exfiltration of secrets from the CI/ CD pipeline](../Vulnerabilities/ExfiltratingCICDSecrets.md)
 
-## Tutorial (GitHub-hosted Runner)
+## Tutorials
+
+1. [Filter Network Traffic (GitHub-hosted Runner)](#tutorial-github-hosted-runner)
+2. [Filter Network Traffic (Actions Runner Controller)](#tutorial-actions-runner-controller)
+
+## Filter Network Traffic (GitHub-hosted Runner)
 
 In this tutorial, you will use the `step-security/harden-runner` GitHub Action to audit and filter network traffic to prevent credential exfiltration.
 
@@ -139,7 +144,7 @@ In this tutorial, you will use the `step-security/harden-runner` GitHub Action t
 
 8. Install the [StepSecurity Actions Security GitHub App](https://github.com/apps/stepsecurity-actions-security) to get notified via email or Slack when outbound traffic is blocked.
 
-## Tutorial (Actions Runner Controller)
+## Filter Network Traffic (Actions Runner Controller)
 
 Actions Runner Controller (ARC) is a Kubernetes operator that orchestrates and scales self-hosted runners for GitHub Actions.
 
@@ -153,9 +158,9 @@ Actions Runner Controller (ARC) is a Kubernetes operator that orchestrates and s
 
 For a demo of a workflow running on ARC with Harden Runner integrated, please refer to following links:
 
-- Workflow file:
-- Example workflow run:
-- Workflow Insights:
+- Workflow file: https://github.com/step-security/github-actions-goat/blob/main/.github/workflows/arc-self-hosted.yml
+- Example workflow run: https://github.com/step-security/github-actions-goat/actions/runs/5523945688
+- Workflow Insights: https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/5523945688
 
 As demonstrated, auditing of outbound traffic occurs automatically, without the need to add the Harden Runner Action to each workflow.
 
