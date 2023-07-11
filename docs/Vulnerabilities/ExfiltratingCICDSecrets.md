@@ -27,7 +27,7 @@ In Feb 2021, Alex Birsan wrote about dependency confusion attacks, and how DNS e
 
 This is a common theme where an attacker gets specific information about where their code is executing before tailoring their attack. This image is taken from the [dependency confusion attack blog post](https://medium.com/@alex.birsan/dependency-confusion-4a5d60fec610) and explains how DNS exfiltration works. Specific information (could be a secret) is set as a sub-domain to the attacker controlled domain, and the build server is asked to resolve the IP address for the sub-domain. Such DNS traffic is rarely filtered leading to a higher success rate.
 
-  <img src="../images/DNSExfiltration.png" alt="DNS exfiltration" width="800">
+  <img src="../../images/DNSExfiltration.png" alt="DNS exfiltration" width="800">
 
 ### Compromised dependencies
 

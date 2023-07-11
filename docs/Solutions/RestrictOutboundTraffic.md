@@ -46,7 +46,7 @@ In this tutorial, you will use the step-security/harden-runner GitHub Action to 
 
 3. You should see a link to security insights and recommendations for the workflow run.
 
-<img src="../images/InsightsLink.png" alt="Link to security insights" width="800">
+<img src="../../images/InsightsLink.png" alt="Link to security insights" width="800">
 
 4. Click on the link. You should see outbound traffic correlated with each step of the workflow. An outbound network policy would be recommended.
 
@@ -135,7 +135,7 @@ In this tutorial, you will use the step-security/harden-runner GitHub Action to 
 
 7. This change should cause the workflow to run, as it is set to run on push. Observe that the workflow fails because the call is blocked. Click the link to security insights. You can see that blocked calls are shown in Red color in the insights page.
 
-   <img src="../images/RestrictOutboundTraffic.png" alt="Blocked calls are shown in Red" width="800">
+   <img src="../../images/RestrictOutboundTraffic.png" alt="Blocked calls are shown in Red" width="800">
 
 8. Install the [StepSecurity Actions Security GitHub App](https://github.com/apps/stepsecurity-actions-security) to get notified via email or Slack when outbound traffic is blocked.
 
