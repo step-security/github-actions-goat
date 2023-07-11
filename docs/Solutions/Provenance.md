@@ -11,3 +11,5 @@ In this tutorial, you will publish a docker image and then trace the published i
 3. You will notice a tab for `Provenance`. Click on that tab. You should see a record for the container image that was published by the workflow.
 
 4. The record shows the image's digest along with the workflow run that published it, and who triggered it etc.
+
+<img src="../../images/Provenance.png" alt="Link to security insights" width="800">
