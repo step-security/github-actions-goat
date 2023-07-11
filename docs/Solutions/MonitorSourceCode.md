@@ -2,7 +2,12 @@
 
 For examples of real-world incidents in which files have been tampered during CI/CD pipelines, refer to [Tampering of source code or artifacts during build](../Vulnerabilities/TamperingDuringBuild.md)
 
-## Tutorial (GitHub-Hosted Runner)
+## Tutorials
+
+1. [Detect File Tampering (GitHub-Hosted Runner)](#detect-file-tampering-github-hosted-runner)
+2. [Detect File Tampering (Actions Runner Controller)](#detect-file-tampering-actions-runner-controller)
+
+## Detect File Tampering (GitHub-Hosted Runner)
 
 Learn how to detect file modification on the build server in a GitHub Actions workflow.
 
@@ -60,7 +65,7 @@ Commit the changes to `main` branch.
 
 8. You can install the [StepSecurity Actions Security GitHub App](https://github.com/apps/stepsecurity-actions-security) to get notified via email or Slack when a source code file is overwritten in your workflow.
 
-## Tutorial (Actions Runner Controller)
+## Detect File Tampering (Actions Runner Controller)
 
 Actions Runner Controller (ARC) is a Kubernetes operator that orchestrates and scales self-hosted runners for GitHub Actions.
 
@@ -77,9 +82,9 @@ Actions Runner Controller (ARC) is a Kubernetes operator that orchestrates and s
 
 For a demo of a workflow running on ARC with Harden Runner integrated, please refer to following links:
 
-- Workflow file:
-- Example workflow run:
-- Workflow Insights:
+- Workflow file: https://github.com/step-security/github-actions-goat/blob/main/.github/workflows/arc-self-hosted.yml
+- Example workflow run: https://github.com/step-security/github-actions-goat/actions/runs/5523945688
+- Workflow Insights: https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/5523945688
 
 As demonstrated, detections occur automatically, without the need to add the Harden Runner Action to each workflow.
 
