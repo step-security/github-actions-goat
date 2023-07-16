@@ -10,6 +10,6 @@ In this tutorial you will use the [StepSecurity Actions Security GitHub App](htt
 
 3. Then go to the `Actions Secrets` tab in the dashboard. Here you will be able to view the secret name along with `Days Since Last Rotated`. Since this is a new secret, that value will be 0. You can try on your own repository where you had created secrets on an earlier date.
 
-<img src="../../images/ActionsSecrets.png" alt="Link to security insights" width="800">
+    <img src="../../images/ActionsSecrets.png" alt="Link to security insights" width="800">
 
 > The App only needs `actions: read` and `secrets metadata: read` permissions on your repositories. `secrets metadata: read` permission only gives access to the list of GitHub Actions secret names (and not to the actual secret).
