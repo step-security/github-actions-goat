@@ -1,6 +1,6 @@
 # Update Workflows to use Least Privileged GITHUB_TOKEN permissions
 
-For examples of real-world incidents in which `GITHUB_TOKEN` was compromised, refer to [Compromise of the GITHUB_TOKEN](../Vulnerabilities/OverprivilegedGITHUB_TOKEN.md)
+> For examples of real-world incidents in which `GITHUB_TOKEN` was compromised, refer to [Compromise of the GITHUB_TOKEN](../Vulnerabilities/OverprivilegedGITHUB_TOKEN.md)
 
 ## Tutorial
 

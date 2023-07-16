@@ -1,6 +1,6 @@
 # GitHub Actions Runtime Security - Detect File Tampering
 
-For examples of real-world incidents in which files have been tampered during CI/CD pipelines, refer to [Tampering of source code or artifacts during build](../Vulnerabilities/TamperingDuringBuild.md)
+> For examples of real-world incidents in which files have been tampered during the build and release process in CI/CD pipelines, refer to [Tampering of source code or artifacts during build](../Vulnerabilities/TamperingDuringBuild.md)
 
 ## Tutorials
 
