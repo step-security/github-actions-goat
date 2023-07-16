@@ -11,11 +11,11 @@ The importance of CI/CD Security has been underlined by guidance from the Cybers
 
 The increasing number of attacks on CI/CD environments, such as the infamous SolarWinds, Codecov, and ua-parser-js attacks, paints a vivid picture of this growing threat.
 
-GitHub Actions Goat incorporates best practices from the [CISA/ NSA guidance on CI/CD Security](https://media.defense.gov/2023/Jun/28/2003249466/-1/-1/0/CSI_DEFENDING_CI_CD_ENVIRONMENTS.PDF) and the [GitHub's Security Hardening for GitHub Actions guide](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions) to showcase how these threats can be mitigated in GitHub Actions Hosted-Runners and self-hosted Actions Runner Controller (ARC) environments.
+GitHub Actions Goat incorporates best practices from the [CISA/ NSA guidance on CI/CD Security](https://media.defense.gov/2023/Jun/28/2003249466/-1/-1/0/CSI_DEFENDING_CI_CD_ENVIRONMENTS.PDF) and the [GitHub's Security Hardening for GitHub Actions guide](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions) to showcase how these threats can be mitigated in **GitHub Actions Hosted-Runners** and self-hosted **Actions Runner Controller (ARC)** environments.
 
 ## Puzzle Time
 
-Lets kick things off with a challenge designed to get your analytical gears turning. Take a close look at the [publish.yml](.github/workflows/publish.yml) GitHub Actions workflow. This simple workflow builds and pushes a Docker image, and features the `step-security/harden-runner` GitHub Action, which bolsters runtime security for GitHub Actions workflows. Now, we present you with the puzzle. Check out these [network events monitored during a workflow run](https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/5517140370) of this workflow. Notice anything odd? Why is there an outbound call to `stepsecurity.io` during the workflow run? Is this expected, or something more nefarious?
+Lets kick things off with a challenge designed to get your analytical gears turning. Take a close look at the [publish.yml](.github/workflows/publish.yml) GitHub Actions workflow. This simple workflow builds and pushes a Docker image, and features the `step-security/harden-runner` GitHub Action, which bolsters runtime security for GitHub Actions workflows. Now, we present you with the puzzle. Check out these [network events monitored during a workflow run](https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/5517140370) of this workflow. Notice anything odd? **Why is there an outbound call to `stepsecurity.io` during the workflow run?** Is this expected, or something more nefarious?
 
 ## Threat Scenarios
 
