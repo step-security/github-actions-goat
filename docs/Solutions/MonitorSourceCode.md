@@ -1,6 +1,6 @@
 # GitHub Actions Runtime Security - Detect File Tampering
 
-For examples of real-world incidents in which files have been tampered during CI/CD pipelines, refer to [Tampering of source code or artifacts during build](../Vulnerabilities/TamperingDuringBuild.md)
+> For examples of real-world incidents in which files have been tampered during the build and release process in CI/CD pipelines, refer to [Tampering of source code or artifacts during build](../Vulnerabilities/TamperingDuringBuild.md)
 
 ## Tutorials
 
@@ -53,11 +53,11 @@ Commit the changes to `main` branch.
 
 4. You should see a link to security insights and recommendations for the workflow run under the `Run step-security/harden-runner` tab.
 
-<img src="../../images/InsightsLink.png" alt="Link to security insights" width="800">
+    <img src="../../images/BuildLog.png" alt="Link to security insights" width="800">
 
 5. Click on the link. You should see that the file overwrite has been detected.
 
-<img src="../../images/SourceCodeOverwriteDetected.png" alt="Source code overwrite detected" width="800">
+    <img src="../../images/SourceCodeOverwriteDetected.png" alt="Source code overwrite detected" width="800">
 
 6. In the Action steps, notice that the `sudo` step failed, since `disable-sudo: true` was set using harden-runner.
 

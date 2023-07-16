@@ -1,6 +1,6 @@
 # GitHub Actions Runtime Security - Filter Network Traffic
 
-For examples of real-world incidents in which credentials have been exfiltrated from CI/CD pipelines, refer to [Exfiltration of secrets from the CI/ CD pipeline](../Vulnerabilities/ExfiltratingCICDSecrets.md)
+> For examples of real-world incidents in which credentials have been exfiltrated from CI/CD pipelines, refer to [Exfiltration of secrets from the CI/ CD pipeline](../Vulnerabilities/ExfiltratingCICDSecrets.md)
 
 ## Tutorials
 
@@ -51,7 +51,8 @@ In this tutorial, you will use the `step-security/harden-runner` GitHub Action t
 
 3. You should see a link to security insights and recommendations for the workflow run.
 
-<img src="../../images/InsightsLink.png" alt="Link to security insights" width="800">
+    <img src="../../images/BuildLog.png" alt="Link to security insights" width="800">
+
 
 4. Click on the link. You should see outbound traffic correlated with each step of the workflow. An outbound network policy would be recommended.
 

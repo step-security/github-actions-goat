@@ -1,4 +1,4 @@
-# Overprivileged GITHUB_TOKEN
+# Compromise of the GITHUB_TOKEN
 
 At the start of each workflow run, GitHub automatically creates a unique GITHUB_TOKEN secret to use in your workflow. You can use the GITHUB_TOKEN to authenticate in a workflow run.
 
