@@ -21,7 +21,7 @@ Lets kick things off with a challenge designed to get your analytical gears turn
 
 ## Threat Scenarios
 
-The [CISA/ NSA guidance on CI/CD Security](https://media.defense.gov/2023/Jun/28/2003249466/-1/-1/0/CSI_DEFENDING_CI_CD_ENVIRONMENTS.PDF) covers 3 main threat scenarios:
+The [CISA/ NSA guidance on CI/CD Security](https://media.defense.gov/2023/Jun/28/2003249466/-1/-1/0/CSI_DEFENDING_CI_CD_ENVIRONMENTS.PDF) covers 3 main threat scenarios.
 
 <img src="./images/Threats.png" alt="Enable Actions" >
 
@@ -33,7 +33,7 @@ In a GitHub Actions CI/CD environment, someone with write access to a repository
 - Access the GitHub Actions secrets in the repository and potentially exfiltrate them.
 - Depending on how the OpenID Connect (OIDC) policies are setup to grant access to GitHub Actions workflows, this workflow can also get access to cloud accounts.
 
-> **Real-world incidents**: For examples of real-world incidents in which credentials have been exfiltrated from CI/CD pipelines, refer to [Exfiltration of secrets from the CI/ CD pipeline](../Vulnerabilities/ExfiltratingCICDSecrets.md)
+> **Real-world incidents**: For examples of real-world incidents in which credentials have been exfiltrated from CI/CD pipelines, refer to [Exfiltration of secrets from the CI/ CD pipeline](./docs/Vulnerabilities/ExfiltratingCICDSecrets.md)
 
 ### 2. Supply chain compromise of an application library, tool, or container image in a CI/CD pipeline that leads to a poisoned DevSecOps environment
 
@@ -43,7 +43,7 @@ Similar to the above threats, if the GitHub Actions worklow is poisoined, an att
 
 In addition, if this is a deployment workflow, an attacker can also modify source code or build artifact during the build process. This is typically done by overwriting files on the file system during the build process. As a result, while no credentials are exfiltrated, the resulting artifact has been tampered with. This is a stealthy attack method as there is no log of these changes.
 
-> **Real-world incidents**: For examples of real-world incidents in which files have been tampered during the build and release process in CI/CD pipelines, refer to [Tampering of source code or artifacts during build](../Vulnerabilities/TamperingDuringBuild.md)
+> **Real-world incidents**: For examples of real-world incidents in which files have been tampered during the build and release process in CI/CD pipelines, refer to [Tampering of source code or artifacts during build](./docs/Vulnerabilities/TamperingDuringBuild.md)
 
 ### 3. Supply chain compromise of a CI/CD environment that injects code into the code repository
 
@@ -51,7 +51,7 @@ GitHub Actions workflows can be used to approve pull requests and merge code int
 
 If a workflow is compromised it can potentially be used to push changes to the repository to modify existing source code.
 
-> **Real-world incidents**: For examples of real-world incidents in which `GITHUB_TOKEN` was compromised, refer to [Compromise of the GITHUB_TOKEN](../Vulnerabilities/OverprivilegedGITHUB_TOKEN.md)
+> **Real-world incidents**: For examples of real-world incidents in which `GITHUB_TOKEN` was compromised, refer to [Compromise of the GITHUB_TOKEN](./docs/Vulnerabilities/OverprivilegedGITHUB_TOKEN.md)
 
 ## Getting Started
 
