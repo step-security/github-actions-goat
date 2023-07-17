@@ -23,6 +23,8 @@ Lets kick things off with a challenge designed to get your analytical gears turn
 
 The [CISA/ NSA guidance on CI/CD Security](https://media.defense.gov/2023/Jun/28/2003249466/-1/-1/0/CSI_DEFENDING_CI_CD_ENVIRONMENTS.PDF) covers 3 main threat scenarios:
 
+<img src="./images/Threats.png" alt="Enable Actions" >
+
 ### 1. Attacker acquires a developer's credential to access a Git repository
 
 In a GitHub Actions CI/CD environment, someone with write access to a repository can create a new GitHub Actions workflow in a new branch. This workflow which will run in a new branch, which does not have branch protection rules and has not been reviewed by any other developer, can:
