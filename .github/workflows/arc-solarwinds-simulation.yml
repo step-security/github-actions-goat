@@ -1,0 +1,16 @@
+name: ARC SolarWinds Simulation
+on:
+  workflow_dispatch:
+
+jobs:
+  arc-solarwinds-simulation:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+
+      # SolarWinds Scenario: Overwrite calc.go to inject backdoor
+      - name: File Overwrite with mv
+        run: |
+          code='package main\n\nfunc main(){\nprintln("code added")\n}'
+          printf "$code" > calc1.go
+          mv calc1.go calc.go
