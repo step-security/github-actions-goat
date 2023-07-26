@@ -82,9 +82,9 @@ Actions Runner Controller (ARC) is a Kubernetes operator that orchestrates and s
 
 For a demo of a workflow running on ARC with Harden Runner integrated, please refer to following links:
 
-- Workflow file: https://github.com/step-security/github-actions-goat/blob/main/.github/workflows/arc-self-hosted.yml
-- Example workflow run: https://github.com/step-security/github-actions-goat/actions/runs/5523945688
-- Workflow Insights: https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/5523945688
+- Workflow file: https://github.com/step-security/github-actions-goat/blob/main/.github/workflows/arc-solarwinds-simulation.yml
+- Example workflow run: https://github.com/step-security/github-actions-goat/actions/runs/5662626777/job/15342926660
+- Workflow Insights: https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/5662626777
 
 As demonstrated, detections occur automatically, without the need to add the Harden Runner Action to each workflow.
 

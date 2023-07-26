@@ -159,12 +159,21 @@ Actions Runner Controller (ARC) is a Kubernetes operator that orchestrates and s
 
 For a demo of a workflow running on ARC with Harden Runner integrated, please refer to following links:
 
-- Workflow file: https://github.com/step-security/github-actions-goat/blob/main/.github/workflows/arc-self-hosted.yml
-- Example workflow run: https://github.com/step-security/github-actions-goat/actions/runs/5523945688
-- Workflow Insights: https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/5523945688
+### Security Observability
+
+- Workflow file: https://github.com/step-security/github-actions-goat/blob/main/.github/workflows/arc-solarwinds-simulation.yml
+- Example workflow run: https://github.com/step-security/github-actions-goat/actions/runs/5662626777/job/15342926660
+- Workflow Insights: https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/5662626777
 
 As demonstrated, auditing of outbound traffic occurs automatically, without the need to add the Harden Runner Action to each workflow.
 
 Even though you do not need to add Harden-Runner Action, the insights are exactly the same as with GitHub-hosted runner.
 
-> It's important to note that while the feature to restrict outbound traffic is not yet available for ARC, it is currently in development and is expected to be released in a few weeks.
+### Preventing Code and CI/CD Credentials Exfiltration
+
+- Workflow file: https://github.com/step-security/github-actions-goat/blob/main/.github/workflows/arc-codecov-simulation.yml
+- Example workflow run: https://github.com/step-security/github-actions-goat/actions/runs/5662626256/job/15342958122
+- Workflow Insights: https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/5662626256
+
+As you can observe, the outbound call that was not in the allowed list was successfully blocked.
+
