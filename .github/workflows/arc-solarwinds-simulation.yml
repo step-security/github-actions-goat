@@ -1,4 +1,4 @@
-name: ARC SolarWinds Simulation
+name: 4. ARC SolarWinds Simulation
 on:
   workflow_dispatch:
 

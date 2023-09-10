@@ -1,0 +1,16 @@
+name: 1. Zero-effort Observability
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  observability:
+    runs-on: self-hosted
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker build .
