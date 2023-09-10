@@ -1,6 +1,7 @@
 name: 4. ARC SolarWinds Simulation
 on:
   workflow_dispatch:
+  push:
 
 jobs:
   arc-solarwinds-simulation:
