@@ -1,7 +1,6 @@
 name: 3. ARC Codecov Simulation
 on:
   workflow_dispatch:
-  push:
       
 jobs:
   arc-codecov-simulation:

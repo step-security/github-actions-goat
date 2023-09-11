@@ -1,7 +1,6 @@
 name: 2. Secure-By-Default ARC Cluster-Level Policy
 on:
   workflow_dispatch:
-  push:
 
 jobs:
   direct-ip-hosted:

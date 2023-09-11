@@ -1,8 +1,6 @@
 name: 1. Zero-effort Observability
-
 on:
   workflow_dispatch:
-  push:
 
 jobs:
   observability:
