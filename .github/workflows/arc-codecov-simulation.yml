@@ -1,7 +1,7 @@
-name: ARC Codecov Simulation
+name: 3. ARC Codecov Simulation
 on:
   workflow_dispatch:
-
+      
 jobs:
   arc-codecov-simulation:
     runs-on: self-hosted
