@@ -1,4 +1,4 @@
-name: Publish Docker
+name: Hosted - File Monitoring with Harden-Runner
 on:
   workflow_dispatch:
 
