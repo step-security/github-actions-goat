@@ -11,7 +11,9 @@ jobs:
         with:
           egress-policy: audit
       - uses: actions/checkout@v3
-      - run: npm install
+      - run: |
+          cd ./src/backdoor-demo
+          npm install --verbose
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@v5
         with:
