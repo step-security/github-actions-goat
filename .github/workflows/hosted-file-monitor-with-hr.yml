@@ -1,6 +1,7 @@
 name: Publish Docker
 on:
   workflow_dispatch:
+  push:
 
 jobs:
   build:
@@ -17,3 +18,4 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
+          workdir: ./src/backdoor-demo
