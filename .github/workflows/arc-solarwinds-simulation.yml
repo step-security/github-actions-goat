@@ -1,7 +1,6 @@
 name: "ARC: File Monitoring with Harden-Runner"
 on:
   workflow_dispatch:
-  push:
 
 jobs:
   arc-solarwinds-simulation:
