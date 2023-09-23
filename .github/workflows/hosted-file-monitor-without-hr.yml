@@ -1,7 +1,6 @@
 name: Hosted - File Monitoring without Harden-Runner
 on:
   workflow_dispatch:
-  push:
 
 jobs:
   build:
