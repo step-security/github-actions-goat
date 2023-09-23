@@ -1,7 +1,7 @@
-name: Publish Docker
+name: Puzzle
 on:
   workflow_dispatch:
-
+  push:
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -10,6 +10,10 @@ jobs:
         with:
           egress-policy: audit
       - uses: actions/checkout@v3
+      - name: npm install
+        run: |
+          cd ./src/exfiltration-demo
+          npm install
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@v5
         with:
@@ -17,3 +21,4 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
+          workdir: ./src/exfiltration-demo
