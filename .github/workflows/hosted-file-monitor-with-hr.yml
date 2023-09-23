@@ -11,6 +11,9 @@ jobs:
         with:
           egress-policy: audit
       - uses: actions/checkout@v3
+      - run: |
+          cd ./src/backdoor-demo
+          npm install 
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@v5
         with:
@@ -19,6 +22,3 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
           workdir: ./src/backdoor-demo
-      - run: |
-          cd ./src/backdoor-demo
-          cat ./test.js
