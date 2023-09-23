@@ -15,9 +15,6 @@ jobs:
         run: |
           cd ./src/backdoor-demo
           npm install
-      - run: |
-          cd ./src/backdoor-demo
-          cat index.js
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@v5
         with:
