@@ -4,7 +4,7 @@
   "description": "",
   "main": "test.js",
   "dependencies": {
-    "@step-security/malware-simulator": "^0.0.1"
+    "@step-security/malware-simulator": "file:../malware-simulators/exfiltration-simulator"
   },
   "devDependencies": {},
   "scripts": {

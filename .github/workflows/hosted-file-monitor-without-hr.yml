@@ -1,18 +1,15 @@
-name: Puzzle
+name: "Hosted: File Monitoring without Harden-Runner"
 on:
   workflow_dispatch:
-    
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: step-security/harden-runner@v2
-        with:
-          egress-policy: audit
       - uses: actions/checkout@v3
       - name: npm install
         run: |
-          cd ./src/exfiltration-demo
+          cd ./src/backdoor-demo
           npm install
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@v5
@@ -21,4 +18,4 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
-          workdir: ./src/exfiltration-demo
+          workdir: ./src/backdoor-demo

@@ -1,14 +1,20 @@
-name: Puzzle
+name: "Hosted: Network Filtering with Harden-Runner"
 on:
   workflow_dispatch:
-    
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: step-security/harden-runner@v2
+      - name: Harden Runner
+        uses: step-security/harden-runner@v2
         with:
-          egress-policy: audit
+          disable-sudo: true
+          egress-policy: block
+          allowed-endpoints: >
+            ghcr.io:443
+            github.com:443
+            registry.npmjs.org:443
       - uses: actions/checkout@v3
       - name: npm install
         run: |

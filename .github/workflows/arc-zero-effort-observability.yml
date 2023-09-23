@@ -1,14 +1,24 @@
-name: 1. Zero-effort Observability
+name: "ARC: Zero-effort Observability"
 on:
   workflow_dispatch:
 
 jobs:
-  observability:
+  build:
     runs-on: self-hosted
-    permissions:
-      contents: read
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Build Docker image
-        run: docker build .
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: npm install
+        run: |
+          cd ./src/exfiltration-demo
+          npm install
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@v5
+        with:
+          name: ${{ github.repository }}/prod:latest
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: ghcr.io
+          workdir: ./src/exfiltration-demo

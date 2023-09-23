@@ -1,4 +1,4 @@
-name: 4. ARC SolarWinds Simulation
+name: "ARC: File Monitoring with Harden-Runner"
 on:
   workflow_dispatch:
 
@@ -7,10 +7,18 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
-
-      # SolarWinds Scenario: Overwrite calc.go to inject backdoor
-      - name: File Overwrite with mv
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: npm install
         run: |
-          code='package main\n\nfunc main(){\nprintln("code added")\n}'
-          printf "$code" > calc1.go
-          mv calc1.go calc.go
+          cd ./src/backdoor-demo
+          npm install
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@v5
+        with:
+          name: ${{ github.repository }}/prod:latest
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: ghcr.io
+          workdir: ./src/backdoor-demo
