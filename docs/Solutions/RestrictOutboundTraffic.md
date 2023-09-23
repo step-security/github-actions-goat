@@ -16,6 +16,7 @@ In this tutorial, you will use the `step-security/harden-runner` GitHub Action t
 Without Harden-Runner, you have no visibility into what outbound connections were made during a workflow run.
 
 1. Go to the `Actions` tab and run the `Hosted: Network Monitoring without Harden-Runner` workflow.
+
 2. Check out the build logs. From the build logs you see that a package was installed and a docker image was built and published.
 
 As we will see next, one of these steps is making an unexpected outbound call, but you cannot know that without egress network monitoring.
@@ -23,9 +24,13 @@ As we will see next, one of these steps is making an unexpected outbound call, b
 ### Network Monitoring with Harden-Runner
 
 1. Go to the `Actions` tab and run the `Hosted: Network Monitoring with Harden-Runner` workflow.
+
 2. View the workflow [hosted-network-monitoring-hr.yml](../../.github/workflows/hosted-network-monitoring-hr.yml) file.
+
 3. `step-security/harden-runner` GitHub Action is used as the first step in the job. Notice the `egress-policy` is set to `audit`
+
 4. After the workflow completes, check out the build logs. In the `Harden-Runner` step, you will see a link to security insights and recommendations.
+
 5. Click the link and you will see the outbound calls that were made from each of the steps.
 
 You can now see that the `npm install` step is making a call to `pastebin.com`, which is not expected.
@@ -35,11 +40,16 @@ You can now see that the `npm install` step is making a call to `pastebin.com`, 
 In the insights page, you will see a recommended policy to filter egress traffic to allowed destinations.
 
 1. Go to the `Actions` tab and run the `Hosted: Network Filtering with Harden-Runner` workflow.
+
 2. View the workflow [hosted-network-filtering-hr.yml](../../.github/workflows/hosted-network-filtering-hr.yml) file.
+
 3. `step-security/harden-runner` GitHub Action has `egress-policy` set to `block`. Only the destinations that are expected are in the allowed list. `pastebin.com` is not in this list.
+
 4. After the workflow completes, check out the build logs.
+
 5. Click the insights link from the `Harden-Runner` step. You will notice that the call to `pastebin.com` was blocked in this case.
-6. You can also install the [StepSecurity Actions Security GitHub App](https://github.com/apps/stepsecurity-actions-security) to get notified via email or Slack when outbound traffic is blocked. This App is required if you use `Harden-Runner` for private repositories.
+
+6. You can also install the [StepSecurity Actions Security GitHub App](https://github.com/apps/stepsecurity-actions-security) to get notified via email or Slack when outbound traffic is blocked.
 
 ## Filter Network Traffic (Actions Runner Controller)
 

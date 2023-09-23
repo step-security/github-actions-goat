@@ -9,83 +9,54 @@
 
 ## Detect File Tampering (GitHub-Hosted Runner)
 
-Learn how to detect file modification on the build server in a GitHub Actions workflow.
+In this tutorial, you will use the `step-security/harden-runner` GitHub Action to detect file tampering on the build server in a GitHub Actions workflow.
 
-1. Browse to the [ci.yml](../../.github/workflows/ci.yml) workflow. Add the `step-security/harden-runner` GitHub Action as the first step. After the checkout step, add another step to simulate modification of a source code file, and another to simulate `sudo` call. The updated file should look like this:
+### File Monitoring without Harden-Runner
 
-   ```yaml
-   name: Test and coverage
+Without Harden-Runner, you have no visibility into what files are overwritten during a workflow run.
 
-   on: [push, pull_request, workflow_dispatch]
+1. Go to the `Actions` tab and run the `Hosted: File Monitoring without Harden-Runner` workflow.
+2. Check out the build logs. From the build logs you see that a package was installed and a docker image was built and published.
 
-   jobs:
-     build:
-       runs-on: ubuntu-latest
-       steps:
-         - uses: step-security/harden-runner@v2
-           with:
-             egress-policy: audit
-             disable-sudo: true
-         - uses: actions/checkout@v2
-           with:
-             fetch-depth: 2
-         - run: | # simulate modification of source code
-             code='package calc\n\nfunc Add(x, y int) int {\nprintln("code added")\nreturn x + y\n}'
-             printf "$code" > calc1.go
-             mv calc1.go calc.go
-         - uses: actions/setup-go@v2
-           with:
-             go-version: "1.17"
-         - name: Run coverage
-           run: go test -race -coverprofile=coverage.txt -covermode=atomic
-         - name: Simulate sudo access
-           run: sudo ls
-         - name: Upload coverage to Codecov
-           run: |
-             bash <(curl -s https://codecov.io/bash)
-   ```
+As we will see next, one of these steps is overwritting a file, but you cannot know that without file monitoring.
 
-Commit the changes to `main` branch.
+### File Monitoring with Harden-Runner
 
-2. The `step-security/harden-runner` GitHub Action installs an agent into the Ubuntu VM that monitors changes to source code. In a typical workflow, source code is checked out from the repository and does not need to be altered. In this case, since it is altered, the change will be detected.
+1. Go to the `Actions` tab and run the `Hosted: File Monitoring with Harden-Runner` workflow.
 
-3. This change should cause the workflow to run, as it is set to run on push. Click on the `Actions` tab and then click on the `Test and coverage` workflow run.
+2. View the workflow [hosted-network-monitoring-hr.yml](../../.github/workflows/hosted-file-monitor-with-hr.yml) file.
 
-4. You should see a link to security insights and recommendations for the workflow run under the `Run step-security/harden-runner` tab.
+3. `step-security/harden-runner` GitHub Action is used as the first step in the job.
 
-    <img src="../../images/BuildLog.png" alt="Link to security insights" width="800">
+4. After the workflow completes, check out the build logs. In the `Harden-Runner` step, you will see a link to security insights and recommendations.
 
-5. Click on the link. You should see that the file overwrite has been detected.
+5. Click the link and you will see the `npm install` step is overwritting the `index.js` file, which is not expected.
 
-    <img src="../../images/SourceCodeOverwriteDetected.png" alt="Source code overwrite detected" width="800">
-
-6. In the Action steps, notice that the `sudo` step failed, since `disable-sudo: true` was set using harden-runner.
-
-7. This shows how [`Harden-Runner`](https://github.com/step-security/harden-runner) prevents malicious steps from calling `sudo` and detects file overwrites during build.
-
-8. You can install the [StepSecurity Actions Security GitHub App](https://github.com/apps/stepsecurity-actions-security) to get notified via email or Slack when a source code file is overwritten in your workflow.
+6. You can install the [StepSecurity Actions Security GitHub App](https://github.com/apps/stepsecurity-actions-security) to get notified via email or Slack when a source code file is overwritten in your workflow.
 
 ## Detect File Tampering (Actions Runner Controller)
 
 Actions Runner Controller (ARC) is a Kubernetes operator that orchestrates and scales self-hosted runners for GitHub Actions.
 
-1. Rather than incorporating the HardenRunner GitHub Action into each individual workflow, you'll need to install the ARC-Harden-Runner daemonset on your Kubernetes cluster.
+- Rather than incorporating the HardenRunner GitHub Action into each individual workflow, you install the ARC-Harden-Runner daemonset on your Kubernetes cluster.
 
-2. Upon deployment, the ARC-Harden-Runner daemonset constantly monitors for any modifications to files during your workflows, detecting any unauthorized changes promptly.
-
-3. Install the [StepSecurity Actions Security GitHub App](https://github.com/apps/stepsecurity-actions-security)
-
-4. With the app installed:
+- Upon installation, the ARC-Harden-Runner daemonset constantly monitors file events and correlates them with each step of the workflow.
 
 - You can access security insights and runtime detections under the `Runtime Security` tab in your dashboard
-- You'll receive notifications via email or Slack whenever a file is overwritten in your workflow.
 
-For a demo of a workflow running on ARC with Harden Runner integrated, please refer to following links:
+For a demo of a workflow running on ARC with Harden Runner integrated, follow this tutorial:
 
-- Workflow file: https://github.com/step-security/github-actions-goat/blob/main/.github/workflows/arc-solarwinds-simulation.yml
-- Example workflow run: https://github.com/step-security/github-actions-goat/actions/runs/5662626777/job/15342926660
-- Workflow Insights: https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/5662626777
+### File Monitoring
 
-As demonstrated, detections occur automatically, without the need to add the Harden Runner Action to each workflow.
+1. View this workflow file:
+   https://github.com/step-security/github-actions-goat/blob/main/.github/workflows/arc-solarwinds-simulation.yml
 
-Even though you do not need to add Harden-Runner Action to detect file modifications in ARC, the insights are exactly the same as with GitHub-hosted runner.
+   Notice that `harden-runner` Action is not added to this workflow, and that this workflow runs on a `self-hosted` runner.
+
+2. Check out an example run of this workflow here:
+   https://github.com/step-security/github-actions-goat/actions/runs/5662626777/job/15342926660
+
+3. Visit the workflow insights for this run here:
+   https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/5662626777
+
+   You can see that the file overwrite event is detected, without the need to add `harden-runner` to each job.
