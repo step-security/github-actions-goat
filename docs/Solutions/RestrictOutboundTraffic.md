@@ -22,7 +22,7 @@ As we will see next, one of these steps is making an unexpected outbound call, b
 
 ### Network Monitoring with Harden-Runner
 
-1. Go to the `Actions` tab and run the `Hosted: Network Monitoring with Harden-Runner` workflow and run it.
+1. Go to the `Actions` tab and run the `Hosted: Network Monitoring with Harden-Runner` workflow.
 2. View the workflow [hosted-network-monitoring-hr.yml](../../.github/workflows/hosted-network-monitoring-hr.yml) file.
 3. `step-security/harden-runner` GitHub Action is used as the first step in the job. Notice the `egress-policy` is set to `audit`
 4. After the workflow completes, check out the build logs. In the `Harden-Runner` step, you will see a link to security insights and recommendations.
@@ -34,7 +34,7 @@ You can now see that the `npm install` step is making a call to `pastebin.com`, 
 
 In the insights page, you will see a recommended policy to filter egress traffic to allowed destinations.
 
-1. Go to the `Actions` tab and run the `Hosted: Network Filtering with Harden-Runner` workflow and run it.
+1. Go to the `Actions` tab and run the `Hosted: Network Filtering with Harden-Runner` workflow.
 2. View the workflow [hosted-network-filtering-hr.yml](../../.github/workflows/hosted-network-filtering-hr.yml) file.
 3. `step-security/harden-runner` GitHub Action has `egress-policy` set to `block`. Only the destinations that are expected are in the allowed list. `pastebin.com` is not in this list.
 4. After the workflow completes, check out the build logs.
@@ -65,7 +65,7 @@ For a demo of a workflow running on ARC with Harden Runner integrated, follow th
 
 3. Visit the workflow insights for this run here:
    https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/6141448568
-   You can see the outbound traffic for each of the steps, withuot the need to add `harden-runner` to each job.
+   You can see the outbound traffic for each of the steps, without the need to add `harden-runner` to each job.
 
 Even though you do not need to add Harden-Runner Action, the insights are exactly the same as with GitHub-Hosted runner.
 
