@@ -1,7 +1,6 @@
 name: "ARC: Zero-effort Observability"
 on:
   workflow_dispatch:
-  push:
 
 jobs:
   build:
