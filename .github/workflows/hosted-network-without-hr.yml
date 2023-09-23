@@ -1,4 +1,4 @@
-name: Hosted: Network Monitoring without Harden-Runner
+name: Hosted - Network Monitoring without Harden-Runner
 on:
   workflow_dispatch:
 
