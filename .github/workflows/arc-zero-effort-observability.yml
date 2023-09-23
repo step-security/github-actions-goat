@@ -1,4 +1,4 @@
-name: 1. Zero-effort Observability
+name: "ARC: Zero-effort Observability"
 on:
   workflow_dispatch:
 

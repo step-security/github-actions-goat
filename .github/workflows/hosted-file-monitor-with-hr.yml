@@ -1,4 +1,4 @@
-name: Hosted - File Monitoring with Harden-Runner
+name: "Hosted: File Monitoring with Harden-Runner"
 on:
   workflow_dispatch:
     

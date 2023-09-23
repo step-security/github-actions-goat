@@ -1,4 +1,4 @@
-name: 2. Secure-By-Default ARC Cluster-Level Policy
+name: "ARC: Secure-By-Default Cluster-Level Policy"
 on:
   workflow_dispatch:
 

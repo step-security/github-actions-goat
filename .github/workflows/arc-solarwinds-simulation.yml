@@ -1,4 +1,4 @@
-name: 4. ARC SolarWinds Simulation
+name: "ARC: SolarWinds Simulation"
 on:
   workflow_dispatch:
 

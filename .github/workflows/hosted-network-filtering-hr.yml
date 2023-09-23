@@ -1,4 +1,4 @@
-name: Hosted - Network Filtering with Harden-Runner
+name: "Hosted: Network Filtering with Harden-Runner"
 on:
   workflow_dispatch:
 

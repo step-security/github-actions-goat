@@ -1,4 +1,4 @@
-name: 3. ARC Codecov Simulation
+name: "ARC: Codecov Simulation"
 on:
   workflow_dispatch:
       
