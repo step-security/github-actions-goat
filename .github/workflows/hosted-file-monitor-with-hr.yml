@@ -11,7 +11,8 @@ jobs:
         with:
           egress-policy: audit
       - uses: actions/checkout@v3
-      - run: |
+      - name: npm install
+        run: |
           cd ./src/backdoor-demo
           npm install 
       - name: Publish to Registry
