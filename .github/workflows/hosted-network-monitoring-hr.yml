@@ -1,20 +1,21 @@
-name: Hosted - Network Monitoring With Harden Runner
-
-on: [workflow_dispatch]
+name: Hosted - Network Monitoring with Harden-Runner
+on:
+  workflow_dispatch:
+  push:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      #Add StepSecurity Harden Runner from here onwards
-      - uses: actions/checkout@v2
+      - uses: step-security/harden-runner@v2
         with:
-          fetch-depth: 2
-      - uses: actions/setup-go@v2
+          egress-policy: audit
+      - uses: actions/checkout@v3
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@v5
         with:
-          go-version: '1.17'
-      - name: Run coverage
-        run: go test -race -coverprofile=coverage.txt -covermode=atomic
-      - name: Upload coverage to Codecov
-        run: |
-          bash <(curl -s https://codecov.io/bash)
+          name: ${{ github.repository }}/prod:latest
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: ghcr.io
+          workdir: ./src/exfiltration-demo
