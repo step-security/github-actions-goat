@@ -1,7 +1,7 @@
 name: "Hosted: File Monitoring with Harden-Runner"
 on:
   workflow_dispatch:
-  
+  push:
 jobs:
   build:
     runs-on: ubuntu-latest
