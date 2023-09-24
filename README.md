@@ -15,9 +15,9 @@ GitHub Actions Goat incorporates best practices from the [CISA/ NSA guidance on 
 
 ## Puzzle Time
 
-Lets kick things off with a challenge designed to get your analytical gears turning.
+Lets kick things off with a challenge designed to get your analytical gears turning:
 
-- Take a close look at the [publish.yml](.github/workflows/publish.yml) GitHub Actions workflow.
+- Take a look at the [publish.yml](.github/workflows/publish.yml) GitHub Actions workflow.
 - This workflow uses the [Harden-Runner GitHub Action](https://github.com/step-security/harden-runner), which provides Security Observability and Runtime Enforcement for GitHub Actions workflows.
 - Now, we present you with the puzzle. Check out these [network events monitored during a workflow run](https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/6285441645) of this workflow. Notice anything odd?
 
