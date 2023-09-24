@@ -25,7 +25,7 @@ Lets kick things off with a challenge designed to get your analytical gears turn
 
 > For the answer of the puzzle, check out the first hands-on tutorial on [Filtering Egress Network Traffic](./docs/Solutions/RestrictOutboundTraffic.md) from a GitHub Actions workflow run.
 
- <img src="./images/Puzzle3.png" alt="Puzzle showing outbound call to attacker.com" >
+ <img src="./images/Puzzle4.png" alt="Puzzle showing outbound call to attacker.com" >
 
 ## Threat Scenarios
 
