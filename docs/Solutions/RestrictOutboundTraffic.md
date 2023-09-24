@@ -35,9 +35,19 @@ As we will see next, one of these steps is making an unexpected outbound call, b
 
 You can now see that the `npm install` step is making a call to `pastebin.com`, which is not expected.
 
+### Answer to the puzzle
+
+There is a [Puzzle in the README](../../README.md#puzzle-time) about a call to `pastebin.com`. To understand why this call is being made:
+
+- Check out the `package.json` file of the [exfiltration-demo](../../src/exfiltration-demo/package.json) folder.
+- It has a dependency called `@step-security/malware-simulator`
+- This dependency simulates a malicious package. Its [package.json](../../src/malware-simulators/exfiltration-simulator/package.json) has a `pre-install` step that calls [compile.js](../../src/malware-simulators/exfiltration-simulator/compile.js)
+- The compile.js file makes an outbound call to `pastebin.com`
+- As a result, when `npm install` is run in the workflow, the `pre-install` step of the dependency is run, which makes the outbound call.
+
 ### Network Filtering with Harden-Runner
 
-In the insights page, you will see a recommended policy to filter egress traffic to allowed destinations.
+Now lets see how to filter traffic to expected destinations and block everything else.
 
 1. Go to the `Actions` tab and run the `Hosted: Network Filtering with Harden-Runner` workflow.
 
@@ -71,17 +81,40 @@ For a demo of a workflow running on ARC with Harden Runner integrated, follow th
    Notice that `harden-runner` Action is not added to this workflow, and that this workflow runs on a `self-hosted` runner.
 
 2. Check out an example run of this workflow here:
-   https://github.com/step-security/github-actions-goat/actions/runs/6141448568
+   https://github.com/step-security/github-actions-goat/actions/runs/6285442172
 
 3. Visit the workflow insights for this run here:
-   https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/6141448568
+   https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/6285442172
    You can see the outbound traffic for each of the steps, without the need to add `harden-runner` to each job.
 
 Even though you do not need to add Harden-Runner Action, the insights are exactly the same as with GitHub-Hosted runner.
 
+### Secure-by-default ARC Cluster Level Network Policy
+
+You can apply a secure-by-default ARC Cluster Level Network Policy that restricts outbound traffic for any job that is run on the ARC managed runners. This ensures that all workflows have a baseline restrictive policy applied.
+
+To see this in action, follow these steps:
+
+1. View this workflow file:
+   https://github.com/step-security/github-actions-goat/blob/main/.github/workflows/arc-secure-by-default.yml
+
+   Notice that `harden-runner` Action is not added to this workflow. This workflow has two jobs. One runs on a `self-hosted` runner secured by ARC Harden-Runner and the other on a GitHub-Hosted runner. Both jobs make an outbound call to a direct IP address.
+
+2. Check out an example run of this workflow here:
+   https://github.com/step-security/github-actions-goat/actions/runs/6285441911
+
+   The call to the direct IP address succeeds for the GitHub-Hosted runner, but is blocked for the self-hosted runner.
+   This is because ARC Harden-Runner does not allow calls to direct IP addresses in the secure-by-default policy.
+   Typically workflows do not need to make calls to direct IP addresses, but compromised tools or dependencies sometimes make calls to direct IP addresses to avoid detection from DNS monitoring.
+
+3. Visit the workflow insights for this run here:
+   https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/6285441911
+
+   You will see that the call to the direct IP address has been blocked.
+
 ### Network Filtering with Harden Runner
 
-To filter traffic in self-hosted ARC runner, you use the `harden-runner` GitHub Action in `block` mode.
+While there is a secure-by-default policy, to filter traffic to specific destinations in a job run in self-hosted ARC runner, you use the `harden-runner` GitHub Action in `block` mode.
 
 1. View the workflow file:
    https://github.com/step-security/github-actions-goat/blob/main/.github/workflows/arc-codecov-simulation.yml
@@ -89,10 +122,9 @@ To filter traffic in self-hosted ARC runner, you use the `harden-runner` GitHub 
    Notice that `harden-runner` Action is added and there is a list of allowed endpoints.
 
 2. Check out an example run of this workflow here:
-   https://github.com/step-security/github-actions-goat/actions/runs/5662626256/job/15342958122
+   https://github.com/step-security/github-actions-goat/actions/runs/6285439406
 
-   Notice that the call to `pastebin.com` has been blocked.
+3. Visit the workflow insights for this run here:
+   https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/6285439406
 
-3. Visit the workflow insights for this run here: https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/5662626256
-
-As you can observe, the outbound call that was not in the allowed list was successfully blocked.
+   You will notice that the call to `pastebin.com` was blocked in this case.
