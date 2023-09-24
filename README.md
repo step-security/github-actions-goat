@@ -21,11 +21,11 @@ Lets kick things off with a challenge designed to get your analytical gears turn
 - This workflow uses the [Harden-Runner GitHub Action](https://github.com/step-security/harden-runner), which provides Security Observability and Runtime Enforcement for GitHub Actions workflows.
 - Now, we present you with the puzzle. Check out these [network events monitored during a workflow run](https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/6285441645) of this workflow. Notice anything odd?
 
-**Why is there an outbound call to `pastebin.com` during the workflow run?** Is this expected, or something more nefarious?
+**Why is there an outbound call to `attacker.com` during the workflow run?** Is this expected, or something more nefarious?
 
 > For the answer of the puzzle, check out the first hands-on tutorial on [Filtering Egress Network Traffic](./docs/Solutions/RestrictOutboundTraffic.md) from a GitHub Actions workflow run.
 
- <img src="./images/Puzzle3.png" alt="Puzzle showing outbound call to pastebin.com" >
+ <img src="./images/Puzzle4.png" alt="Puzzle showing outbound call to attacker.com" >
 
 ## Threat Scenarios
 

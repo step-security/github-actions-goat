@@ -33,16 +33,16 @@ As we will see next, one of these steps is making an unexpected outbound call, b
 
 5. Click the link and you will see the outbound calls that were made from each of the steps.
 
-You can now see that the `npm install` step is making a call to `pastebin.com`, which is not expected.
+You can now see that the `npm install` step is making a call to `attacker.com`, which is not expected.
 
 ### Answer to the puzzle
 
-There is a [Puzzle in the README](../../README.md#puzzle-time) about a call to `pastebin.com`. To understand why this call is being made:
+There is a [Puzzle in the README](../../README.md#puzzle-time) about a call to `attacker.com`. To understand why this call is being made:
 
 - Check out the `package.json` file of the [exfiltration-demo](../../src/exfiltration-demo/package.json) folder.
 - It has a dependency called `@step-security/malware-simulator`
 - This dependency simulates a malicious package. Its [package.json](../../src/malware-simulators/exfiltration-simulator/package.json) has a `pre-install` step that calls [compile.js](../../src/malware-simulators/exfiltration-simulator/compile.js)
-- The compile.js file makes an outbound call to `pastebin.com`
+- The compile.js file makes an outbound call to `attacker.com`
 - As a result, when `npm install` is run in the workflow, the `pre-install` step of the dependency is run, which makes the outbound call.
 
 ### Network Filtering with Harden-Runner
@@ -53,11 +53,11 @@ Now lets see how to filter traffic to expected destinations and block everything
 
 2. View the workflow [hosted-network-filtering-hr.yml](../../.github/workflows/hosted-network-filtering-hr.yml) file.
 
-3. `step-security/harden-runner` GitHub Action has `egress-policy` set to `block`. Only the destinations that are expected are in the allowed list. `pastebin.com` is not in this list.
+3. `step-security/harden-runner` GitHub Action has `egress-policy` set to `block`. Only the destinations that are expected are in the allowed list. `attacker.com` is not in this list.
 
 4. After the workflow completes, check out the build logs.
 
-5. Click the insights link from the `Harden-Runner` step. You will notice that the call to `pastebin.com` was blocked in this case.
+5. Click the insights link from the `Harden-Runner` step. You will notice that the call to `attacker.com` was blocked in this case.
 
 6. You can also install the [StepSecurity Actions Security GitHub App](https://github.com/apps/stepsecurity-actions-security) to get notified via email or Slack when outbound traffic is blocked.
 
@@ -127,4 +127,4 @@ While there is a secure-by-default policy, to filter traffic to specific destina
 3. Visit the workflow insights for this run here:
    https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/6285439406
 
-   You will notice that the call to `pastebin.com` was blocked in this case.
+   You will notice that the call to `attacker.com` was blocked in this case.
