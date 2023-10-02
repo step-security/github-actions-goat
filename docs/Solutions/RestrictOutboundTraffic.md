@@ -145,15 +145,15 @@ For a demo of a workflow running on self-hosted EC2 with Harden Runner integrate
 ### Network Monitoring
 
 1. View this workflow file:
-   https://github.com/step-security/github-actions-goat/blob/main/.github/workflows/arc-zero-effort-observability.yml
+   https://github.com/step-security/github-actions-goat/blob/main/.github/workflows/self-hosted-network-monitoring-hr.yml
 
    Notice that `harden-runner` Action is not added to this workflow, and that this workflow runs on a `self-hosted` EC2 runner.
 
 2. Check out an example run of this workflow here:
-   https://github.com/step-security/github-actions-goat/actions/runs/6292615173
+   https://github.com/step-security/github-actions-goat/actions/runs/6386599320
 
 3. Visit the workflow insights for this run here:
-   https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/6292615173
+   https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/6386599320
    You can see the outbound traffic for each of the steps, without the need to add `harden-runner` to each job.
 
 Even though you do not need to add Harden-Runner Action, the insights are exactly the same as with GitHub-Hosted runner.
@@ -163,14 +163,14 @@ Even though you do not need to add Harden-Runner Action, the insights are exactl
 To filter traffic to specific destinations in a job run in self-hosted VM runner, you use the `harden-runner` GitHub Action in `block` mode.
 
 1. View the workflow file:
-   https://github.com/step-security/github-actions-goat/blob/main/.github/workflows/arc-codecov-simulation.yml
+   https://github.com/step-security/github-actions-goat/blob/main/.github/workflows/self-hosted-network-filtering-hr.yml
 
    Notice that `harden-runner` Action is added and there is a list of allowed endpoints.
 
 2. Check out an example run of this workflow here:
-   https://github.com/step-security/github-actions-goat/actions/runs/6292614301
+   https://github.com/step-security/github-actions-goat/actions/runs/6386598192
 
 3. Visit the workflow insights for this run here:
-   https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/6292614301
+   https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/6386598192
 
    You will notice that the call to `attacker.com` was blocked in this case.
