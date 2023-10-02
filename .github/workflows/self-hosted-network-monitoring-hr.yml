@@ -1,18 +1,15 @@
-name: "Self-Hosted (VM): File Monitoring with Harden-Runner"
+name: "Self-Hosted (VM): Network Monitoring with Harden-Runner"
 on:
   workflow_dispatch:
-
+  push:
 jobs:
   build:
     runs-on: [self-hosted, ec2]
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
       - name: npm install
         run: |
-          cd ./src/backdoor-demo
+          cd ./src/exfiltration-demo
           npm install
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@v5
@@ -21,4 +18,4 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
-          workdir: ./src/backdoor-demo
+          workdir: ./src/exfiltration-demo
