@@ -1,0 +1,24 @@
+name: "Self-Hosted (VM): File Monitoring with Harden-Runner"
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: [self-hosted, ec2]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: npm install
+        run: |
+          cd ./src/backdoor-demo
+          npm install
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@v5
+        with:
+          name: ${{ github.repository }}/prod:latest
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: ghcr.io
+          workdir: ./src/backdoor-demo

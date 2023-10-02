@@ -6,6 +6,7 @@
 
 1. [Detect File Tampering (GitHub-Hosted Runner)](#detect-file-tampering-github-hosted-runner)
 2. [Detect File Tampering (Actions Runner Controller)](#detect-file-tampering-actions-runner-controller)
+3. [Detect File Tampering (Self-Hosted VM Runners e.g. on EC2)](#detect-file-tampering-self-hosted-vm-runners-eg-on-ec2)
 
 ## Detect File Tampering (GitHub-Hosted Runner)
 
@@ -45,6 +46,33 @@ Actions Runner Controller (ARC) is a Kubernetes operator that orchestrates and s
 - You can access security insights and runtime detections under the `Runtime Security` tab in your dashboard
 
 For a demo of a workflow running on ARC with Harden Runner integrated, follow this tutorial:
+
+### File Monitoring
+
+1. View this workflow file:
+   https://github.com/step-security/github-actions-goat/blob/main/.github/workflows/arc-solarwinds-simulation.yml
+
+   Notice that `harden-runner` Action is not added to this workflow, and that this workflow runs on a `self-hosted` runner.
+
+2. Check out an example run of this workflow here:
+   https://github.com/step-security/github-actions-goat/actions/runs/6285439163
+
+3. Visit the workflow insights for this run here:
+   https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/6285439163
+
+   You can see that the file overwrite event is detected, without the need to add `harden-runner` to each job.
+
+## Detect File Tampering (Self-Hosted VM Runners e.g. on EC2)
+
+- Instead of adding the Harden-Runner GitHub Action in each workflow, you'll need to install the Harden-Runner agent on your runner image (e.g. AMI). This is typically done using packer.
+
+- The Harden-Runner agent monitors file events and correlates them with each step of the workflow.
+
+- Both ephemeral and persistent VM runners are supported.
+
+- You can access security insights and runtime detections under the Runtime Security tab in your dashboard.
+
+For a demo of a workflow running on self-hosted EC2 with Harden Runner integrated, follow this tutorial:
 
 ### File Monitoring
 
