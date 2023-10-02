@@ -6,6 +6,7 @@
 
 1. [Filter Network Traffic (GitHub-hosted Runner)](#filter-network-traffic-github-hosted-runner)
 2. [Filter Network Traffic (Actions Runner Controller)](#filter-network-traffic-actions-runner-controller)
+3. [Filter Network Traffic (Self-Hosted VM Runners e.g. on EC2)](#filter-network-traffic-self-hosted-vm-runners-eg-on-ec2)
 
 ## Filter Network Traffic (GitHub-hosted Runner)
 
@@ -115,6 +116,51 @@ To see this in action, follow these steps:
 ### Network Filtering with Harden Runner
 
 While there is a secure-by-default policy, to filter traffic to specific destinations in a job run in self-hosted ARC runner, you use the `harden-runner` GitHub Action in `block` mode.
+
+1. View the workflow file:
+   https://github.com/step-security/github-actions-goat/blob/main/.github/workflows/arc-codecov-simulation.yml
+
+   Notice that `harden-runner` Action is added and there is a list of allowed endpoints.
+
+2. Check out an example run of this workflow here:
+   https://github.com/step-security/github-actions-goat/actions/runs/6292614301
+
+3. Visit the workflow insights for this run here:
+   https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/6292614301
+
+   You will notice that the call to `attacker.com` was blocked in this case.
+
+## Filter Network Traffic (Self-Hosted VM Runners e.g. on EC2)
+
+- Instead of adding the Harden-Runner GitHub Action in each workflow, you'll need to install the Harden-Runner agent on your runner image (e.g. AMI). This is typically done using packer.
+
+- The Harden-Runner agent monitors each job run on the VM; you do NOT need to add the Harden-Runner GitHub Action to each job for audit mode. You do need to add the Harden-Runner GitHub Action for block mode.
+
+- Both ephemeral and persistent VM runners are supported.
+
+- You can access security insights and runtime detections under the Runtime Security tab in your dashboard.
+
+For a demo of a workflow running on self-hosted EC2 with Harden Runner integrated, follow this tutorial:
+
+### Network Monitoring
+
+1. View this workflow file:
+   https://github.com/step-security/github-actions-goat/blob/main/.github/workflows/arc-zero-effort-observability.yml
+
+   Notice that `harden-runner` Action is not added to this workflow, and that this workflow runs on a `self-hosted` EC2 runner.
+
+2. Check out an example run of this workflow here:
+   https://github.com/step-security/github-actions-goat/actions/runs/6292615173
+
+3. Visit the workflow insights for this run here:
+   https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/6292615173
+   You can see the outbound traffic for each of the steps, without the need to add `harden-runner` to each job.
+
+Even though you do not need to add Harden-Runner Action, the insights are exactly the same as with GitHub-Hosted runner.
+
+### Network Filtering with Harden Runner
+
+To filter traffic to specific destinations in a job run in self-hosted VM runner, you use the `harden-runner` GitHub Action in `block` mode.
 
 1. View the workflow file:
    https://github.com/step-security/github-actions-goat/blob/main/.github/workflows/arc-codecov-simulation.yml
