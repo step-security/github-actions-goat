@@ -86,9 +86,9 @@ For a demo of a workflow running on self-hosted EC2 with Harden Runner integrate
    Notice that `harden-runner` Action is not added to this workflow, and that this workflow runs on a `self-hosted` runner.
 
 2. Check out an example run of this workflow here:
-   https://github.com/step-security/github-actions-goat/actions/runs/6386649358
+   https://github.com/step-security/github-actions-goat/actions/runs/6388842742
 
 3. Visit the workflow insights for this run here:
-   https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/6386649358
+   https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/6388842742
 
    You can see that the file overwrite event is detected, without the need to add `harden-runner` to each job.
