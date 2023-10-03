@@ -41,6 +41,8 @@ Actions Runner Controller (ARC) is a Kubernetes operator that orchestrates and s
 
 - Rather than incorporating the HardenRunner GitHub Action into each individual workflow, you install the ARC-Harden-Runner daemonset on your Kubernetes cluster.
 
+> Please email us at support@stepsecurity.io for instructions on how to install the ARC-Harden-Runner daemonset on your Kubernetes cluster.
+
 - Upon installation, the ARC-Harden-Runner daemonset constantly monitors file events and correlates them with each step of the workflow.
 
 - You can access security insights and runtime detections under the `Runtime Security` tab in your dashboard
@@ -66,6 +68,8 @@ For a demo of a workflow running on ARC with Harden Runner integrated, follow th
 
 - Instead of adding the Harden-Runner GitHub Action in each workflow, you'll need to install the Harden-Runner agent on your runner image (e.g. AMI). This is typically done using packer.
 
+> Please email support@stepsecurity.io for instructions on how to install the Harden-Runner agent on your runner image. This agent is different than the one used for GitHub-hosted runners.
+
 - The Harden-Runner agent monitors file events and correlates them with each step of the workflow.
 
 - Both ephemeral and persistent VM runners are supported.
@@ -82,9 +86,9 @@ For a demo of a workflow running on self-hosted EC2 with Harden Runner integrate
    Notice that `harden-runner` Action is not added to this workflow, and that this workflow runs on a `self-hosted` runner.
 
 2. Check out an example run of this workflow here:
-   https://github.com/step-security/github-actions-goat/actions/runs/6386649358
+   https://github.com/step-security/github-actions-goat/actions/runs/6388842742
 
 3. Visit the workflow insights for this run here:
-   https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/6386649358
+   https://app.stepsecurity.io/github/step-security/github-actions-goat/actions/runs/6388842742
 
    You can see that the file overwrite event is detected, without the need to add `harden-runner` to each job.
