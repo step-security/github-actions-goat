@@ -2,6 +2,8 @@
 
 > ["Minimize the use of long-term credentials" in CISA/NSA document](https://media.defense.gov/2023/Jun/28/2003249466/-1/-1/0/CSI_DEFENDING_CI_CD_ENVIRONMENTS.PDF): For software-to-software authentication, avoid using software-based long-term credentials as much as possible.
 
+[🔙 Go back to the list of tutorials](../../README.md#vulnerabilities-and-countermeasures)
+
 ## Tutorial
 
 In this tutorial you will use the [StepSecurity Actions Security GitHub App](https://github.com/apps/stepsecurity-actions-security) to view the list of all your GitHub Actions Secret names and `Days Since Last Rotated`. This will help you understsand which secrets should be rotated.

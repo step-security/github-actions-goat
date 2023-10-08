@@ -4,6 +4,8 @@
 
 > **["Implement endpoint detection and response (EDR) tools" in CISA/NSA guide](https://media.defense.gov/2023/Jun/28/2003249466/-1/-1/0/CSI_DEFENDING_CI_CD_ENVIRONMENTS.PDF)**: EDR tools provide a high degree of visibility into the security status of endpoints and can help effectively protect against MCAs.
 
+[🔙 Go back to the list of tutorials](../../README.md#vulnerabilities-and-countermeasures)
+
 ## Tutorials
 
 1. [Detect File Tampering (GitHub-Hosted Runner)](#detect-file-tampering-github-hosted-runner)
