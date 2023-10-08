@@ -2,6 +2,8 @@
 
 > For examples of real-world incidents in which files have been tampered during the build and release process in CI/CD pipelines, refer to [Tampering of source code or artifacts during build](../Vulnerabilities/TamperingDuringBuild.md)
 
+> **["Implement endpoint detection and response (EDR) tools" in CISA/NSA guide](https://media.defense.gov/2023/Jun/28/2003249466/-1/-1/0/CSI_DEFENDING_CI_CD_ENVIRONMENTS.PDF)**: EDR tools provide a high degree of visibility into the security status of endpoints and can help effectively protect against MCAs.
+
 ## Tutorials
 
 1. [Detect File Tampering (GitHub-Hosted Runner)](#detect-file-tampering-github-hosted-runner)

@@ -2,6 +2,8 @@
 
 > For examples of real-world incidents in which credentials have been exfiltrated from CI/CD pipelines, refer to [Exfiltration of secrets from the CI/ CD pipeline](../Vulnerabilities/ExfiltratingCICDSecrets.md)
 
+> **["Implement network segmentation and traffic filtering" in CISA/NSA guide](https://media.defense.gov/2023/Jun/28/2003249466/-1/-1/0/CSI_DEFENDING_CI_CD_ENVIRONMENTS.PDF)**: Implement and ensure robust network segmentation between networks and functions to reduce the spread of malware and limit access from other parts of the network that do not need access.
+
 ## Tutorials
 
 1. [Filter Network Traffic (GitHub-hosted Runner)](#filter-network-traffic-github-hosted-runner)

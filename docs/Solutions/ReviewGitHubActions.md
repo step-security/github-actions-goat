@@ -12,6 +12,6 @@ In this tutorial you will use the [StepSecurity Actions Security GitHub App](htt
 
 3. You can now click on the `Repositories using Action` link next to an Action to view the list of all the repositories in which that Action is being used.
 
-   <img src="../../images/ActionsList.png" alt="Link to security insights" width="800">
+   <img src="../../images/ActionsList2.png" alt="Link to security insights" width="800">
 
 4. You can click on the GitHub Action name to go to the GitHub Action's repository.
