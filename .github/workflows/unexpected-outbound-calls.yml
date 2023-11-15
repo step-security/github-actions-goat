@@ -21,3 +21,4 @@ jobs:
       - run: "curl microsoft.com:443  --connect-timeout 5 || true"
       - run: "curl amazon.com:443  --connect-timeout 5 || true"
       - run: "curl www.amazon.com:443  --connect-timeout 5 || true"
+      - run: "curl www.pastebin.com:443  --connect-timeout 5 || true"
