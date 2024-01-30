@@ -21,7 +21,7 @@ jobs:
 
       - name: get-npm-version
         id: package-version
-        uses: step-security/npm-get-version-action@v1
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
         with:
           path: src/exfiltration-demo
 
