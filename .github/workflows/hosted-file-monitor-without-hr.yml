@@ -1,7 +1,7 @@
 name: "Hosted: File Monitoring without Harden-Runner"
 on:
   workflow_dispatch:
-
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,10 +15,11 @@ jobs:
           cd ./src/backdoor-demo
           npm install
 
-      - uses: step-security/semver-utils@v1
-        id: version
+      - name: get-npm-version
+        id: package-version
+        uses: step-security/npm-get-version-action@v1
         with:
-          version: 1.2.3
+          path: src/backdoor-demo
 
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@v5
