@@ -15,11 +15,10 @@ jobs:
           cd ./src/backdoor-demo
           npm install
 
-      - name: get-npm-version
-        id: package-version
-        uses: step-security/npm-get-version-action@v1
+      - uses: step-security/semver-utils@v1
+        id: version
         with:
-          path: src/backdoor-demo
+          version: 1.2.3
 
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@v5

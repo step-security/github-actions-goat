@@ -32,6 +32,11 @@ jobs:
         with:
           path: src/exfiltration-demo
 
+      - uses: madhead/semver-utils@latest
+        id: version
+        with:
+          version: 1.2.3
+
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@v5
         with:
