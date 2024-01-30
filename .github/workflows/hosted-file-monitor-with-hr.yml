@@ -1,7 +1,7 @@
 name: "Hosted: File Monitoring with Harden-Runner"
 on:
   workflow_dispatch:
-  
+  push:
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -9,11 +9,17 @@ jobs:
       - uses: step-security/harden-runner@v2
         with:
           egress-policy: audit
+      - uses: crazy-max/ghaction-github-status@v4
       - uses: actions/checkout@v3
       - name: npm install
         run: |
           cd ./src/backdoor-demo
-          npm install 
+          npm install
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
+        with:
+          path: src/backdoor-demo
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@v5
         with:
