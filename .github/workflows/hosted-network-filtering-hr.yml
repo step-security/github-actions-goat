@@ -26,11 +26,10 @@ jobs:
           cd ./src/exfiltration-demo
           npm install
 
-      - name: get-npm-version
-        id: package-version
-        uses: martinbeentjes/npm-get-version-action@v1.3.1
+      - uses: madhead/semver-utils@latest
+        id: version
         with:
-          path: src/exfiltration-demo
+          version: 1.2.3
 
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@v5
