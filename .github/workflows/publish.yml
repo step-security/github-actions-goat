@@ -6,7 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: step-security/harden-runner@95691d3d1cfc1f403f673ccbe70465d7c4254108
+      - uses: step-security/harden-runner@v2
         with:
           egress-policy: audit
       - uses: actions/checkout@v3
