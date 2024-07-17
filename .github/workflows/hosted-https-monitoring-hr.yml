@@ -2,8 +2,14 @@ name: "Hosted: HTTPS Monitoring with Harden-Runner"
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build:
+    permissions:
+      contents: read  # for JasonEtco/create-an-issue to read template files
+      issues: write  # for JasonEtco/create-an-issue to create new issues
     runs-on: ubuntu-latest
     steps:
       - uses: step-security/harden-runner@v2

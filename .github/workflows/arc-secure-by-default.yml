@@ -2,10 +2,18 @@ name: "ARC: Secure-By-Default Cluster-Level Policy"
 on:
   workflow_dispatch:
   
+permissions:
+  contents: read
+
 jobs:
   direct-ip-hosted:
     runs-on: ubuntu-latest
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@v3
 
       # Codecov Scenario: Exfiltrate data to attacker's IP address
@@ -14,6 +22,11 @@ jobs:
   direct-ip-arc:
     runs-on: self-hosted
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@v3
 
       # Codecov Scenario: Exfiltrate data to attacker's IP address

@@ -1,0 +1,36 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
+
+  - package-ecosystem: docker
+    directory: /src/backdoor-demo
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /src/backdoor-demo
+    schedule:
+      interval: daily
+
+  - package-ecosystem: docker
+    directory: /src/exfiltration-demo
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /src/exfiltration-demo
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /src/malware-simulators/backdoor-simulator
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /src/malware-simulators/exfiltration-simulator
+    schedule:
+      interval: daily
