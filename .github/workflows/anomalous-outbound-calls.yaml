@@ -6,7 +6,7 @@ jobs:
     name: AnomalousOutboundCalls
     runs-on: ubuntu-latest
     steps:
-      - name: Harden Runner
+      - name: Harden Runnerr
         uses: step-security/harden-runner@v2
         with:
           egress-policy: audit
