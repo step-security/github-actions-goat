@@ -1,12 +1,12 @@
 name: Puzzle
 on:
-  workflow_dispatch:
+  push:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: step-security/harden-runner@v2
+      - uses: step-security/harden-runner@int-sh
         with:
           egress-policy: audit
       - uses: actions/checkout@v3
