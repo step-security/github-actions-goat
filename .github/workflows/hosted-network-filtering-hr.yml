@@ -1,5 +1,6 @@
 name: "Hosted: Network Filtering with Harden-Runner"
 on:
+  pull_request:
   workflow_dispatch:
   
 jobs:
@@ -12,36 +13,12 @@ jobs:
           disable-sudo: true
           egress-policy: block
           allowed-endpoints: >
-            ghcr.io:443
             github.com:443
-            registry.npmjs.org:443
             www.githubstatus.com:443
 
       - uses: crazy-max/ghaction-github-status@v4
 
       - uses: actions/checkout@v3
 
-      - name: npm install
-        run: |
-          cd ./src/exfiltration-demo
-          npm install
-
-      - name: get-npm-version
-        id: package-version
-        uses: martinbeentjes/npm-get-version-action@v1.3.1
-        with:
-          path: src/exfiltration-demo
-
-      - uses: madhead/semver-utils@latest
-        id: version
-        with:
-          version: 1.2.3
-
-      - name: Publish to Registry
-        uses: elgohr/Publish-Docker-Github-Action@v5
-        with:
-          name: ${{ github.repository }}/prod:latest
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          registry: ghcr.io
-          workdir: ./src/exfiltration-demo
+      - run: |
+          curl https://exfiltrationdemo.blob.core.windows.net/
