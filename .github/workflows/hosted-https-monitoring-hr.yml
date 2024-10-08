@@ -1,6 +1,7 @@
 name: "Hosted: HTTPS Monitoring with Harden-Runner"
 on:
   workflow_dispatch:
+  pull_request:
 
 jobs:
   build:
