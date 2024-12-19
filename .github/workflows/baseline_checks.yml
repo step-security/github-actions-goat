@@ -1,4 +1,4 @@
-name: "Baseline Checks"
+name: "Build"
 on:
   workflow_dispatch:
   pull_request:
