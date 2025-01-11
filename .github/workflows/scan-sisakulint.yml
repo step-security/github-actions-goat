@@ -1,0 +1,22 @@
+name: "sisakulint"
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  run_sisakulint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup sisakulint
+        uses: ./.github/actions/setup-sisakulint
+        with:
+          sisakulint_version: 0.0.9
+      - name: Run sisakulint
+        run: sisakulint -format "{{sarif .}}" > sisakulint.sarif || true
+      - name: Upload SARIF results
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: sisakulint.sarif

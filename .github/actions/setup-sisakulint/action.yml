@@ -1,0 +1,23 @@
+name: Setup sisakulint
+description: Setup sisakulint CLI tool in your workflow
+inputs:
+  sisakulint_version:
+    description: Version of sisakulint to install
+    required: true
+runs:
+  using: "composite"
+  steps:
+    # gh release download "v0.0.9" -R ultra-supara/sisakulint -p "sisakulint_0.0.9_darwin_amd64.tar.gz"
+    # tar -xf "sisakulint_0.0.9_darwin_amd64.tar.gz"
+    # https://github.com/ultra-supara/sisakulint/releases/tag/v0.0.9
+    - name: Download sisakulint
+      shell: bash
+      run: |
+        mkdir -p bin
+        cd bin
+        curl -L https://github.com/ultra-supara/sisakulint/releases/download/v${SISAKULINT_VERSION}/sisakulint_${SISAKULINT_VERSION}_linux_amd64.tar.gz -o "sisakulint_${SISAKULINT_VERSION}_linux_amd64.tar.gz"
+        tar -xf "sisakulint_${SISAKULINT_VERSION}_linux_amd64.tar.gz"
+        chmod +x sisakulint
+        echo "$(pwd)" >> $GITHUB_PATH
+      env:
+        SISAKULINT_VERSION: ${{ inputs.sisakulint_version }}

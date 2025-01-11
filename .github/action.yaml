@@ -1,0 +1,21 @@
+# Configuration file for sisakulint
+# Use this file to customize the behavior of sisakulint
+# self-hosted-runner section is for configuring self-hosted runners.
+self-hosted-runner:
+  # Use the labels key to specify labels for self-hosted runners used in your project as an array of strings.
+  # This allows sisakulint to verify that these labels are correctly configured.
+  # 🧠 Example: labels: ["linux-large", "windows-2xlarge"]
+  # Note: Ensure that the labels match those configured in your self-hosted runner settings.
+  labels: []
+
+# config-variables section is for specifying configuration variables defined in your repository or organization.
+# Setting it to null disables the check for configuration variables.
+# An empty array means no configuration variable is allowed.
+# 🧠 Example: config-variables: ["CI_ENVIRONMENT", "DEPLOY_TARGET"]
+# Note: List all the configuration variables that are used in your GitHub Actions workflows.
+config-variables: null
+
+# Add other optional settings below.
+# 🧠 Example: some-option: value
+# Note: Refer to the sisakulint documentation for more information on available settings.
+	
