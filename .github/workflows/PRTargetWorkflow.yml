@@ -1,0 +1,19 @@
+name: PR Target Workflow
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  pr-target-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Wait for 2 minutes
+        run: sleep 120
