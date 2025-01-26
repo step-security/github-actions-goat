@@ -1,6 +1,10 @@
 name: Block DNS Exfiltration With Harden-Runner
 on:
   workflow_dispatch:
+
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Deploy

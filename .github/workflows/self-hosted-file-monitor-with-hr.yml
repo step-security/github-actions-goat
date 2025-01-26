@@ -2,6 +2,9 @@ name: "Self-Hosted (VM): File Monitoring with Harden-Runner"
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: [self-hosted, ec2]

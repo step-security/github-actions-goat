@@ -2,6 +2,9 @@ name: "Hosted: Network Filtering with Harden-Runner"
 on:
   workflow_dispatch:
   
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest

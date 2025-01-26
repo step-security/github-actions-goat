@@ -2,6 +2,9 @@ name: "ARC: Zero-effort Observability"
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: self-hosted

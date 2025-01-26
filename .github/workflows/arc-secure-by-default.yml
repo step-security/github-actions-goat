@@ -1,6 +1,9 @@
 name: "ARC: Secure-By-Default Cluster-Level Policy"
 on:
   workflow_dispatch:
+
+permissions:
+  contents: read
   
 jobs:
   direct-ip-hosted:

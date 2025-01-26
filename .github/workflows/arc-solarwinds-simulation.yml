@@ -2,6 +2,9 @@ name: "ARC: File Monitoring with Harden-Runner"
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   arc-solarwinds-simulation:
     runs-on: self-hosted

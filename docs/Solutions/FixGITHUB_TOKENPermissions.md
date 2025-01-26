@@ -19,3 +19,39 @@ In this tutorial you will update the token permissions for workflows in this rep
 6. Merge the pull request. Check the permissions for the jobs in the "Set up job" section of the workflow run log. You will notice that the permissions are set to the minimum needed.
 
 > https://app.stepsecurity.io/securerepo has been used by over 500 public repositories to apply GitHub Actions Security best practices. You can browse pull requests for the Top 50 repositories at https://app.stepsecurity.io/securerepo/trending
+
+## Using Fine-Grained Permissions for GitHub Tokens
+
+To enhance security, it is important to use fine-grained permissions for GitHub tokens. This follows the principle of least privilege, ensuring that each job only has access to what it absolutely needs.
+
+### Example
+
+In the `.github/workflows/hosted-network-filtering-hr.yml` file, you can add `permissions: contents: read` to limit access:
+
+```yaml
+name: "Hosted: Network Filtering with Harden-Runner"
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@v2
+        with:
+          disable-sudo: true
+          egress-policy: block
+          allowed-endpoints: >
+            github.com:443
+            www.githubstatus.com:443
+      - uses: crazy-max/ghaction-github-status@v4
+      - uses: actions/checkout@v3
+      - run: |
+          curl https://exfiltrationdemo.blob.core.windows.net/
+```
+
+By setting the minimum required permissions for the GitHub token in your workflows, you can significantly reduce the risk of accidental or malicious misuse.

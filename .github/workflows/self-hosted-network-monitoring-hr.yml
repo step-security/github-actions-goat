@@ -1,6 +1,9 @@
 name: "Self-Hosted (VM): Network Monitoring with Harden-Runner"
 on:
   workflow_dispatch:
+
+permissions:
+  contents: read
     
 jobs:
   build:

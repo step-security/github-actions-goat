@@ -1,6 +1,10 @@
 name: Anomalous Outbound Calls
 on:
   workflow_dispatch:
+
+permissions:
+  contents: read
+
 jobs:
   unexpected-outbound-calls:
     name: AnomalousOutboundCalls

@@ -2,6 +2,9 @@ name: "ARC: Network Filtering with Harden-Runner"
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: self-hosted
