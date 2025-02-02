@@ -4,7 +4,8 @@ on:
     types: [labeled]
 
 permissions: {}  # No permissions by default
-
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   vulnerable-pattern:
     # DO NOT USE THIS PATTERN - It is vulnerable to TOCTOU
