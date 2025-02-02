@@ -1,4 +1,4 @@
-good change
+malicious change
 
 # GitHub Actions Goat: Deliberately Vulnerable GitHub Actions CI/CD Environment
 
