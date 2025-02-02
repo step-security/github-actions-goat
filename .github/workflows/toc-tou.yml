@@ -48,11 +48,12 @@ jobs:
           sleep 120
       
       # SECURE: Gets exactly the code that was approved
-      - name: Checkout PR (Secure)
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      
+      - name: Show what we got
         run: |
-          gh pr checkout ${{ github.event.pull_request.number }} --commit ${{ github.event.pull_request.head.sha }}
-          
-          # Show what we got
           echo "Commit we got:"
           git rev-parse HEAD
           echo "Content of README.md:"
