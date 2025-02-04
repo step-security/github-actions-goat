@@ -9,7 +9,18 @@ jobs:
     steps:
       - uses: step-security/harden-runner@int-sh
         with:
-          egress-policy: audit
+          egress-policy: block
+          allowed-endpoints: >
+            attacker.com:443
+            auth.docker.io:443
+            ghcr.io:443
+            github.com:443
+            posthog.com:80
+            production.cloudflare.docker.com:443
+            registry-1.docker.io:443
+            registry.npmjs.org:443
+            www.githubstatus.com:443
+            www.pastebin.com:443
 
       - uses: crazy-max/ghaction-github-status@v4
       - run: curl linkedin.com
