@@ -3,6 +3,8 @@ name: "sisakulint"
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   run_sisakulint:
@@ -15,7 +17,10 @@ jobs:
         with:
           sisakulint_version: 0.0.9
       - name: Run sisakulint
-        run: sisakulint -format "{{sarif .}}" > sisakulint.sarif || true
+        run: sisakulint -fix on -format "{{sarif .}}" > sisakulint.sarif || true
+      - name: Commit fix
+        if: ${{ github.event == "pull_request" }}
+        uses: suzuki-shunsuke/commit-action@main
       - name: Upload SARIF results
         uses: github/codeql-action/upload-sarif@v3
         with:
