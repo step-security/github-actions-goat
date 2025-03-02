@@ -1,0 +1,74 @@
+name: Harden-Runner Showcase
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  setup_and_build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential autoconf automake libtool \
+                                  pkg-config wget curl git jq
+
+      - name: Fetch Public IP (Simulating Outbound Call)
+        run: curl -s https://ifconfig.me
+
+      - name: Download and Extract cURL Source
+        run: |
+          wget https://curl.se/download/curl-8.5.0.tar.gz
+          tar -xvf curl-8.5.0.tar.gz
+          cd curl-8.5.0
+          ./configure
+          make -j$(nproc)
+          sudo make install
+
+      - name: Check cURL Version
+        run: curl --version
+
+  security_and_containerization:
+    runs-on: ubuntu-latest
+    needs: setup_and_build
+    steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Dummy Node Project and Audit (Outbound Calls to npm)
+        run: |
+          mkdir -p node_project
+          cd node_project
+          npm init -y
+          npm install express
+          npm audit --json > audit-report.json
+
+      - name: Pull a Public Docker Image (Outbound Call)
+        run: docker pull debian:latest
+
+      - name: Test Outbound Requests in a Container
+        run: |
+          docker run --rm debian:latest bash -c "apt update && curl -s http://example.com"
+
+      - name: List Outbound Destinations (Visible in Harden-Runner Logs)
+        run: cat /etc/resolv.conf
