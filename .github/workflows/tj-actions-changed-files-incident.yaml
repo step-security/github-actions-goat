@@ -1,4 +1,4 @@
-name: "Changed-Files : With Harden-Runner"
+name: "tj-action changed-files incident"
 
 on:
   pull_request:
