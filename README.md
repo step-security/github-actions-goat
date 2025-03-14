@@ -1,4 +1,4 @@
-# GitHub Actions Goat: Deliberately Vulnerable GitHub Actions CI/CD Environment
+# GitHub Actions Goat: Deliberately Vulnerable GitHub Actions CI/CD Environment 
 
 [![Maintained by stepsecurity.io](https://img.shields.io/badge/maintained%20by-stepsecurity.io-blueviolet)](https://stepsecurity.io/?utm_source=github&utm_medium=organic_oss&utm_campaign=harden-runner)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://raw.githubusercontent.com/step-security/harden-runner/main/LICENSE)
