@@ -32,7 +32,7 @@ jobs:
         with:
           path: src/exfiltration-demo
 
-      - uses: madhead/semver-utils@latest
+      - uses: step-security/semver-utils@v4
         id: version
         with:
           version: 1.2.3
