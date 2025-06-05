@@ -6,6 +6,11 @@ jobs:
   build:
     runs-on: [self-hosted, ec2]
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # v2.12.0
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
@@ -15,7 +20,7 @@ jobs:
           cd ./src/backdoor-demo
           npm install
       - name: Publish to Registry
-        uses: elgohr/Publish-Docker-Github-Action@v5
+        uses: elgohr/Publish-Docker-Github-Action@4feac4d53e4e55dcc5d3e2ad0ed2e0a76028ff7a # v5
         with:
           name: ${{ github.repository }}/prod:latest
           username: ${{ github.actor }}
