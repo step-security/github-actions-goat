@@ -2,17 +2,22 @@ name: "Hosted: HTTPS Monitoring with Harden-Runner"
 on:
   workflow_dispatch:
 
+permissions: {}
+
 jobs:
   build:
+    permissions:
+      contents: read  # for JasonEtco/create-an-issue to read template files
+      issues: write  # for JasonEtco/create-an-issue to create new issues
     runs-on: ubuntu-latest
     steps:
-      - uses: step-security/harden-runner@v2
+      - uses: step-security/harden-runner@002fdce3c6a235733a90a27c80493a3241e56863 # v2.12.1
         with:
           egress-policy: audit
 
       - uses: actions/checkout@v3
 
-      - uses: JasonEtco/create-an-issue@v2
+      - uses: JasonEtco/create-an-issue@1b14a70e4d8dc185e5cc76d3bec9eab20257b2c5 # v2.9.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

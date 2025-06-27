@@ -6,6 +6,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@002fdce3c6a235733a90a27c80493a3241e56863 # v2.12.1
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@v3
 
       - name: npm install
@@ -13,13 +18,13 @@ jobs:
           cd ./src/backdoor-demo
           npm install
 
-      - uses: madhead/semver-utils@latest
+      - uses: madhead/semver-utils@36d1e0ed361bd7b4b77665de8093092eaeabe6ba # latest
         id: version
         with:
           version: 1.2.3
 
       - name: Publish to Registry
-        uses: elgohr/Publish-Docker-Github-Action@v5
+        uses: elgohr/Publish-Docker-Github-Action@4feac4d53e4e55dcc5d3e2ad0ed2e0a76028ff7a # v5
         with:
           name: ${{ github.repository }}/prod:latest
           username: ${{ github.actor }}
