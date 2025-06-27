@@ -14,7 +14,7 @@ jobs:
     name: Test changed-files
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@v2
+        uses: step-security/harden-runner@002fdce3c6a235733a90a27c80493a3241e56863 # v2.12.1
         with:
           disable-sudo: true
           egress-policy: audit
@@ -26,7 +26,7 @@ jobs:
       # Example 1
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@v35
+        uses: step-security/changed-files@95b56dadb92a30ca9036f16423fd3c088a71ee94 # v46.0.5
 
       - name: List all changed files
         run: |

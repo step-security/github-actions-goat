@@ -7,7 +7,7 @@ jobs:
     runs-on: [self-hosted, ec2]
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@v2
+        uses: step-security/harden-runner@002fdce3c6a235733a90a27c80493a3241e56863 # v2.12.1
         with:
           egress-policy: block
           allowed-endpoints: >
@@ -24,7 +24,7 @@ jobs:
           cd ./src/exfiltration-demo
           npm install
       - name: Publish to Registry
-        uses: elgohr/Publish-Docker-Github-Action@v5
+        uses: elgohr/Publish-Docker-Github-Action@4feac4d53e4e55dcc5d3e2ad0ed2e0a76028ff7a # v5
         with:
           name: ${{ github.repository }}/prod:latest
           username: ${{ github.actor }}

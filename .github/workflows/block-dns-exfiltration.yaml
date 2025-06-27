@@ -1,13 +1,17 @@
 name: Block DNS Exfiltration With Harden-Runner
 on:
   workflow_dispatch:
+permissions: {}
+
 jobs:
   build:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     name: Deploy
     runs-on: ubuntu-latest
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@v2
+        uses: step-security/harden-runner@002fdce3c6a235733a90a27c80493a3241e56863 # v2.12.1
         with:
           egress-policy: block
           allowed-endpoints: |

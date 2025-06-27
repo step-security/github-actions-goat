@@ -15,6 +15,11 @@ jobs:
       contents: read
       pull-requests: read
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@002fdce3c6a235733a90a27c80493a3241e56863 # v2.12.1
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@v4
       
       - name: Wait for demo purposes
@@ -40,6 +45,11 @@ jobs:
       contents: read
       pull-requests: read
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@002fdce3c6a235733a90a27c80493a3241e56863 # v2.12.1
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@v4
       
       - name: Wait for demo purposes

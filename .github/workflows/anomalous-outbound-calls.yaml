@@ -1,13 +1,17 @@
 name: Anomalous Outbound Calls
 on:
   workflow_dispatch:
+permissions: {}
+
 jobs:
   unexpected-outbound-calls:
+    permissions:
+      contents: read
     name: AnomalousOutboundCalls
     runs-on: ubuntu-latest
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@v2
+        uses: step-security/harden-runner@002fdce3c6a235733a90a27c80493a3241e56863 # v2.12.1
         with:
           egress-policy: audit
       - run: "curl https://pastebin.com -L  || true"
