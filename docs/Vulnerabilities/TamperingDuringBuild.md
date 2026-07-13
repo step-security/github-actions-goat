@@ -5,7 +5,7 @@ GitHub Actions workflows can be poisoned, potentially leading to the tampering o
 1. **Direct Workflow Alteration:** An attacker can directly modify the workflow, introducing code that tampers source code or artifacts on disk during build.
 2. **Utilizing Malicious or Vulnerable Dependencies:** An attacker might exploit a GitHub Action or any other dependency incorporated in the workflow that has been tampered with or is inherently vulnerable.
 3. **Code Execution During Workflow Run:** A scenario can occur where code with harmful intent gets executed during a workflow run. This could be instigated through a seemingly innocuous component such as a test case.
-4. **Build Server Compromise:** An attacker might attempt to breach the security of the build server on which the GitHub Actions workflow runs.
+4. **Build Server Compromise:** An attacker might attempt to breach the security of the build server on which the GitHub Actions workflow runs. tihs is a rest
 
 ## Summary of past incidents
 
