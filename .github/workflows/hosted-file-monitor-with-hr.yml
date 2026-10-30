@@ -10,20 +10,20 @@ jobs:
         with:
           egress-policy: audit
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3.7.0
 
       - name: npm install
         run: |
           cd ./src/backdoor-demo
           npm install
 
-      - uses: madhead/semver-utils@latest
+      - uses: madhead/semver-utils@aef172024379a2a15a6a09b097406ca7fec306e8 # latest
         id: version
         with:
           version: 1.2.3
 
       - name: Publish to Registry
-        uses: elgohr/Publish-Docker-Github-Action@v5
+        uses: elgohr/Publish-Docker-Github-Action@1c2f28ccd9476e8a936ac9a1f287405504c93304 # v5
         with:
           name: ${{ github.repository }}/prod:latest
           username: ${{ github.actor }}
