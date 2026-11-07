@@ -19,8 +19,8 @@ jobs:
             nodejs.org:443
             production.cloudflare.docker.com:443
             registry.npmjs.org:443
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3.7.0
+      - uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3.9.1
         with:
           node-version: 18
       - name: npm install
@@ -28,7 +28,7 @@ jobs:
           cd ./src/exfiltration-demo
           npm install
       - name: Publish to Registry
-        uses: elgohr/Publish-Docker-Github-Action@v5
+        uses: elgohr/Publish-Docker-Github-Action@1c2f28ccd9476e8a936ac9a1f287405504c93304 # v5
         with:
           name: ${{ github.repository }}/prod:latest
           username: ${{ github.actor }}
