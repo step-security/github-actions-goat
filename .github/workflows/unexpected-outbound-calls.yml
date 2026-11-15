@@ -1,8 +1,12 @@
 name: Unexpected Outbound Calls
 on:
   workflow_dispatch:
+permissions: {}
+
 jobs:
   unexpected-outbound-calls:
+    permissions:
+      contents: read
     name: UnexpectedOutboundCalls
     runs-on: ubuntu-latest
     steps:
